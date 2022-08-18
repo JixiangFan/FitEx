@@ -1,0 +1,158 @@
+{
+    "name": "Popups",
+    "description": "Popup Components",     
+    "keywords": {
+        "common": ["ej2", "Syncfusion", "web-components", "dialog", "popup","modal","alert","tooltip","hint","spinner","loading-indicator","waiting-popup", "template tooltip", "positional tooltip", "ajax tooltip", "tooltip component", "ej2-popups", "loader", "busy-indicator", "waitingfor-loader"],
+        "angular": ["angular", "ng", "ng-dialog","angular-dialog","ng-tooltip","angular-tooltip","ng-spinner","angular-spinner","ng-modal","angular-modal","ng-alert","angular-alert","ng-popup","angular-popup","ng-loading-indicator","angular-loading-indicator","ng-waiting-popup","angular-waiting-popup", "ng-loader", "ng-busy-indicator", "ng-waitingfor-loader", "angular-loader", "angular-busy-indicator", "angular-waitingfor-loader", "ng-template-tooltip", "ng-positional-tooltip", "ng-ajax-tooltip", "ng-tooltip -component", "angular-template-tooltip", "angular-positional-tooltip", "angular-ajax-tooltip", "angular-tooltip-component"],
+        "react": ["react", "react-dialog","react-tooltip","react-spinner","react-modal","react-alert","react-popup","react-loading-indicator","react-waiting-popup", "react-loader", "react-busy-indicator", "react-waitingfor-loader", "react-template-tooltip", "react-positional-tooltip", "react-ajax-tooltip", "react-tooltip-component"],
+        "vue": ["vue", "vue-dialog","vue-tooltip","vue-spinner","vue-modal","vue-alert","vue-popup","vue-loading-indicator","vue-waiting-popup", "vue-loader", "vue-busy-indicator", "vue-waitingfor-loader", "vue-template-tooltip", "vue-positional-tooltip", "vue-ajax-tooltip", "vue-tooltip-component"]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/syncfusion/ej2-ng-popups"
+  },
+  "eventInterfaces": ["BeforeOpenEventArgs", "BeforeCloseEventArgs", "TooltipEventArgs"],
+    "components": [ {
+		"baseClass": "Dialog",
+		"directoryName": "dialog",
+		"type": "container",
+		"preferredTag":"div",
+		"defaultTag": "<div id='ej2Dialog'></div>",
+		"twoWays": [
+			"visible"
+        ],
+        "comment": [
+            "/**",
+            " * Represents the Angular Dialog Component",
+            " * ```html",
+            " * <ejs-dialog></ejs-dialog>",
+            " * ```",
+            " */"
+        ],
+        "reactComment": [
+            "/**",
+            " * Represents the React Dialog Component",
+            " * ```html",
+            " * <Dialog></Dialog>",
+            " * ```",
+            " */"
+        ],
+         "vueComment": [
+            "/**",
+            " * Represents the VueJS Dialog component",
+            " * ```html",
+            " * <ejs-dialog></ejs-dialog>",
+            " * ```",
+            " */"
+        ],
+        "templateProperties": ["footerTemplate", "header", "content"],
+        "blazorType": "native",
+        "blazorDependency": [
+             "ej2-base",
+             "ej2-buttons/button",
+             "../popup"
+        ],
+        "complexDirective": [
+            {
+                "propertyName" : "position",
+                "baseClass" : "PositionData",
+                "SelectorName": "e-dialog-position"
+            },
+            {
+                "propertyName" : "animationSettings",
+                "baseClass" : "AnimationSettings",
+                "SelectorName": "e-dialog-animationsettings"                
+            }
+        ],
+        "tagDirective": [
+            {
+                "arrayDirectiveClassName": "buttons",
+                "isDeprecated": true,
+                "directiveClassName": "DialogButton",
+                "propertyName": "buttons",
+                "directoryName": "dialog",
+                "baseClass": "ButtonProps",
+                "comment": [
+                    "/**",
+                    " * 'e-button' directive represent a button of angular dialog ",
+                    " * It must be contained in a Dialog component(`ej-dialog`). ",
+                    " * ```html",
+                    " * <ejs-dialog id='dialog' showCloseIcon=true> ",
+                    " *   <e-buttons>",
+                    " *    <e-dialogbutton [buttonModal]='okButton'></e-button>",
+                    " *    <e-dialogbutton [buttonModal]='cancelButton'></e-button>",
+                    " *   </e-buttons>",
+                    " * </ejs-dialog>",
+                    " * ```",
+                    " */"
+                ],
+                "reactComment": [
+                    "/**",
+                    " * `ButtonDirective` represent a button of the react dialog. ",
+                    " * It must be contained in a Dialog component(`DialogComponent`). ",
+                    " * ```tsx",
+                    " * <DialogComponent showCloseIcon={true}> ",
+                    " *   <ButtonsDirective>",
+                    " *     <DialogbuttonDirective buttonModal={this.okButton}></DialogbuttonDirective>",
+                    " *     <DialogbuttonDirective buttonModal={this.cancelButton}></DialogbuttonDirective>",
+                    " *   <ButtonsDirective>",
+                    " * </DialogComponent>",
+                    " * ```",
+                    " */"
+                ],
+                "vueComment": [
+                    "/**",
+                    " * 'e-button' directive represent a button of Vue Dialog ",
+                    " * It must be contained in a Dialog component(`ejs-dialog`). ",
+                    " * ```html",
+                    " * <ejs-Dialog id='dialog' :showCloseIcon=true> ",
+                    " *   <e-buttons>",
+                    " *    <e-dialogbutton :buttonModal='okButton'></e-dialogbutton>",
+                    " *    <e-dialogbutton :buttonModal='cancelButton'></e-dialogbutton>",
+                    " *   </e-buttons>",
+                    " * </ejs-Dialog>",
+                    " * ```",
+                    " */"
+                ]
+            }
+        ]
+    },
+        {
+            "baseClass": "Tooltip",
+            "directoryName": "tooltip",
+            "type": "container",
+            "twoWays": [],
+            "comment": [
+            "/**",
+            " * Represents the Angular Tooltip component that displays a piece of information about the target element on mouse hover.",
+            " * ```html",
+            " * <ejs-tooltip content='Tooltip content'>Show Tooltip</ejs-tooltip>",
+            " * ```",
+            " */"
+        ],
+        "reactComment": [
+            "/**",
+            " * Represents the React Tooltip component that displays a piece of information about the target element on mouse hover.",
+            " * ```html",
+            " * <Tooltip content='Tooltip content'>Show Tooltip</Tooltip>",
+            " * ```",
+            " */"
+        ],
+        "vueComment": [
+            "/**",
+            " * Represents the VueJS Tooltip component that displays a piece of information about the target element on mouse hover.",
+            " * ```html",
+            " * <ejs-tooltip content='Tooltip content'>Show Tooltip</ejs-tooltip>",
+            " * ```",
+            " */"
+        ],"templateProperties": [
+            "content"
+        ],
+        "blazorType": "native",
+        "blazorDependency": [
+            "ej2-base",
+            "ej2-popups"
+        ]
+    }
+    ]
+}

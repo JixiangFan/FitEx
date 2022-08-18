@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@syncfusion/ej2-react-popups": "^20.2.36",
+    "firebase": "^9.9.2",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0"
+  }
+}
