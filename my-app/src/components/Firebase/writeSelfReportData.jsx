@@ -13,21 +13,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-function writeDeviceData(
-  userId,
-  name,
-  is_fitbit_device,
-  activity_information,
-  device_information
-) {
+function writeSelfReortData(userId, name, activity_information) {
   const db = getDatabase();
   const currentTime = new Date().getTime();
   const postData = {
     username: name,
     syncDate: currentTime,
-    isFitbitDevice: is_fitbit_device,
     activity: activity_information,
-    device: device_information,
   };
 
   const newPostKey = push(child(ref(db), "posts")).key;
@@ -35,8 +27,18 @@ function writeDeviceData(
   const updates = {};
 
   //unix epoch time
-  updates["/FitEx/User/" + userId + "/FitData/" + currentTime] = postData;
-  return update(ref(db), updates);
+  updates["/FitEx/User/" + userId + "/SelfReportData/" + currentTime] =
+    postData;
+  update(ref(db), updates)
+    .then(() => {
+      // Data saved successfully!
+      alert("Data submitted successfully");
+      window.location.reload(false);
+    })
+    .catch((error) => {
+      // The write failed...
+      alert("Error occurred. Data has not been submitted.");
+    });
 }
 
-export default writeDeviceData;
+export default writeSelfReortData;

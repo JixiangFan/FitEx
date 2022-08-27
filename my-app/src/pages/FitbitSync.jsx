@@ -1,144 +1,249 @@
-import { push } from 'firebase/database';
-import React from 'react'
-import writeDeviceData from '../components/Firebase/writeDeviceData'
-import setUserData from '../components/Firebase/writeActivityData'
-import { Header } from '../components';
-import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, ContextMenu, Selection, Filter, Page, ExcelExport, PdfExport, Edit, Inject,Toolbar } from '@syncfusion/ej2-react-grids';
+import { push } from "firebase/database";
+import React from "react";
+import writeDeviceData from "../components/Firebase/writeDeviceData";
+import setUserData from "../components/Firebase/writeActivityData";
+import { Header } from "../components";
+import {
+  GridComponent,
+  ColumnsDirective,
+  ColumnDirective,
+  Resize,
+  Sort,
+  ContextMenu,
+  Selection,
+  Filter,
+  Page,
+  ExcelExport,
+  PdfExport,
+  Edit,
+  Inject,
+  Toolbar,
+} from "@syncfusion/ej2-react-grids";
 
+const access_token =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzhLM1giLCJzdWIiOiJCNFRaSFciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd3NvYyB3YWN0IHdveHkgd3RlbSB3d2VpIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjYyMjQxNjIxLCJpYXQiOjE2NTk2NDk2NDh9.B8OFnUhV2YqUuWFO9oZ8zvtglLlpssaXEpAtnMfCDR0";
+const toolbarOptions = [`PdfExport`, `ExcelExport`, `CsvExport`, "Search"];
+//let today = (new Date() - 1).toISOString().slice(0, 10);
+//const today = "2022-08-24";
+const d = new Date();
+//console.log(d);
+const today =
+  d.getFullYear() +
+  "-" +
+  ("0" + (d.getMonth() + 1)).slice(-2) +
+  "-" +
+  ("0" + d.getDate()).slice(-2);
+//console.log(today);
 
-const access_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMzhLM1giLCJzdWIiOiJCNFRaSFciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJ3aHIgd3BybyB3bnV0IHdzbGUgd3NvYyB3YWN0IHdveHkgd3RlbSB3d2VpIHdzZXQgd2xvYyB3cmVzIiwiZXhwIjoxNjYyMjQxNjIxLCJpYXQiOjE2NTk2NDk2NDh9.B8OFnUhV2YqUuWFO9oZ8zvtglLlpssaXEpAtnMfCDR0"
-const toolbarOptions = [`PdfExport`,`ExcelExport`, `CsvExport`, 'Search'];
+//const utcDay = d.toISOString().slice(0, 10);
+//console.log(utcDay);
 
-class FitbitSync extends React.Component{
-  constructor(props){
-    super(props)
-    this.state={
-      result : []
-    }
+class FitbitSync extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      devices_result: [],
+      activities_result: {},
+      summary_array: [],
+      error_response: null,
+    };
   }
 
   toObject(arr) {
     var rv = {};
-    for (var i = 0; i < arr.length; ++i)
-      rv[i] = arr[i];
+    for (var i = 0; i < arr.length; ++i) rv[i] = arr[i];
     return rv;
   }
 
   //device api
-  componentDidMount(){
-    
-    fetch('https://api.fitbit.com/1/user/-/devices.json',{
-      method:'GET',
-      headers:{
-        "Authorization": "Bearer " + access_token
+  componentDidMount() {
+    fetch("https://api.fitbit.com/1/user/-/devices.json", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + access_token,
       },
     })
-      .then(response => response.json()) 
-      .then(devices => {
-       
+      .then((response, reject) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          this.setState({
+            error_response: response,
+          });
+          return Promise.reject(reject);
+        }
+      })
+      .then((devices) => {
+        //console.log(devices);
         //activity api
-          fetch('https://api.fitbit.com//1/user/-/activities/goals/weekly.json',{
-          method:'GET',
-          headers:{
-            "Authorization": "Bearer " + access_token
+        fetch(`https://api.fitbit.com/1/user/-/activities/date/${today}.json`, {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + access_token,
           },
+        })
+          .then((response, reject) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              this.setState({
+                error_response: response,
+              });
+              return Promise.reject(reject);
+            }
           })
-          .then(response => response.json()) 
-          .then(activities => {
-            
-            // console.log(activities) 
-            // writeActivityData("Bruce", "bb001", "jfan12@gmail.com", activities) 
-            
-            //console.log(this.toObject(temp[0])) 
-            writeDeviceData("Bruce", "bb001", "jfan12@gmail.com", activities, this.toObject(devices))
-          } 
-          ); 
-        //console.log(json)  
-        //返的直接是parse处理过的object，不需要parse
-        //const device_information = {};
-        //for(let i = 0; i < devices.length; i++){
-        //  const device = devices[0]
-          //const device_battery = device.battery   //device["battery"]
-          //const device_id = device.id
-          //const device_mac = device.mac
+          .then((activities) => {
+            writeDeviceData(
+              "bb001",
+              "Bruce",
+              true,
+              activities,
+              this.toObject(devices)
+            );
+            //console.log(activities);
+            const key_names = [
+              "steps",
+              "activityCalories",
+              "caloriesBMR",
+              "caloriesOut",
+            ];
+            const summary_array = key_names.map((key_name) => ({
+              Name: key_name,
+              Value: activities.summary[key_name],
+            }));
+            console.log(summary_array);
 
-          //device_information[i] = 
-          //{
-          //  device_battery : device.battery,
-          //  device_id : device.id,
-          //  device_mac : device.mac
-          //}
-          
-        //  }
-        //console.log(devices) 
-        // writeDeviceData("Bruce", "bb001", "jfan12@gmail.com", devices) //globa variable for login information  
-        // this.setState({
-        //     result : devices
-        // })
-      } 
-      ); 
-
-     
-
-
-      //console.log(temp) 
-      // const empty = [];
-      // empty[0] = 0;
-      // empty[1] = 1;
-      // setUserData("Bruce", "bb001", "jfan12@gmail.com", empty[1], empty[0])
-      
-
-      
-     
-      //console.log(this.toObject(temp[1])) 
-
-      //writeDeviceData("Bruce", "bb001", "jfan12@gmail.com", return_activity, return_device)
-      
-      
-
+            this.setState({
+              devices_result: devices,
+              activities_result: activities,
+              summary_array: summary_array,
+            });
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
+  render() {
+    const error_response = this.state.error_response;
+    let error = this.state.error_response ? (
+      <span>An error occurred. Status code: {error_response?.status}</span>
+    ) : (
+      <span></span>
+    );
 
-
-
-  
-  render(){
     return (
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Page" title="Fitbit Data" />
-      <GridComponent
-      width="auto"
-      dataSource={this.state.result}
-      pageSettings={{ pageCount: 5 }}
-      allowPaging
-      allowSorting
-      allowExcelExport
-      allowPdfExport
-      toolbar={toolbarOptions}
-      >
-        <ColumnsDirective>    
-          {
-            this.state.result.map(({battery, id, mac}) => (
-              <li> 
+        <Header category="Page" title="Fitbit Data" />
+        {error}
+        <div>
+          <h>Device Information</h>
+        </div>
+        <GridComponent
+          width="auto"
+          dataSource={this.state.devices_result}
+          pageSettings={{ pageCount: 5 }}
+          allowPaging
+          allowSorting
+          allowExcelExport
+          allowPdfExport
+          toolbar={toolbarOptions}
+        >
+          <ColumnsDirective>
+            {this.state.devices_result?.map(({ battery, id, mac }) => (
+              <li>
                 <ul>
-                   <li>device_battery : {battery}, </li> 
-                   <li>device_id : {id} ,</li>
-                   <li>device_mac : {mac}</li> 
-                </ul>  
+                  <li>device_battery : {battery}, </li>
+                  <li>device_id : {id} ,</li>
+                  <li>device_mac : {mac}</li>
+                </ul>
               </li>
-              
-            ))} 
-        </ColumnsDirective>
+            ))}
+          </ColumnsDirective>
 
-        <Inject services={[Resize, Sort, ContextMenu, Filter, Page, ExcelExport, PdfExport, Toolbar]} />
-      </GridComponent>
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              PdfExport,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
 
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h>Distances Information</h>
+        </div>
+        <GridComponent
+          width="auto"
+          dataSource={
+            this.state.activities_result.summary?.distances
+              ? this.state.activities_result.summary?.distances
+              : []
+          }
+          pageSettings={{ pageCount: 5 }}
+          allowPaging
+          allowSorting
+          allowExcelExport
+          allowPdfExport
+          toolbar={toolbarOptions}
+        >
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              PdfExport,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
+
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h>Exercise Information</h>
+        </div>
+        <GridComponent
+          width="auto"
+          dataSource={this.state.summary_array}
+          pageSettings={{ pageCount: 5 }}
+          allowPaging
+          allowSorting
+          allowExcelExport
+          allowPdfExport
+          toolbar={toolbarOptions}
+        >
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              PdfExport,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
       </div>
-    )
+    );
   }
-  
-
 }
 
-export default FitbitSync
-
+export default FitbitSync;
