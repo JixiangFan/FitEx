@@ -35,7 +35,7 @@ const Chat = () => {
                 alt={item.message}
               />
               <span
-                style={{ background: item.dotColor }}
+                style={{ background: item.dotcolor }}
                 className="absolute inline-flex rounded-full h-2 w-2 right-0 -top-1"
               />
             </div>

@@ -12,7 +12,7 @@ import { Register,Login } from '../pages'
 import { useStateContext } from '../contexts/ContextProvider';
 import { useAuth } from '../contexts/AuthContext'
 
-const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
+const NavButton = ({ title, customFunc, icon, color, dotcolor }) => (
   <TooltipComponent content={title} position="BottomCenter">
     <button
       type="button"
@@ -21,7 +21,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
       className="relative text-xl rounded-full p-3 hover:bg-light-gray"
     >
       <span
-        style={{ background: dotColor }}
+        style={{ background: dotcolor }}
         className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2"
       />
       {icon}
@@ -78,8 +78,8 @@ const Navbar = () => {
 
         {currentUser
           ?
-          <><NavButton title="Chat" dotColor="#03C9D7" customFunc={() => handleClick('chat')} color={currentColor} icon={<BsChatLeft />} />
-            <NavButton title="Notification" dotColor="rgb(254, 201, 15)" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} />
+          <><NavButton title="Chat" dotcolor="#03C9D7" customFunc={() => handleClick('chat')} color={currentColor} icon={<BsChatLeft />} />
+            <NavButton title="Notification" dotcolor="rgb(254, 201, 15)" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} />
             <TooltipComponent content="Profile" position="BottomCenter">
             <div
               className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
@@ -87,10 +87,10 @@ const Navbar = () => {
             >
               <img
                 className="rounded-full w-8 h-8"
-                src={avatar}
+                src={currentUser.photoURL}
                 alt="user-profile" />
               <p>
-                <span className="text-gray-400 text-14">Hi,</span>{' '}
+                <span className="text-gray-400 text-14">Hi, {currentUser.displayName}</span>{' '}
                 <span className="text-gray-400 font-bold ml-1 text-14">
                   {currentUser.email}
                 </span>
@@ -98,7 +98,7 @@ const Navbar = () => {
               <MdKeyboardArrowDown className="text-gray-400 text-14" />
             </div>
             </TooltipComponent>
-            <button title="Logout" dotColor="rgb(254, 201, 15)" onClick={handleLogout}>Logout</button>
+            <button title="Logout" dotcolor="rgb(254, 201, 15)" onClick={handleLogout}>Logout</button>
           </>
             
           :
