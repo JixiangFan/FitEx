@@ -2,14 +2,9 @@ import React, { useRef, useState } from 'react'
 import { Form, Button, Card, Alert, Container } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
+import { getDatabase, ref, child, get } from "firebase/database";
 import updateUserdata from '../components/Firebase/updateUserdata'
 const RegisterProfile = () => {
-    const deviceoptions = [
-        { value: 'fitbit', label: 'Fitbit' },
-        { value: 'selfreport', label: 'Self Report' },
-        { value: 'mixed', label: 'Mixed' }
-    ]
-
     const { currentUser } = useAuth()
     const uid = currentUser['uid']
     const email = currentUser['email']
@@ -38,12 +33,22 @@ const RegisterProfile = () => {
     const teamRef = useRef()
 
 
-
-
-    const { signup } = useAuth()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
+    const [teamData, setTeamData] = useState([]);
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `team/`)).then((snapshot) => {
+        if (snapshot.exists())
+        {
+            setTeamData(snapshot.val())
+        } else
+        {
+            setTeamData("No profile data")
+        }
+    }).catch((error) => {
+        setTeamData(error)
+    });
 
 
     return (
@@ -108,14 +113,13 @@ const RegisterProfile = () => {
                                     <Form.Group id="Team">
                                         <Form.Label>Team</Form.Label>
                                         <Form.Select aria-label="Team" ref={teamRef}>
+                                            {Object.keys(teamData).map(function (item) {
+                                                return <option value={item}>{teamData[item]['team_name']}</option>
+                                            })}
                                             <option>select your exercise team</option>
                                             <option value="0">I will create my own team</option>
-                                            <option value="1">Team 1</option>
                                         </Form.Select>
                                     </Form.Group>
-
-
-
 
                                     <Button disabled={loading} className="w-100" type="submit">
                                         submitte

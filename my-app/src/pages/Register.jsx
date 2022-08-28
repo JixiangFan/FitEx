@@ -27,7 +27,7 @@ const Register = () => {
         setError("")
         setLoading(true)
         await signup(emailRef.current.value, passwordRef.current.value);
-        navigate('/register-form');
+        navigate('/registerprofile');
       } catch {
         setError("Failed to create an account")
       }
