@@ -1,7 +1,8 @@
 import React from 'react'
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { useState} from "react";
+import { useState } from "react";
+import {useNavigate } from "react-router-dom"
 import updateUserdata from '../components/Firebase/updateUserdata';
 const Profile = () => {
   const initialState = [
@@ -17,31 +18,9 @@ const Profile = () => {
   const auth = getAuth();
   const user = auth.currentUser;
   const dbRef = ref(getDatabase());
+  const navigate = useNavigate();
 
-  const [changeName, setChangeName] = useState('');
-
-
-
-
-  const handleClick = event => {
-    setIsShown(current => !current);
-  };
-
-
-  const handleNameChange = event => {
-    setChangeName(event.target.value)
-  };
-
-  const handleSubmit = event => {
-    alert('A name was submitted: ' + changeName);
-    updateUserdata(user['uid'], changeName, profileData.email, profileData.usertype, profileData.questionnaire, profileData.device, profileData.team)
-  };
-
-
-
-
-
-  get(child(dbRef, `users/${user['uid']}`)).then((snapshot) => {
+  get(child(dbRef, `profile/${user['uid']}`)).then((snapshot) => {
     if (snapshot.exists())
     {
       setProfileData(snapshot.val())
@@ -53,6 +32,11 @@ const Profile = () => {
     setProfileData(error)
   });
 
+  const routeChange = () =>{ 
+    let path = `/registerprofile`; 
+    navigate(path);
+  }
+
   return (
     <>
       <div className="container">
@@ -63,6 +47,31 @@ const Profile = () => {
                 Name : {profileData.displayname}
               </div>
             </div>
+            <div className="card">
+              <div className="card-body">
+                Gender : {profileData.gender}
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">
+                Age : {profileData.age}
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">
+                Weight : {profileData.weight}
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">
+              Exercise Goal : {profileData.exerciseGoal}
+              </div>
+            </div>
+
+
             <div className="card">
               <div className="card-body">
                 email : {profileData.email}
@@ -83,36 +92,9 @@ const Profile = () => {
                 userType : {profileData.usertype}
               </div>
             </div>
-            <button className="button" onClick={handleClick}>Modify profile</button>
+            <button className="button" onClick={routeChange}>Modify profile</button>
           </div>
-          <div className="col">
-            <div>
 
-
-              {/* 👇️ show elements on click */}
-              {isShown && (
-                <form onSubmit={handleSubmit}>
-                  <label>
-                    Name:
-                    <input type="text" name="name" defaultValue={profileData.displayname} onChange={handleNameChange} />
-                  </label>
-                  <label>
-                    Team:
-                    <input type="text" name="name" defaultValue={profileData.displayname} />
-                  </label>
-                  <label>
-                    device:
-                    <input type="text" name="name" defaultValue={profileData.displayname} />
-                  </label>
-                  <label>
-                    User type:
-                    <input type="text" name="name" defaultValue={profileData.displayname} />
-                  </label>
-                  <input type="submit" value="Submit" />
-                </form>
-              )}
-            </div>
-          </div>
         </div>
       </div>
     </>
