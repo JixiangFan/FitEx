@@ -5,19 +5,14 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import RegisterQuestion from './components/RegisterQuestion'
-import { Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, SelfReport, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
+import { RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, SelfReport, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
-
 import { AuthProvider } from './contexts/AuthContext'
-import { getAuth } from "firebase/auth";
-
 
 
 const App = () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
   const { activeMenu, themeSettings, setThemeSettings, currentColor } = useStateContext();
   return (
     <div>
@@ -99,7 +94,7 @@ const App = () => {
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/profile" element={<Profile />} />
-
+                  <Route path="/registerprofile" element={<RegisterProfile />} />
                  
                   {/* <Route path="/update" element={<RegisterQuestion />} /> */}
 

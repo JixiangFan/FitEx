@@ -16,6 +16,7 @@ export { default as FitbitSync } from './FitbitSync';
 export { default as Team } from './Team';
 export { default as TeamMember } from './TeamMember';
 export { default as Notification } from './Notification';
+export { default as RegisterProfile } from './RegisterFrom';
 
 export { default as Area } from './Charts/Area';
 export { default as Bar } from './Charts/Bar';
