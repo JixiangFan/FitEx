@@ -11,20 +11,9 @@ import { Link, useNavigate } from "react-router-dom"
 const UserProfile = () => {
   const { currentColor } = useStateContext();
   const [error, setError] = useState("")
-  const { currentUser, logout } = useAuth()
+  const { currentUser } = useAuth()
   const navigate = useNavigate();
-  async function handleLogout() {
-    setError("")
-
-    try {
-      await logout()
-      console.log("done")
-      navigate('/');
-    } catch {
-      console.log("done?")
-      setError("Failed to log out")
-    }
-  }
+  console.log(currentUser)
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -47,7 +36,7 @@ const UserProfile = () => {
         <div>
           <p className="font-semibold text-xl dark:text-gray-200"> Scott McCrick </p>
           <p className="text-gray-500 text-sm dark:text-gray-400">  Project Manager   </p>
-          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> Scott@gmail.com </p>
+          <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> {currentUser['email']} </p>
         </div>
       </div>
       <div>
@@ -67,16 +56,6 @@ const UserProfile = () => {
             </div>
           </div>
         ))}
-      </div>
-      <div className="mt-5">
-        <Button
-          color="white"
-          bgColor={currentColor}
-          text="Logout"
-          borderRadius="10px"
-          width="full"
-          onClick={handleLogout}
-        />
       </div>
     </div>
 
