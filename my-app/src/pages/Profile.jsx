@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { useState } from "react";
-import {useNavigate } from "react-router-dom"
-import updateUserdata from '../components/Firebase/updateUserdata';
+import { useNavigate } from "react-router-dom";
+import updateUserdata from "../components/Firebase/updateUserdata";
 const Profile = () => {
   const initialState = [
     { device: "unknown" },
@@ -11,8 +11,8 @@ const Profile = () => {
     { email: "unknown" },
     { questionnaire: false },
     { team: null },
-    { usertype: null }
-  ]
+    { usertype: null },
+  ];
   const [profileData, setProfileData] = useState(initialState);
   const [isShown, setIsShown] = useState(false);
   const auth = getAuth();
@@ -20,22 +20,23 @@ const Profile = () => {
   const dbRef = ref(getDatabase());
   const navigate = useNavigate();
 
-  get(child(dbRef, `profile/${user['uid']}`)).then((snapshot) => {
-    if (snapshot.exists())
-    {
-      setProfileData(snapshot.val())
-    } else
-    {
-      setProfileData("No profile data")
-    }
-  }).catch((error) => {
-    setProfileData(error)
-  });
+  get(child(dbRef, `profile/${user["uid"]}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        setProfileData(snapshot.val());
+        console.log(snapshot.val());
+      } else {
+        setProfileData("No profile data");
+      }
+    })
+    .catch((error) => {
+      setProfileData(error);
+    });
 
-  const routeChange = () =>{ 
-    let path = `/registerprofile`; 
+  const routeChange = () => {
+    let path = `/registerprofile`;
     navigate(path);
-  }
+  };
 
   return (
     <>
@@ -43,64 +44,46 @@ const Profile = () => {
         <div className="row">
           <div className="col">
             <div className="card">
-              <div className="card-body">
-                Name : {profileData.displayname}
-              </div>
+              <div className="card-body">Name : {profileData.displayname}</div>
             </div>
             <div className="card">
-              <div className="card-body">
-                Gender : {profileData.gender}
-              </div>
+              <div className="card-body">Gender : {profileData.gender}</div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">Age : {profileData.age}</div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">Weight : {profileData.weight}</div>
             </div>
 
             <div className="card">
               <div className="card-body">
-                Age : {profileData.age}
+                Exercise Goal : {profileData.exerciseGoal}
               </div>
             </div>
 
             <div className="card">
-              <div className="card-body">
-                Weight : {profileData.weight}
-              </div>
-            </div>
-
-            <div className="card">
-              <div className="card-body">
-              Exercise Goal : {profileData.exerciseGoal}
-              </div>
-            </div>
-
-
-            <div className="card">
-              <div className="card-body">
-                email : {profileData.email}
-              </div>
+              <div className="card-body">email : {profileData.email}</div>
             </div>
             <div className="card">
-              <div className="card-body">
-                team : {profileData.team}
-              </div>
+              <div className="card-body">team : {profileData.team}</div>
             </div>
             <div className="card">
-              <div className="card-body">
-                device : {profileData.device}
-              </div>
+              <div className="card-body">device : {profileData.device}</div>
             </div>
             <div className="card">
-              <div className="card-body">
-                userType : {profileData.usertype}
-              </div>
+              <div className="card-body">userType : {profileData.usertype}</div>
             </div>
-            <button className="button" onClick={routeChange}>Modify profile</button>
+            <button className="button" onClick={routeChange}>
+              Modify profile
+            </button>
           </div>
-
         </div>
       </div>
     </>
+  );
+};
 
-
-  )
-}
-
-export default Profile
+export default Profile;

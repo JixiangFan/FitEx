@@ -76,7 +76,7 @@ class FitbitSync extends React.Component {
           u_name = snapshot.val().displayname;
           //console.log(u_name);
           access_token = snapshot.val().fitbitToken;
-          console.log(access_token);
+          //console.log(access_token);
 
           fetch("https://api.fitbit.com/1/user/-/devices.json", {
             method: "GET",
