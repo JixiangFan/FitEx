@@ -9,11 +9,15 @@ import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
 
+import {AuthProvider} from './contexts/AuthContext'
+
+import PrivateRoute from "./components/Privateroutes"
+
 const App = () => {
   const { activeMenu, themeSettings, setThemeSettings, currentColor } = useStateContext();
-
   return (
     <div>
+      <AuthProvider>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
 
@@ -61,36 +65,44 @@ const App = () => {
         <div>
           {themeSettings && (<ThemeSettings />)}
 
-
           <Routes>
               {/*Dashboard*/}
               <Route path="/" element={(<Dashboard />)} />
               <Route path="/dashboard" element={(<Dashboard />)} />
-              <Route path="/competition" element={<Competition />} />
-              <Route path="/award" element={<Award />} />
-              <Route path="/team" element={(<Team />)} />
-              <Route path="/teamMember" element={<TeamMember />} />
-              <Route path="/employeeTree" element={<EmployeeTree />} />
-
-              {/* pages  */}
-              <Route path="/selfReport" element={<SelfReport />} />
-              <Route path="/fitbitSync" element={<FitbitSync />} />
-              <Route path="/task" element={<Task />} />
-              <Route path="/dataanalytics" element={<DataAnalytics />} />
-              <Route path="/knowledgeBase" element={<KnowledgeBase />} />
-              <Route path="/notification" element={<Notification />} />
-
-              {/* apps  */}
-              <Route path="/kanban" element={<Kanban />} />
-              <Route path="/editor" element={<Editor />} />
-              <Route path="/calendar" element={<Calendar />} />
+                  
+                      <Route path="/competition" element={<Competition />} />
+                    <Route path="/award" element={<Award />} />
+                    <Route path="/team" element={(<Team />)} />
+                    <Route path="/teamMember" element={<TeamMember />} />
+                    <Route path="/employeeTree" element={<EmployeeTree />} />
+      
+                    {/* pages  */}
+                    <Route path="/selfReport" element={<SelfReport />} />
+                    <Route path="/fitbitSync" element={<FitbitSync />} />
+                    <Route path="/task" element={<Task />} />
+                    <Route path="/dataanalytics" element={<DataAnalytics />} />
+                    <Route path="/knowledgeBase" element={<KnowledgeBase />} />
+                    <Route path="/notification" element={<Notification />} />
+      
+                    {/* apps  */}
+                    <Route path="/kanban" element={<Kanban />} />
+                    <Route path="/editor" element={<Editor />} />
+                    <Route path="/calendar" element={<Calendar />} />
+                   
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+          
+             
+                  
+              
 
 
           </Routes>
           </div>
         </div>
         </div>
-      </BrowserRouter>
+        </BrowserRouter>
+        </AuthProvider>
     </div>
   )
 }

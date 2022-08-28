@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{ useEffect, useState } from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
 
 import { Button } from '.';
@@ -6,8 +6,25 @@ import { userProfileData } from '../data/dummy';
 import { useStateContext } from '../contexts/ContextProvider';
 import avatar from '../data/avatar.jpg';
 
+import { useAuth } from '../contexts/AuthContext'
+import { Link, useNavigate } from "react-router-dom"
 const UserProfile = () => {
   const { currentColor } = useStateContext();
+  const [error, setError] = useState("")
+  const { currentUser, logout } = useAuth()
+  const navigate = useNavigate();
+  async function handleLogout() {
+    setError("")
+
+    try {
+      await logout()
+      console.log("done")
+      navigate('/');
+    } catch {
+      console.log("done?")
+      setError("Failed to log out")
+    }
+  }
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -58,6 +75,7 @@ const UserProfile = () => {
           text="Logout"
           borderRadius="10px"
           width="full"
+          onClick={handleLogout}
         />
       </div>
     </div>
