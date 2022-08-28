@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { withRouter } from '../components/withRouter';
@@ -100,6 +100,7 @@ class Profile extends React.Component {
                 <div className="card-body">
                   Exercise Goal : {this.state.profileData.exerciseGoal}
                 </div>
+
               </div>
 
 
@@ -137,3 +138,4 @@ class Profile extends React.Component {
 }
 
 export default withRouter(Profile)
+

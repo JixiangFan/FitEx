@@ -1,6 +1,12 @@
 import React from "react";
 import { Button, Header } from "../components";
 import writeSelfReortData from "../components/Firebase/writeSelfReportData";
+import { getDatabase, ref, child, get } from "firebase/database";
+import { getAuth } from "firebase/auth";
+
+var database_weight = 0;
+var uid = "";
+var u_name = "";
 
 const Metabolic_equivalent_table = {
   1: {
@@ -918,9 +924,12 @@ class SelfReport extends React.Component {
       alert("Please choose valid activity and description");
     } else {
       const metValue = this.state.des_choice;
-      const weight = 45; //get from server data
+      const weight = database_weight;
       const time = this.state.time;
       const result = metValue * weight * time;
+      {
+        console.log(weight);
+      }
       const el = document.getElementById("result");
       el.innerText = result;
       this.setState({
@@ -993,15 +1002,31 @@ class SelfReport extends React.Component {
     if (this.state.table_array.length == 0) {
       alert("Please enter the data!");
     } else {
-      writeSelfReortData(
-        "bb001",
-        "Bruce",
-        this.toObject(this.state.table_array)
-      );
+      writeSelfReortData(uid, u_name, this.toObject(this.state.table_array));
     }
   }
 
   render() {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    //console.log(user);
+    uid = user.uid;
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `profile/${user["uid"]}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          //console.log(snapshot.val());
+          database_weight = snapshot.val().weight;
+          u_name = snapshot.val().displayname;
+          //console.log(u_name);
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     const descriptionOption = Metabolic_equivalent_table[
       this.state.activity_choice
     ] ? (

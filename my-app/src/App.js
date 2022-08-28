@@ -4,8 +4,10 @@ import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
+
 import RegisterQuestion from './components/RegisterQuestion'
 import { CreateTeam,RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, SelfReport, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
+
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
