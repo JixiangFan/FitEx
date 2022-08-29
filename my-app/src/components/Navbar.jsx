@@ -5,7 +5,7 @@ import { BsChatLeft } from 'react-icons/bs';
 import { RiNotification3Line } from 'react-icons/ri';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-
+import {useNavigate } from "react-router-dom"
 import avatar from '../data/avatar.jpg';
 import { Chat, Notification, UserProfile } from '.';
 import { Register,Login } from '../pages'
@@ -56,7 +56,7 @@ const Navbar = () => {
 
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
-
+  const navigate = useNavigate();
   async function handleLogout() {
     setError("")
 
@@ -68,6 +68,9 @@ const Navbar = () => {
     }
   }
 
+  const navigateToprofile = () => {
+    navigate('/profile');
+  };
 
 
 
@@ -77,18 +80,18 @@ const Navbar = () => {
       <div className="flex">
 
         {currentUser
-          ?
-          <><NavButton title="Chat" dotcolor="#03C9D7" customFunc={() => handleClick('chat')} color={currentColor} icon={<BsChatLeft />} />
-            <NavButton title="Notification" dotcolor="rgb(254, 201, 15)" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} />
-            <TooltipComponent content="Profile" position="BottomCenter">
+          ?<>
+          {/* // <><NavButton title="Chat" dotcolor="#03C9D7" customFunc={() => handleClick('chat')} color={currentColor} icon={<BsChatLeft />} />
+          //   <NavButton title="Notification" dotcolor="rgb(254, 201, 15)" customFunc={() => handleClick('notification')} color={currentColor} icon={<RiNotification3Line />} /> */}
+            <TooltipComponent content="Profile" position="BottomCenter" onClick={navigateToprofile}>
             <div
               className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
-              onClick={() => handleClick('userProfile')}
+              
             >
-              <img
+              {/* <img
                 className="rounded-full w-8 h-8"
                 src={currentUser.photoURL}
-                alt="user-profile" />
+                alt="user-profile" /> */}
               <p>
                 <span className="text-gray-400 text-14">Hi, {currentUser.displayName}</span>{' '}
                 <span className="text-gray-400 font-bold ml-1 text-14">
@@ -98,7 +101,7 @@ const Navbar = () => {
               <MdKeyboardArrowDown className="text-gray-400 text-14" />
             </div>
             </TooltipComponent>
-            <button title="Logout" dotcolor="rgb(254, 201, 15)" onClick={handleLogout}>Logout</button>
+            <button title="Logout" className="btn btn-primary" onClick={handleLogout}>Logout</button>
           </>
             
           :
@@ -139,7 +142,6 @@ const Navbar = () => {
 
         {isClicked.chat && (<Chat />)}
         {isClicked.notification && (<Notification />)}
-        {isClicked.userProfile && (<UserProfile />)}
         {isClicked.register && (<Register />)}
         {isClicked.login && (<Login />)}
       </div>

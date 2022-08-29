@@ -28,7 +28,7 @@ const Login = () => {
   }
 
   return (
-    <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
+    <div className="nav-item absolute left-100 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
         <div className="flex justify-between items-center">
         <p className="font-semibold text-lg dark:text-gray-200">Sign in</p>
         <Button
@@ -56,7 +56,7 @@ const Login = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <button disabled={loading} className="w-100" type="submit">
+            <button disabled={loading} className="btn btn-outline-primary  w-100" type="submit">
               Log In
             </button>
           </Form>
