@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert,Container } from "react-bootstrap"
+import { Form, Card, Alert,Container } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
-
+import { Button } from '../components';
 import { useAuth } from '../contexts/AuthContext'
 import { MdOutlineCancel } from 'react-icons/md'
 const Register = () => {
@@ -39,7 +39,15 @@ const Register = () => {
       <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
         <div className="flex justify-between items-center">
           <p className="font-semibold text-lg dark:text-gray-200">Register</p>
+          <Button
+          icon={<MdOutlineCancel />}
+          color="rgb(153, 171, 180)"
+          bgHoverColor="light-gray"
+          size="2xl"
+          borderRadius="50%"
+        />
         </div>
+        
         <div className="flex gap-5 items-center mt-6 border-color border-b-1 pb-6">
         
         <>
@@ -60,9 +68,9 @@ const Register = () => {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <button disabled={loading} className="btn btn-outline-primary w-100" type="submit">
               Sign Up
-            </Button>
+            </button>
           </Form>
         </Card.Body>
       </Card>

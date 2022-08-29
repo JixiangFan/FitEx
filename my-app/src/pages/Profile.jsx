@@ -4,7 +4,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 import { withRouter } from '../components/withRouter';
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import updateUserdata from '../components/Firebase/updateUserdata';
 
 class Profile extends React.Component {
@@ -19,8 +19,10 @@ class Profile extends React.Component {
       des_string: "",
       total_result: 0,
       table_array: [],
+      createTeamOrNot: false,
     };
     this.updateProfile = this.updateProfile.bind(this);
+    this.createTeam = this.createTeam.bind(this);
   }
 
   componentDidMount() {
@@ -37,12 +39,14 @@ class Profile extends React.Component {
           if (snapshot.exists())
           {
             this.setState({
-              teamData: snapshot.val().team_name
+              teamData: snapshot.val().team_name,
+              createTeamOrNot: false
             });
           } else
           {
             this.setState({
-              teamData: "team don't exist"
+              teamData: null,
+              createTeamOrNot: true
             });
           }
         }).catch((error) => {
@@ -50,7 +54,7 @@ class Profile extends React.Component {
             teamData: "server error"
           });
         });
-        
+
       } else
       {
         this.setState({
@@ -62,12 +66,24 @@ class Profile extends React.Component {
         profileData: ["error"]
       });
     });
+
   }
 
   updateProfile() {
     this.props.navigate('/registerprofile')
   }
+
+  createTeam() {
+    this.props.navigate('/createTeam')
+  }
+
   render() {
+    const permission_Level = {
+      0: "Member",
+      1: "Leader",
+      2: "Agent",
+      3: "Admin",
+    };
     return (
       <>
         <div className="container">
@@ -111,7 +127,16 @@ class Profile extends React.Component {
               </div>
               <div className="card">
                 <div className="card-body">
-                  team : {this.state.teamData}
+                  team : {this.state.teamData ? this.state.teamData
+                    : <NavLink
+                    className="navbar-item"
+                    activeClassName="is-active"
+                    to="/createTeam"
+                  >
+                    Create Team
+                  </NavLink>
+                  }
+                  
                 </div>
               </div>
               <div className="card">
@@ -121,10 +146,10 @@ class Profile extends React.Component {
               </div>
               <div className="card">
                 <div className="card-body">
-                  userType : {this.state.profileData.usertype}
+                  userType : {permission_Level[this.state.profileData.usertype]}
                 </div>
               </div>
-              <button className="btn btn-primary"
+              <button className="btn btn-outline-primary"
                 onClick={this.updateProfile}>Update Profile</button>
             </div>
 

@@ -126,7 +126,7 @@ return (
                                     </Form.Text>
                                 </Form.Group>
 
-                                <Button disabled={loading} className="w-100" type="submit">
+                                <Button disabled={loading} className="w-100 btn btn-outline-primary" type="submit">
                                     Create Team
                                 </Button>
                                 <Form.Text id="fitbithelp" muted>

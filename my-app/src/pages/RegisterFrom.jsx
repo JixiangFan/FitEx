@@ -121,8 +121,8 @@ const RegisterProfile = () => {
                                         </Form.Select>
                                     </Form.Group>
 
-                                    <Button disabled={loading} className="w-100" type="submit">
-                                        submitte
+                                    <Button disabled={loading} className="w-100 btn btn-outline-primary" type="submit">
+                                    submit
                                     </Button>
                                 </Form>
                             </Card.Body>

@@ -2,19 +2,20 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-
+import { getAuth } from "firebase/auth";
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 
-import RegisterQuestion from './components/RegisterQuestion'
-import { CreateTeam,RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, SelfReport, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
+import { CreateTeam, RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, SelfReport, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
 
 import './App.css';
-
+import Welcome from './pages/Welcome.jsx'
 import { useStateContext } from './contexts/ContextProvider';
 import { AuthProvider } from './contexts/AuthContext'
 
 
 const App = () => {
+  const auth = getAuth();
+  const user = auth.currentUser;
   const { activeMenu, themeSettings, setThemeSettings, currentColor } = useStateContext();
   return (
     <div>
@@ -51,8 +52,7 @@ const App = () => {
               </div>
             )}
 
-            <div
-              className={
+            <div className={
                 activeMenu
                   ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  '
                   : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
@@ -62,13 +62,13 @@ const App = () => {
                 <Navbar />
               </div>
 
-
-              <div>
+              {user
+                ?<div>
                 {themeSettings && (<ThemeSettings />)}
 
                 <Routes>
                   {/*Dashboard*/}
-                 
+
                   <Route path="/" element={(<Dashboard />)} />
                   <Route path="/dashboard" element={(<Dashboard />)} />
 
@@ -89,10 +89,10 @@ const App = () => {
                   {/* apps  */}
                   <Route path="/kanban" element={<Kanban />} />
                   <Route path="/editor" element={<Editor />} />
-                  
 
-                 <Route path="/calendar" element={<Calendar />} />
-                  
+
+                  <Route path="/calendar" element={<Calendar />} />
+
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/profile" element={<Profile />} />
@@ -107,6 +107,13 @@ const App = () => {
 
                 </Routes>
               </div>
+                :
+                <Routes>
+                  <Route path="/" element={(<Welcome />)} />
+                </Routes>
+              }
+
+              
             </div>
           </div>
         </BrowserRouter>
