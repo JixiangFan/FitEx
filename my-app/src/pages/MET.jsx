@@ -897,7 +897,7 @@ const Activity_Table = {
   21: "Volunteer Activities",
 };
 
-class SelfReport extends React.Component {
+class MET extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -906,6 +906,7 @@ class SelfReport extends React.Component {
       time: 0,
       des_string: "",
       total_result: 0,
+      total_mile: 0,
       table_array: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -927,13 +928,17 @@ class SelfReport extends React.Component {
       const weight = database_weight;
       const time = this.state.time;
       const result = metValue * weight * time;
+      const result2 = (Math.round(time * 60) / 57).toFixed(2);
       {
         console.log(weight);
       }
       const el = document.getElementById("result");
       el.innerText = result;
+      const el2 = document.getElementById("result2");
+      el2.innerText = result2;
       this.setState({
         total_result: result,
+        total_mile: result2,
       });
 
       this.setState({
@@ -943,7 +948,8 @@ class SelfReport extends React.Component {
             time: time,
             activity: this.state.activity_choice,
             des: this.state.des_string,
-            total: result,
+            res_calories: result,
+            res_mile: result2,
           },
         ],
       });
@@ -981,7 +987,12 @@ class SelfReport extends React.Component {
           {Activity_Table[x.activity ? x.activity : ""]}
         </td>
         <td className="border-1 border-slate-500">{x.des ? x.des : ""}</td>
-        <td className="border-1 border-slate-500">{x.total ? x.total : ""}</td>
+        <td className="border-1 border-slate-500">
+          {x.res_calories ? x.res_calories : ""}
+        </td>
+        <td className="border-1 border-slate-500">
+          {x.res_mile ? x.res_mile : ""}
+        </td>
       </tr>
     ));
   }
@@ -1041,324 +1052,341 @@ class SelfReport extends React.Component {
 
     return (
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header category="Page" title="Calories Burned / METs Calculator" />
+        <Header category="Page" title="Self-Report Portal: METs Calculator " />
 
-        <label>Activity Time:</label>
-        <br />
+        <div id="MET">
+          <label>Activity Time:</label>
+          <br />
 
-        <input
-          className="border-2 border-slate-500"
-          type="text"
-          name="time"
-          id="time"
-          onChange={this.handleTimeUpdate}
-          required
-        />
-        <select id="timeUnit">
-          <option value="hr">hr</option>
-        </select>
-        <br />
-        <br />
-        <br />
-
-        <label>Activity:</label>
-        <br />
-        <select
-          id="activities"
-          className="border-2 border-slate-500"
-          onChange={this.handleChange}
-          required
-        >
-          <option
-            value="0"
-            selected=""
-            disabled=""
+          <input
             className="border-2 border-slate-500"
+            type="text"
+            name="time"
+            id="time"
+            onChange={this.handleTimeUpdate}
+            required
+          />
+          <select id="timeUnit">
+            <option value="hr">hr</option>
+          </select>
+          <br />
+          <br />
+
+          <label>Activity:</label>
+          <br />
+          <select
+            id="activities"
+            className="border-2 border-slate-500"
+            onChange={this.handleChange}
+            required
           >
-            --Select an Activity--
-          </option>
-          <option value="1">Bicycling</option>
-          <option value="2">Conditioning Exercise</option>
-          <option value="3">Dancing</option>
-          <option value="4">Fishing and Hunting</option>
-          <option value="5">Home Activities</option>
-          <option value="6">Home Repair</option>
-          <option value="7">Inactivity Quiet/Light</option>
-          <option value="8">Lawn and Garden</option>
-          <option value="9">Miscellaneous</option>
-          <option value="10">Music Playing</option>
-          <option value="11">Occupation</option>
-          <option value="12">Running</option>
-          <option value="13">Self Care</option>
-          <option value="14">Sexual Activity</option>
-          <option value="15">Sports</option>
-          <option value="16">Transportation</option>
-          <option value="17">Walking</option>
-          <option value="18">Water Activities</option>
-          <option value="19">Winter Activities</option>
-          <option value="20">Religious Activities</option>
-          <option value="21">Volunteer Activities</option>
-        </select>
+            <option
+              value="0"
+              selected=""
+              disabled=""
+              className="border-2 border-slate-500"
+            >
+              --Select an Activity--
+            </option>
+            <option value="1">Bicycling</option>
+            <option value="2">Conditioning Exercise</option>
+            <option value="3">Dancing</option>
+            <option value="4">Fishing and Hunting</option>
+            <option value="5">Home Activities</option>
+            <option value="6">Home Repair</option>
+            <option value="7">Inactivity Quiet/Light</option>
+            <option value="8">Lawn and Garden</option>
+            <option value="9">Miscellaneous</option>
+            <option value="10">Music Playing</option>
+            <option value="11">Occupation</option>
+            <option value="12">Running</option>
+            <option value="13">Self Care</option>
+            <option value="14">Sexual Activity</option>
+            <option value="15">Sports</option>
+            <option value="16">Transportation</option>
+            <option value="17">Walking</option>
+            <option value="18">Water Activities</option>
+            <option value="19">Winter Activities</option>
+            <option value="20">Religious Activities</option>
+            <option value="21">Volunteer Activities</option>
+          </select>
 
-        <br />
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <label>Description:</label>
-        <br />
-        <select
-          id="descriptions"
-          className="border-2 border-slate-500"
-          onChange={this.handleDesChange}
-          required
-        >
-          {this.state.activity_choice ? (
-            <option value="-1">Select a description</option>
-          ) : (
-            <option>Select an activity first</option>
-          )}
-          {descriptionOption}
-        </select>
+          <label>Description:</label>
+          <br />
+          <select
+            id="descriptions"
+            className="border-2 border-slate-500"
+            onChange={this.handleDesChange}
+            required
+          >
+            {this.state.activity_choice ? (
+              <option value="-1">Select a description</option>
+            ) : (
+              <option>Select an Activity First</option>
+            )}
+            {descriptionOption}
+          </select>
 
-        <br />
-        <br />
-        <br />
+          <br />
+          <br />
 
-        <label>Total Calories Burned:</label>
-        <br />
-        <div id="result"></div>
-        <br />
-        <br />
+          <label>Activity Selected: </label>
+          <span id="activity"></span>
+          <br />
+          <br />
+          <label>METs: {this.state.des_choice}</label>
+          <br />
+          <span id="textMets"></span>
+          <br />
 
-        <label>Activity Selected: </label>
-        <span id="activity"></span>
-        <br />
-        <label>METs: {this.state.des_choice}</label>
-        <br />
-        <span id="textMets"></span>
+          <button
+            className="border-2 border-slate-500 bg-slate-300"
+            onClick={this.calculating}
+          >
+            Calculate
+          </button>
+          <br />
+          <br />
 
-        <br />
+          <label>Total Calories Burned:</label>
+          <br />
+          <div id="result"></div>
+          <br />
 
-        <button
-          className="border-2 border-slate-500 bg-slate-300"
-          onClick={this.calculating}
-        >
-          Calculate
-        </button>
-        <br />
-        <br />
+          <label>Total Exercise Miles:</label>
+          <br />
+          <div id="result2"></div>
+          <br />
 
-        <h1 className="text-2xl">
-          <b>Result Table</b>
-        </h1>
-        <table className="border-2 border-slate-500 divide-x divide-y divide-solid divide-black">
-          <th>Activity Time</th>
-          <th>Activity</th>
-          <th>Description</th>
-          <th>Total Calories Burned </th>
-          {this.getTableRow()}
-        </table>
-        <br />
+          <div id="MET-Result">
+            <h1>
+              <b className="text-2xl">Results Table</b>
+              <p>* Please input and calculate all activities before submit.</p>
+            </h1>
+            <table className="border-2 border-slate-500 divide-x divide-y divide-solid divide-black">
+              <th>Activity Time</th>
+              <th>Activity</th>
+              <th>Description</th>
+              <th>Total Calories Burned </th>
+              <th>Total Exercise Miles </th>
+              {this.getTableRow()}
+            </table>
+            <br />
 
-        <button
-          className="border-2 border-slate-500 bg-slate-300"
-          onClick={this.deleteLastRow}
-        >
-          Delete Last Row
-        </button>
+            <button
+              className="border-2 border-slate-500 bg-slate-300"
+              onClick={this.deleteLastRow}
+            >
+              Delete Last Row
+            </button>
 
-        <br />
-        <br />
+            <br />
+            <br />
 
-        <button
-          className="border-2 border-slate-500 bg-slate-300"
-          onClick={this.submitData}
-        >
-          Confirm and Submit
-        </button>
+            <button
+              className="border-2 border-slate-500 bg-slate-300"
+              onClick={this.submitData}
+            >
+              Confirm and Submit
+            </button>
 
-        <br />
-        <br />
+            <br />
+            <br />
+          </div>
 
-        <h1 className="text-3xl">
-          <b>Definition</b>
-        </h1>
-        <p>
-          The metabolic equivalent of task (MET) is the ratio of the metabolic
-          rate during exercise to the metabolic rate at rest. One MET
-          corresponds to an energy expenditure of 1 kcal/kg/hour. One MET can
-          also be expressed as oxygen uptake of 3.5 ml/kg/min.
-        </p>
-        <br />
-        <p>
-          METs are used to estimate how many calories are burned during many
-          common physical activities.
-        </p>
-        <br />
-        <br />
+          <div id="introduction">
+            <h1 className="text-3xl">
+              <b>Definition</b>
+            </h1>
+            <p>
+              The metabolic equivalent of task (MET) is the ratio of the
+              metabolic rate during exercise to the metabolic rate at rest. One
+              MET corresponds to an energy expenditure of 1 kcal/kg/hour. One
+              MET can also be expressed as oxygen uptake of 3.5 ml/kg/min.
+            </p>
+            <br />
+            <p>
+              METs are used to estimate how many calories are burned during many
+              common physical activities.
+            </p>
+            <br />
 
-        <h1 className="text-3xl">
-          <b>How it works</b>
-        </h1>
-        <p>
-          We will demonstrate how the calculator works with a simple example:
-        </p>
-        <p>
-          Susan is a 70kg (~154 lbs) woman who walked her dog for exactly 30
-          min. According to the metabolic equivalent table , walking the dog
-          corresponds to an energy expediture of 3.0 METs. In order to perform
-          the calculation, all we have to do is to multiply the weight (kg), the
-          metabolic equivalent of a task (MET) and the time of the activity
-          (hr).
-        </p>
+            <h1 className="text-3xl">
+              <b>How it works</b>
+            </h1>
+            <p>
+              We will demonstrate how the calculator works with a simple
+              example:
+            </p>
+            <p>
+              Susan is a 70kg (~154 lbs) woman who walked her dog for exactly 30
+              min. According to the metabolic equivalent table , walking the dog
+              corresponds to an energy expediture of 3.0 METs. In order to
+              perform the calculation, all we have to do is to multiply the
+              weight (kg), the metabolic equivalent of a task (MET) and the time
+              of the activity (hr).
+            </p>
 
-        <br />
-        <p>Remember that 1 MET = 1 kcal/kg/hr</p>
-        <br />
+            <br />
+            <p>Remember that 1 MET = 1 kcal/kg/hr</p>
+            <br />
 
-        <p>
-          Units of time must be converted to hours. Therefore, 30 min = 0.5 hr
-        </p>
-        <br />
+            <p>
+              Units of time must be converted to hours. Therefore, 30 min = 0.5
+              hr
+            </p>
+            <br />
 
-        <p className="text-xl">
-          <b>
-            Calories burned = 70 kg x 3 kcal/kg/hr x 0.5 hr = 105 kcals burned
-          </b>
-        </p>
-        <br />
+            <p className="text-xl">
+              <b>
+                Calories burned = 70 kg x 3 kcal/kg/hr x 0.5 hr = 105 kcals
+                burned
+              </b>
+            </p>
+            <br />
 
-        <p>
-          It is important to know that this formula does not take into
-          consideration characteristics such as age and sex and should only be
-          used as estimates.
-        </p>
-        <p>
-          Still complicated? Don't worry, our calculator will do all the math
-          for you! Just type your values and choose the most appropriate
-          activity.
-        </p>
+            <p>
+              It is important to know that this formula does not take into
+              consideration characteristics such as age and sex and should only
+              be used as estimates.
+            </p>
+            <p>
+              Still complicated? Don't worry, our calculator will do all the
+              math for you! Just type your values and choose the most
+              appropriate activity.
+            </p>
 
-        <br />
-        <br />
+            <br />
 
-        <h1 className="text-3xl">
-          <b>Common Activities</b>
-        </h1>
-        <table className="border-2 border-slate-500 divide-x divide-y divide-solid divide-black">
-          <th className="bg-green-300">Light Intensity Activities </th>
-          <th className="bg-green-300">METs</th>
-          <tr>
-            <td className="border-1 border-slate-500">Sleeping</td>
-            <td className="border-1 border-slate-500">0.95</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">Watching television</td>
-            <td className="border-1 border-slate-500">1.0</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Writing, desk work, typing
-            </td>
-            <td className="border-1 border-slate-500">1.3</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">Walking, household</td>
-            <td className="border-1 border-slate-500">2.0</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Walking, 2.0 mph (3.2 km/h)
-            </td>
-            <td className="border-1 border-slate-500">2.8</td>
-          </tr>
+            <h1 className="text-3xl">
+              <b>Common Activities</b>
+            </h1>
+            <table className="border-2 border-slate-500 divide-x divide-y divide-solid divide-black">
+              <th className="bg-green-300">Light Intensity Activities </th>
+              <th className="bg-green-300">METs</th>
+              <tr>
+                <td className="border-1 border-slate-500">Sleeping</td>
+                <td className="border-1 border-slate-500">0.95</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Watching television
+                </td>
+                <td className="border-1 border-slate-500">1.0</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Writing, desk work, typing
+                </td>
+                <td className="border-1 border-slate-500">1.3</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Walking, household
+                </td>
+                <td className="border-1 border-slate-500">2.0</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Walking, 2.0 mph (3.2 km/h)
+                </td>
+                <td className="border-1 border-slate-500">2.8</td>
+              </tr>
 
-          <th className="bg-green-300">Moderate Intensity Activities</th>
-          <th className="bg-green-300">METs</th>
-          <tr>
-            <td className="border-1 border-slate-500">Walking the dog</td>
-            <td className="border-1 border-slate-500">3.0</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Walking, 2.8 - 3.2 mph (4.5 - 5.1 km/h), level, moderate pace
-            </td>
-            <td className="border-1 border-slate-500">3.5</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Calisthenics, (e.g., push ups, sit ups, pull-ups, lunges),
-              moderate effort
-            </td>
-            <td className="border-1 border-slate-500">3.8</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Yard work, general, moderate effort
-            </td>
-            <td className="border-1 border-slate-500">4.0</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">Mowing lawn, general</td>
-            <td className="border-1 border-slate-500">5.5</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Bicycling, leisure, 9.4 mph (15.1 km/h)
-            </td>
-            <td className="border-1 border-slate-500">5.8</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Swimming laps, freestyle, light or moderate effort
-            </td>
-            <td className="border-1 border-slate-500">5.8</td>
-          </tr>
+              <th className="bg-green-300">Moderate Intensity Activities</th>
+              <th className="bg-green-300">METs</th>
+              <tr>
+                <td className="border-1 border-slate-500">Walking the dog</td>
+                <td className="border-1 border-slate-500">3.0</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Walking, 2.8 - 3.2 mph (4.5 - 5.1 km/h), level, moderate pace
+                </td>
+                <td className="border-1 border-slate-500">3.5</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Calisthenics, (e.g., push ups, sit ups, pull-ups, lunges),
+                  moderate effort
+                </td>
+                <td className="border-1 border-slate-500">3.8</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Yard work, general, moderate effort
+                </td>
+                <td className="border-1 border-slate-500">4.0</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Mowing lawn, general
+                </td>
+                <td className="border-1 border-slate-500">5.5</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Bicycling, leisure, 9.4 mph (15.1 km/h)
+                </td>
+                <td className="border-1 border-slate-500">5.8</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Swimming laps, freestyle, light or moderate effort
+                </td>
+                <td className="border-1 border-slate-500">5.8</td>
+              </tr>
 
-          <th className="bg-green-300">Vigorous Intensity Activities</th>
-          <th className="bg-green-300">METs</th>
-          <tr>
-            <td className="border-1 border-slate-500">Jogging, general</td>
-            <td className="border-1 border-slate-500">7.0</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Snow shoveling, by hand, vigorous effort
-            </td>
-            <td className="border-1 border-slate-500">7.5</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Running, 5 mph (8.0 km/h)
-            </td>
-            <td className="border-1 border-slate-500">8.3</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Stair-treadmill ergometer, general
-            </td>
-            <td className="border-1 border-slate-500">9.0</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Swimming laps, freestyle, fast, vigorous effort
-            </td>
-            <td className="border-1 border-slate-500">9.8</td>
-          </tr>
-          <tr>
-            <td className="border-1 border-slate-500">
-              Running, 8 mph (12.9 km/h)
-            </td>
-            <td className="border-1 border-slate-500">11.8</td>
-          </tr>
-        </table>
-        <p>
-          * Values displayed are part of the most recent version of the
-          Compendium of Physical Activities.
-        </p>
+              <th className="bg-green-300">Vigorous Intensity Activities</th>
+              <th className="bg-green-300">METs</th>
+              <tr>
+                <td className="border-1 border-slate-500">Jogging, general</td>
+                <td className="border-1 border-slate-500">7.0</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Snow shoveling, by hand, vigorous effort
+                </td>
+                <td className="border-1 border-slate-500">7.5</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Running, 5 mph (8.0 km/h)
+                </td>
+                <td className="border-1 border-slate-500">8.3</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Stair-treadmill ergometer, general
+                </td>
+                <td className="border-1 border-slate-500">9.0</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Swimming laps, freestyle, fast, vigorous effort
+                </td>
+                <td className="border-1 border-slate-500">9.8</td>
+              </tr>
+              <tr>
+                <td className="border-1 border-slate-500">
+                  Running, 8 mph (12.9 km/h)
+                </td>
+                <td className="border-1 border-slate-500">11.8</td>
+              </tr>
+            </table>
+
+            <p>
+              * Values displayed are part of the most recent version of the
+              Compendium of Physical Activities.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default SelfReport;
+export default MET;

@@ -11,7 +11,8 @@ import { GrLocation } from 'react-icons/gr';
 import { IoFootstepsOutline } from "react-icons/io5";
 import { FaWalking } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
-
+import { TbReport } from "react-icons/tb";
+import { HiCalculator } from "react-icons/hi";
 
 import avatar from './avatar.jpg';
 import avatar2 from './avatar2.jpg';
@@ -461,49 +462,15 @@ export const links = [
   },
 
   {
-    title: 'Pages',
+    title: 'Self Report',
     links: [
       {
-        name: 'selfReport',
-        icon: <MdEditNote />,
+        name: 'MET',
+        icon: <HiCalculator />,
       },
       {
-        name: 'fitbitSync',
-        icon: <AiOutlineSync />,
-      },
-      {
-        name: 'task',
-        icon: <BiTask />,
-      },
-      {
-        name: 'dataAnalytics',
-        icon: <MdAnalytics />,
-      },
-      {
-        name: 'knowledgeBase',
-        icon: <RiBook3Line />,
-      },
-      {
-        name: 'Notification',
-        icon: <AiOutlineNotification />,
-      },
-      
-    ],
-  },
-  {
-    title: 'Apps',
-    links: [
-      {
-        name: 'calendar',
-        icon: <AiOutlineCalendar />,
-      },
-      {
-        name: 'kanban',
-        icon: <BsKanban />,
-      },
-      {
-        name: 'editor',
-        icon: <FiEdit />,
+        name: 'nutrition',
+        icon: <TbReport />,
       },
     ],
   },

@@ -11,14 +11,14 @@ export { default as Register } from './Register';
 export { default as Profile } from './Profile';
 export { default as Competition } from './Competition';
 export { default as Award } from './Award';
-export { default as SelfReport } from './SelfReport';
+export { default as MET } from "./MET";
 export { default as FitbitSync } from './FitbitSync';
 export { default as Team } from './Team';
 export { default as TeamMember } from './TeamMember';
 export { default as Notification } from './Notification';
 export { default as RegisterProfile } from './RegisterFrom';
 export { default as CreateTeam } from './CreateTeam';
-
+export { default as Nutrition } from "./Nutrition";
 
 
 export { default as Area } from './Charts/Area';
