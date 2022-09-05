@@ -18,7 +18,7 @@ export { default as TeamMember } from './TeamMember';
 export { default as Notification } from './Notification';
 export { default as RegisterProfile } from './RegisterFrom';
 export { default as CreateTeam } from './CreateTeam';
-
+export { default as Nutrition } from "./Nutrition";
 
 
 export { default as Area } from './Charts/Area';
