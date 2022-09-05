@@ -897,7 +897,7 @@ const Activity_Table = {
   21: "Volunteer Activities",
 };
 
-class SelfReport extends React.Component {
+class MET extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -1052,10 +1052,7 @@ class SelfReport extends React.Component {
 
     return (
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header
-          category="Page"
-          title="Self-Report Portal: METs Calculator "
-        />
+        <Header category="Page" title="Self-Report Portal: METs Calculator " />
 
         <div id="MET">
           <label>Activity Time:</label>
@@ -1392,4 +1389,4 @@ class SelfReport extends React.Component {
   }
 }
 
-export default SelfReport;
+export default MET;
