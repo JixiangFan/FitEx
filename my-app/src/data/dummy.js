@@ -12,7 +12,7 @@ import { IoFootstepsOutline } from "react-icons/io5";
 import { FaWalking } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 import { TbReport } from "react-icons/tb";
-
+import { HiCalculator } from "react-icons/hi";
 
 import avatar from './avatar.jpg';
 import avatar2 from './avatar2.jpg';
@@ -462,11 +462,11 @@ export const links = [
   },
 
   {
-    title: 'Tools',
+    title: 'Self Report',
     links: [
       {
-        name: 'selfReport',
-        icon: <MdEditNote />,
+        name: 'MET',
+        icon: <HiCalculator />,
       },
       {
         name: 'nutrition',
