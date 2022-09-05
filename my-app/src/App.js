@@ -5,7 +5,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { getAuth } from "firebase/auth";
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 
-import { CreateTeam, RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, SelfReport, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
+import { Nutrition, CreateTeam, RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, SelfReport, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
 
 import './App.css';
 import Welcome from './pages/Welcome.jsx'
@@ -80,18 +80,9 @@ const App = () => {
 
                   {/* pages  */}
                   <Route path="/selfReport" element={<SelfReport />} />
+                  <Route path="/nutrition" element={<Nutrition />} />
                   <Route path="/fitbitSync" element={<FitbitSync />} />
                   <Route path="/task" element={<Task />} />
-                  <Route path="/dataanalytics" element={<DataAnalytics />} />
-                  <Route path="/knowledgeBase" element={<KnowledgeBase />} />
-                  <Route path="/notification" element={<Notification />} />
-
-                  {/* apps  */}
-                  <Route path="/kanban" element={<Kanban />} />
-                  <Route path="/editor" element={<Editor />} />
-
-
-                  <Route path="/calendar" element={<Calendar />} />
 
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
