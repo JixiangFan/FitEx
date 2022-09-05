@@ -5,37 +5,36 @@ import { Link, useNavigate } from "react-router-dom"
 
 import { useAuth } from '../contexts/AuthContext'
 import { MdOutlineCancel } from 'react-icons/md'
-import { useStateContext } from '../contexts/ContextProvider';
-
-const Login = () => {
+const ChangePassword = () => {
   const emailRef = useRef()
   const passwordRef = useRef()
-  const { login } = useAuth()
+  const { resetPassword } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
-  const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize } = useStateContext();
-
   async function handleSubmit(e) {
     e.preventDefault()
-
+    const result = ""
     try
     {
       setError("")
-      setLoading(true)
-      await login(emailRef.current.value, passwordRef.current.value)
-      navigate('/');
+      if (emailRef.current.value === passwordRef.current.value)
+      {
+        setLoading(true)
+        await resetPassword(emailRef.current.value)
+        setError("check your email")
+      }
+      else
+      {
+        setError("Email do not match")
+      }
+      console.log(result)
+      // navigate('/');
     } catch {
-      setError("Failed to log in")
+      setError("error")
     }
 
     setLoading(false)
-  }
-
-  function resetPassword() {
-
-    navigate('/forgetpassword')
-
   }
 
   let mainStyle = {
@@ -46,7 +45,6 @@ const Login = () => {
 
 
   return (
-
     <div className="container h-100 bg-light" style={mainStyle}>
       <div className="row h-100">
         <div className="col-3 justify-content-center" style={{ 'backgroundColor': '#8AABBD' }}>
@@ -64,27 +62,24 @@ const Login = () => {
         <div className="col-7 place-content-center bg-light">
           <div className="row h-100 place-content-center">
             <div className="col">
-              <div className="h1 text-center">Login</div>
+              <div className="h1 text-center">Change Password</div>
               {error && <Alert variant="danger">{error}</Alert>}
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label className="form-label">Email address</label>
                   <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ref={emailRef} required />
-                  <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
 
                 <div className="mb-3">
-                  <label className="form-label">Password</label>
-                  <input type="password" className="form-control" id="password" aria-describedby="password" ref={passwordRef} required />
+                  <label className="form-label">Confirm Email</label>
+                  <input type="email2" className="form-control" id="email2" aria-describedby="password" ref={passwordRef} required />
                 </div>
 
                 <button disabled={loading} className="btn btn-outline-primary  w-100" type="submit">
-                  Log In
+                  Reset Password
                 </button>
               </form>
-              <button disabled={loading} className="btn btn-outline-secondary  w-100" onClick={() => resetPassword()}>
-                Forget Passowrd
-              </button>
+             
             </div>
           </div>
         </div>
@@ -96,4 +91,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default ChangePassword

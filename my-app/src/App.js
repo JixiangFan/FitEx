@@ -11,7 +11,12 @@ import './App.css';
 import Welcome from './pages/Welcome.jsx'
 import { useStateContext } from './contexts/ContextProvider';
 import { AuthProvider } from './contexts/AuthContext'
-
+import ChangePassword from './pages/ChangePassword';
+import Register1 from './pages/register_1'
+import PrivateRoute from './components/Privateroutes';
+import Register2 from './pages/register_2';
+import Register3 from './pages/register_3';
+import RegisterQuestion from './pages/register_question';
 
 const App = () => {
   const auth = getAuth();
@@ -20,63 +25,73 @@ const App = () => {
   return (
     <div>
       <AuthProvider>
-        <BrowserRouter>
+        <BrowserRouter forceRefresh={true}>
           <div className="flex relative dark:bg-main-dark-bg">
-
-            <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-              <TooltipComponent
-                content="Settings" position="Top">
-                <button type="button"
-                  className="text-3xl p-3 
+            {user &&
+              <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
+                <TooltipComponent
+                  content="Settings" position="Top">
+                  <button type="button"
+                    className="text-3xl p-3 
                           hover:drop-shadow-xl 
                           hover:bg-light-gray text-white"
-                  onClick={() => setThemeSettings(true)}
-                  style={{ background: currentColor, borderRadius: '50%' }}
-                >
-                  <FiSettings />
-                </button>
-              </TooltipComponent>
-            </div>
-
-            {/* Active Menu control */}
-            {activeMenu ? (
-              <div className="w-72 fixed sidebar 
+                    onClick={() => setThemeSettings(true)}
+                    style={{ background: currentColor, borderRadius: '50%' }}
+                  >
+                    <FiSettings />
+                  </button>
+                </TooltipComponent>
+              </div>
+            }
+            {console.log(activeMenu && user)}
+            {activeMenu ? 
+               user &&
+              (<div id ="side" className="w-0 fixed sidebar 
                             dark:bg-secondary-dark-bg 
                             bg-white">
                 <Sidebar />
-              </div>
-            ) : (
-              <div className="w-0 
+              </div>)
+             : (
+            <div  id ="side" className="w-0 
                             dark:bg-secondary-dark-bg">
-                <Sidebar />
-              </div>
+              <Sidebar />
+            </div>
             )}
 
             <div className={
-                activeMenu
-                  ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  '
-                  : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
-              }
+              activeMenu && user
+                ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  '
+                : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
+            }
             >
-              <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+              <div  id ="top" className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
                 <Navbar />
               </div>
 
-              {user
-                ?<div>
+
+              <div>
                 {themeSettings && (<ThemeSettings />)}
 
                 <Routes>
                   {/*Dashboard*/}
 
-                  <Route path="/" element={(<Dashboard />)} />
-                  <Route path="/dashboard" element={(<Dashboard />)} />
-
-                  <Route path="/competition" element={<Competition />} />
-                  <Route path="/award" element={<Award />} />
-                  <Route path="/team" element={(<Team />)} />
-                  <Route path="/teamMember" element={<TeamMember />} />
-                  <Route path="/employeeTree" element={<EmployeeTree />} />
+                  <Route path="/" element={(<Welcome />)} />
+                  <Route exact path='/' element={<PrivateRoute />}>
+                    <Route exact path="/dashboard" element={(<Dashboard />)} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/register2" element={<Register2 />} />
+                    <Route path="/register3" element={<Register3 />} />
+                    <Route path="/createTeam" element={<CreateTeam />} />
+                  </Route>
+                  <Route path="/register" element={<Register1 />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/forgetpassword" element={<ChangePassword/>}/>
+                  {/* 
+                    <Route path="/competition" element={<Competition />} />
+                    <Route path="/award" element={<Award />} />
+                    <Route path="/team" element={(<Team />)} />
+                    <Route path="/teamMember" element={<TeamMember />} />
+                    <Route path="/employeeTree" element={<EmployeeTree />} /> */}
 
                   {/* pages  */}
                   <Route path="/MET" element={<MET />} />
@@ -84,27 +99,18 @@ const App = () => {
                   <Route path="/fitbitSync" element={<FitbitSync />} />
                   <Route path="/task" element={<Task />} />
 
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/registerprofile" element={<RegisterProfile />} />
-                  <Route path="/createTeam" element={<CreateTeam />} />
+
+                    
+                    
+                    <Route path="/registerprofile" element={<RegisterProfile />} />
+                    */}
                   {/* <Route path="/update" element={<RegisterQuestion />} /> */}
-
-
-
-
-
-
                 </Routes>
               </div>
-                :
-                <Routes>
-                  <Route path="/" element={(<Welcome />)} />
-                </Routes>
-              }
 
-              
+
+
+
             </div>
           </div>
         </BrowserRouter>

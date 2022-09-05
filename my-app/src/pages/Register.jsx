@@ -29,7 +29,7 @@ const Register = () => {
         await signup(emailRef.current.value, passwordRef.current.value);
         navigate('/registerprofile');
       } catch {
-        setError("Failed to create an account")
+        setError("Failed to create an account, email may exist")
       }
 
       setLoading(false)
