@@ -15,7 +15,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize } = useStateContext();
- 
+
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -32,6 +32,12 @@ const Login = () => {
     setLoading(false)
   }
 
+  function resetPassword() {
+
+    navigate('/forgetpassword')
+
+  }
+
   let mainStyle = {
     'backgroundColor': '#EDE9E9`',
     'position': 'absolute',
@@ -40,7 +46,7 @@ const Login = () => {
 
 
   return (
-    
+
     <div className="container h-100 bg-light" style={mainStyle}>
       <div className="row h-100">
         <div className="col-3 justify-content-center" style={{ 'backgroundColor': '#8AABBD' }}>
@@ -72,14 +78,13 @@ const Login = () => {
                   <input type="password" className="form-control" id="password" aria-describedby="password" ref={passwordRef} required />
                 </div>
 
-                <button disabled={loading} className="btn btn-outline-primary  w-50" type="submit">
+                <button disabled={loading} className="btn btn-outline-primary  w-100" type="submit">
                   Log In
                 </button>
-                <button disabled={loading} className="btn btn-outline-secondary  w-50" type="submit">
-                  Forget Passowrd
-                </button>
               </form>
-             
+              <button disabled={loading} className="btn btn-outline-secondary  w-100" onClick={() => resetPassword()}>
+                Forget Passowrd
+              </button>
             </div>
           </div>
         </div>

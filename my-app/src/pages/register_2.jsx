@@ -53,7 +53,7 @@ const Register2 = () => {
             }
             else
             {
-                navigate('/profile');
+                navigate('/register3');
                 }
         } catch {
             setError("Server error, try again")
@@ -158,11 +158,11 @@ const Register2 = () => {
                                         <label className="form-label">Daliy Steps Goal</label>
                                         <div className="input-group mb-3">
                                             <input type="number" className="form-control" min="0" aria-label="height" aria-describedby="basic-addon2" ref={stepRef} required></input>
-                                            <span className="input-group-text" id="basic-addon2">ft</span>
+                                            <span className="input-group-text" id="basic-addon2">step</span>
                                         </div>
                                     </div>
                                     <div className="col mb-3 w-25">
-                                        <label className="form-label">Nutrition Goals</label>
+                                        <label className="form-label">Daily Nutrition Goals</label>
                                         <div className="input-group mb-3">
                                             <input type="number" className="form-control" min="0" aria-label="weight" aria-describedby="basic-addon2" ref={foodRef}  required></input>
                                             <span className="input-group-text" id="basic-addon2">cup</span>

@@ -16,6 +16,7 @@ import Register1 from './pages/register_1'
 import PrivateRoute from './components/Privateroutes';
 import Register2 from './pages/register_2';
 import Register3 from './pages/register_3';
+import RegisterQuestion from './pages/register_question';
 
 const App = () => {
   const auth = getAuth();
@@ -83,8 +84,8 @@ const App = () => {
                     <Route path="/createTeam" element={<CreateTeam />} />
                   </Route>
                   <Route path="/register" element={<Register1 />} />
-                 
                   <Route path="/login" element={<Login />} />
+                  <Route path="/forgetpassword" element={<ChangePassword/>}/>
                   {/* 
                     <Route path="/competition" element={<Competition />} />
                     <Route path="/award" element={<Award />} />

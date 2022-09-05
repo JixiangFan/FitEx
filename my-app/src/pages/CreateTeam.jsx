@@ -96,7 +96,7 @@ const CreateTeam = () => {
             )
         }
         )
-        navigate('/profile');
+        navigate('/register3');
         setLoading(false)
     }
 

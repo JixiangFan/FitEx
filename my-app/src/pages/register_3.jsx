@@ -6,16 +6,17 @@ import { useAuth } from '../contexts/AuthContext'
 import { MdOutlineCancel } from 'react-icons/md'
 
 const Register1 = () => {
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordRef2 = useRef()
-    const { signup } = useAuth()
+   
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
+    const { currentUser } = useAuth()
+    const uid = currentUser.uid
+    const email = currentUser.email
     async function handleSubmit(e) {
         e.preventDefault()
         navigate('/profile');
+        window.open("https://docs.google.com/forms/d/e/1FAIpQLSfOXgkheNu29BvKhbCdtm57Zy0veN9FhCQP96h7V4JOwuWU0Q/viewform?usp=pp_url&entry.1038252029="+uid);
         setLoading(false)
     }
 
@@ -57,7 +58,8 @@ const Register1 = () => {
                             <div className="h1 text-center">Register</div>
                             {error && <Alert variant="danger">{error}</Alert>}
                             <form onSubmit={handleSubmit}>
-                                <h1 className="text-center mt-9">We are all set</h1>
+                                <h1 className="text-center mt-9">You are almost finish</h1>
+                                <p>we have some addictional questionnaire</p>
                                 <button disabled={loading} className="mt-10 btn btn-outline-primary  w-100" type="submit">
                                     Great, Entering FitEx!
                                 </button>
