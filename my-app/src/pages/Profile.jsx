@@ -86,73 +86,58 @@ class Profile extends React.Component {
     };
     return (
       <>
-        <div className="container">
+        {console.log(this.state.profileData)}
+        <div className="container w-75 pt-10 mt-10">
           <div className="row">
+            <div className="col">
+              <div class="card mb-3" style={{ "max-width": "540px" }}>
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="https://pereaclinic.com/wp-content/uploads/2019/12/270x270-male-avatar.png" class="img-fluid rounded-start" alt="..."></img>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{this.state.profileData.displayname}</h5>
+                      <p class="card-text">{this.state.profileData.email}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3" style={{ "max-width": "540px" }}>
+
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <div className="row">
+                      <div className="col-8">
+                        <h5 class="card-title">Team: </h5>
+                        <p class="card-text">Food Goal: </p>
+                        <p class="card-text">Step Goal:</p>
+                       
+                      </div>
+                      <div className="col">
+                        <h5 class="card-title">{this.state.profileData.team}</h5>
+                        <p class="card-text">{this.state.profileData.foodGoal}</p>
+                        <p class="card-text">{this.state.profileData.stepGoal}</p>
+                      </div>
+                    </div>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="col">
               <div className="card">
                 <div className="card-body">
-                  Name : {this.state.profileData.displayname}
+                  <h5 className="card-title"> Height: {this.state.profileData.height}</h5>
+                  <p className="card-text">Weight: {this.state.profileData.weight}</p>
+                  <p className="card-title">Finished questionnaire? : {this.state.profileData.questionnaire ? "True" : "False"}</p>
+                  <p className="card-text">User Type: {permission_Level[this.state.profileData.usertype]}</p>
+                  <p className="card-text">Report Device: {this.state.profileData.device}</p>
+                  <button className="mt-10 btn btn-primary  w-100">Update fitbit access token</button>
                 </div>
               </div>
-              <div className="card">
-                <div className="card-body">
-                  Gender : {this.state.profileData.gender}
-                </div>
-              </div>
-
-              <div className="card">
-                <div className="card-body">
-                  Age : {this.state.profileData.age}
-                </div>
-              </div>
-
-              <div className="card">
-                <div className="card-body">
-                  Weight : {this.state.profileData.weight}
-                </div>
-              </div>
-
-              <div className="card">
-                <div className="card-body">
-                  Exercise Goal : {this.state.profileData.exerciseGoal}
-                </div>
-
-              </div>
-
-
-              <div className="card">
-                <div className="card-body">
-                  email : {this.state.profileData.email}
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-body">
-                  team : {this.state.teamData ? this.state.teamData
-                    : <NavLink
-                    className="navbar-item"
-                    activeClassName="is-active"
-                    to="/createTeam"
-                  >
-                    Create Team
-                  </NavLink>
-                  }
-                  
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-body">
-                  device : {this.state.profileData.device}
-                </div>
-              </div>
-              <div className="card">
-                <div className="card-body">
-                  userType : {permission_Level[this.state.profileData.usertype]}
-                </div>
-              </div>
-              <button className="btn btn-outline-primary"
-                onClick={this.updateProfile}>Update Profile</button>
             </div>
-
           </div>
         </div>
       </>

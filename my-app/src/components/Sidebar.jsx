@@ -24,8 +24,8 @@ const Sidebar = () => {
 
   return (
     <div>
-      {user && 
-      <div className="ml-3 h-screen 
+     
+      <div className=" ml-3 h-screen pr-20
                     md:overflow-hidden overflow-auto 
                     md:hover:overflow-auto pb-10">
         {activeMenu && (<>
@@ -71,7 +71,6 @@ const Sidebar = () => {
         </>)}
 
         </div>
-      }
     </div>
   )
 }

@@ -17,6 +17,7 @@ import PrivateRoute from './components/Privateroutes';
 import Register2 from './pages/register_2';
 import Register3 from './pages/register_3';
 import RegisterQuestion from './pages/register_question';
+import Reminder from './pages/reminder';
 
 const App = () => {
   const auth = getAuth();
@@ -43,20 +44,18 @@ const App = () => {
                 </TooltipComponent>
               </div>
             }
-            {console.log(activeMenu && user)}
-            {activeMenu ? 
-               user &&
-              (<div id ="side" className="w-0 fixed sidebar 
+            {activeMenu ?
+              (<div id="side" className="fixed sidebar 
                             dark:bg-secondary-dark-bg 
                             bg-white">
                 <Sidebar />
               </div>)
-             : (
-            <div  id ="side" className="w-0 
+              : (
+                <div id="side" className="w-0 
                             dark:bg-secondary-dark-bg">
-              <Sidebar />
-            </div>
-            )}
+                  <Sidebar />
+                </div>
+              )}
 
             <div className={
               activeMenu && user
@@ -64,7 +63,7 @@ const App = () => {
                 : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
             }
             >
-              <div  id ="top" className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+              <div id="top" className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
                 <Navbar />
               </div>
 
@@ -82,29 +81,20 @@ const App = () => {
                     <Route path="/register2" element={<Register2 />} />
                     <Route path="/register3" element={<Register3 />} />
                     <Route path="/createTeam" element={<CreateTeam />} />
+                    <Route path="/reminder" element={<Reminder />} />
+                    {/* pages  */}
+                    <Route path="/MET" element={<MET />} />
+                    <Route path="/nutrition" element={<Nutrition />} />
+                    <Route path="/fitbitSync" element={<FitbitSync />} />
+                    <Route path="/task" element={<Task />} />
+                    <Route path="/registerprofile" element={<RegisterProfile />} />
                   </Route>
                   <Route path="/register" element={<Register1 />} />
                   <Route path="/login" element={<Login />} />
-                  <Route path="/forgetpassword" element={<ChangePassword/>}/>
-                  {/* 
-                    <Route path="/competition" element={<Competition />} />
-                    <Route path="/award" element={<Award />} />
-                    <Route path="/team" element={(<Team />)} />
-                    <Route path="/teamMember" element={<TeamMember />} />
-                    <Route path="/employeeTree" element={<EmployeeTree />} /> */}
-
-                  {/* pages  */}
-                  <Route path="/MET" element={<MET />} />
-                  <Route path="/nutrition" element={<Nutrition />} />
-                  <Route path="/fitbitSync" element={<FitbitSync />} />
-                  <Route path="/task" element={<Task />} />
+                  <Route path="/forgetpassword" element={<ChangePassword />} />
 
 
-                    
-                    
-                    <Route path="/registerprofile" element={<RegisterProfile />} />
-                    */}
-                  {/* <Route path="/update" element={<RegisterQuestion />} /> */}
+
                 </Routes>
               </div>
 
