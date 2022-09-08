@@ -472,6 +472,14 @@ export const links = [
         name: 'nutrition',
         icon: <TbReport />,
       },
+      {
+        name: 'FitbitSync',
+        icon: <HiCalculator />,
+      },
+       {
+        name: 'DataVisualization1',
+        icon: <HiCalculator />,
+      },
     ],
   },
 ];

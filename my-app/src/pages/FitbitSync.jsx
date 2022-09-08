@@ -42,6 +42,14 @@ const today =
   ("0" + d.getDate()).slice(-2);
 //console.log(today);
 
+var curr = new Date();
+var firstday = new Date(curr.setDate(curr.getDate() - curr.getDay()));
+var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 6));
+var startOfWeek = firstday.toISOString().split("T")[0];
+var lastofWeek = lastday.toISOString().split("T")[0];
+//console.log(startOfWeek);
+//console.log(lastofWeek);
+
 //const utcDay = d.toISOString().slice(0, 10);
 //console.log(utcDay);
 
@@ -53,6 +61,10 @@ class FitbitSync extends React.Component {
       activities_result: {},
       summary_array: [],
       error_response: null,
+      intraday_result: [],
+      week_step_result: [],
+      week_distance_result: [],
+      week_calories_result: [],
     };
   }
 
@@ -62,7 +74,7 @@ class FitbitSync extends React.Component {
     return rv;
   }
 
-  //device api
+  //get data from api
   componentDidMount() {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -117,31 +129,141 @@ class FitbitSync extends React.Component {
                   }
                 })
                 .then((activities) => {
-                  writeDeviceData(
-                    uid,
-                    u_name,
-                    true,
-                    activities,
-                    this.toObject(devices)
-                  );
-                  //console.log(activities);
-                  const key_names = [
-                    "steps",
-                    "activityCalories",
-                    "caloriesBMR",
-                    "caloriesOut",
-                  ];
-                  const summary_array = key_names.map((key_name) => ({
-                    Name: key_name,
-                    Value: activities.summary[key_name],
-                  }));
-                  console.log(summary_array);
 
-                  this.setState({
-                    devices_result: devices,
-                    activities_result: activities,
-                    summary_array: summary_array,
-                  });
+                  fetch(
+                    `https://api.fitbit.com/1/user/-/activities/steps/date/${today}/1d/15min/time/00:00/23:59.json`,
+                    {
+                      method: "GET",
+                      headers: {
+                        Authorization: "Bearer " + access_token,
+                      },
+                    }
+                  )
+                    .then((response, reject) => {
+                      if (response.ok) {
+                        return response.json();
+                      } else {
+                        this.setState({
+                          error_response: response,
+                        });
+                        return Promise.reject(reject);
+                      }
+                    })
+                    .then((intra) => {
+                      const intra_array =
+                        intra["activities-steps-intraday"].dataset;
+                      //console.log(intra_array);
+
+                      fetch(
+                        `https://api.fitbit.com/1/user/-/activities/steps/date/${startOfWeek}/${lastofWeek}.json`,
+                        {
+                          method: "GET",
+                          headers: {
+                            Authorization: "Bearer " + access_token,
+                          },
+                        }
+                      )
+                        .then((response, reject) => {
+                          if (response.ok) {
+                            return response.json();
+                          } else {
+                            this.setState({
+                              error_response: response,
+                            });
+                            return Promise.reject(reject);
+                          }
+                        })
+                        .then((weekly_s) => {
+                          //console.log(xxx);
+                          const week_array = weekly_s["activities-steps"];
+
+                          fetch(
+                            `https://api.fitbit.com/1/user/-/activities/distance/date/${startOfWeek}/${lastofWeek}.json`,
+                            {
+                              method: "GET",
+                              headers: {
+                                Authorization: "Bearer " + access_token,
+                              },
+                            }
+                          )
+                            .then((response, reject) => {
+                              if (response.ok) {
+                                return response.json();
+                              } else {
+                                this.setState({
+                                  error_response: response,
+                                });
+                                return Promise.reject(reject);
+                              }
+                            })
+                            .then((weekly_d) => {
+                              //console.log(weekly_d);
+                              const week_array_d =
+                                weekly_d["activities-distance"];
+
+                                fetch(
+                                  `https://api.fitbit.com/1/user/-/activities/calories/date/${startOfWeek}/${lastofWeek}.json`,
+                                  {
+                                    method: "GET",
+                                    headers: {
+                                      Authorization: "Bearer " + access_token,
+                                    },
+                                  }
+                                )
+                                  .then((response, reject) => {
+                                    if (response.ok) {
+                                      return response.json();
+                                    } else {
+                                      this.setState({
+                                        error_response: response,
+                                      });
+                                      return Promise.reject(reject);
+                                    }
+                                  })
+
+                                  .then((weekly_c) => {
+                                    //const summary_array = result["activities-steps-intraday"].dataset;
+                                    console.log(weekly_c);
+                                    const week_array_c =
+                                      weekly_c["activities-calories"];
+                                    
+                                      writeDeviceData(
+                                        uid,
+                                        u_name,
+                                        true,
+                                        activities,
+                                        this.toObject(devices),
+                                        intra_array,
+                                        week_array,
+                                        week_array_d,
+                                        week_array_c
+                                      );
+
+                                      //console.log(activities);
+                                      const key_names = [
+                                        "steps",
+                                        "caloriesOut",
+                                      ];
+                                      const summary_array = key_names.map(
+                                        (key_name) => ({
+                                          Name: key_name,
+                                          Value: activities.summary[key_name],
+                                        })
+                                      );
+
+                                      this.setState({
+                                        devices_result: devices,
+                                        activities_result: activities,
+                                        summary_array: summary_array,
+                                        intraday_result: intra_array,
+                                        week_step_result: week_array,
+                                        week_distance_result: week_array_d,
+                                        week_calories_result: week_array_c,
+                                      });
+                                  });                 
+                            });                 
+                        });
+                    });
                 });
             })
             .catch((err) => {
@@ -252,6 +374,130 @@ class FitbitSync extends React.Component {
         <GridComponent
           width="auto"
           dataSource={this.state.summary_array}
+          pageSettings={{ pageCount: 5 }}
+          allowPaging
+          allowSorting
+          allowExcelExport
+          allowPdfExport
+          toolbar={toolbarOptions}
+        >
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              PdfExport,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
+
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h>IntraData</h>
+        </div>
+        <GridComponent
+          width="auto"
+          dataSource={this.state.intraday_result}
+          pageSettings={{ pageCount: 5 }}
+          allowPaging
+          allowSorting
+          allowExcelExport
+          allowPdfExport
+          toolbar={toolbarOptions}
+        >
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              PdfExport,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
+
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h>weekly steps</h>
+        </div>
+        <GridComponent
+          width="auto"
+          dataSource={this.state.week_step_result}
+          pageSettings={{ pageCount: 5 }}
+          allowPaging
+          allowSorting
+          allowExcelExport
+          allowPdfExport
+          toolbar={toolbarOptions}
+        >
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              PdfExport,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
+
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h>weekly distance</h>
+        </div>
+        <GridComponent
+          width="auto"
+          dataSource={this.state.week_distance_result}
+          pageSettings={{ pageCount: 5 }}
+          allowPaging
+          allowSorting
+          allowExcelExport
+          allowPdfExport
+          toolbar={toolbarOptions}
+        >
+          <Inject
+            services={[
+              Resize,
+              Sort,
+              ContextMenu,
+              Filter,
+              Page,
+              ExcelExport,
+              PdfExport,
+              Toolbar,
+            ]}
+          />
+        </GridComponent>
+
+        <br />
+        <br />
+        <br />
+
+        <div>
+          <h>weekly calories</h>
+        </div>
+        <GridComponent
+          width="auto"
+          dataSource={this.state.week_calories_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging
           allowSorting
