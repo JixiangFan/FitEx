@@ -18,7 +18,11 @@ function writeDeviceData(
   name,
   is_fitbit_device,
   activity_information,
-  device_information
+  device_information,
+  intra_information,
+  week_step_information,
+  week_distance_information,
+  week_calories_information,
 ) {
   const db = getDatabase();
   const currentTime = new Date().getTime();
@@ -28,6 +32,10 @@ function writeDeviceData(
     isFitbitDevice: is_fitbit_device,
     activity: activity_information,
     device: device_information,
+    intraday: intra_information,
+    week_step: week_step_information,
+    week_distance: week_distance_information,
+    week_calories: week_calories_information,
   };
 
   const newPostKey = push(child(ref(db), "posts")).key;
