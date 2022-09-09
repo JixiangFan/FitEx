@@ -15,7 +15,7 @@ const Reminder = () => {
 
 
     return (
-        <div className="container h-100 bg-light" style={mainStyle}>
+        <div className="container h-100 bg-light ml-10" style={mainStyle}>
             <div className="row pt-10 mt-10"> 
                 <div className="col-7 place-content-center bg-light">
                     <div className="row h-100 place-content-center">
