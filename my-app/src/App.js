@@ -73,6 +73,8 @@ const App = () => {
 
                 <Routes>
                   {/*Dashboard*/}
+                  {user ? <Route path="/" element={(<Welcome />)} />
+                  :  <Route exact path="/" element={(<Dashboard />)} />}
 
                   <Route path="/" element={(<Welcome />)} />
                   <Route exact path='/' element={<PrivateRoute />}>
@@ -111,7 +113,6 @@ const App = () => {
                     
                     
                     <Route path="/registerprofile" element={<RegisterProfile />} />
-                    */}
                   {/* <Route path="/update" element={<RegisterQuestion />} /> */}
                 </Routes>
               </div>
