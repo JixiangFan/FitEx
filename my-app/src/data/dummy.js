@@ -480,6 +480,10 @@ export const links = [
         name: 'DataVisualization1',
         icon: <HiCalculator />,
       },
+       {
+        name: 'DataVisualization2',
+        icon: <HiCalculator />,
+      },
     ],
   },
 ];

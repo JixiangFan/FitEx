@@ -4,6 +4,10 @@ import { getDatabase, ref, child, get, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { Pie as PieChart } from "../components";
 
+//已知bug
+//如果一个组员离开小组，firebase无法自动更新key，会产生一个empty object导致程序自动弹出
+//建议在team或者member里进行调整
+
 var uid = "";
 var u_name = "";
 var team_id = "";
@@ -61,7 +65,7 @@ class DataVisualization1 extends React.Component {
                   let total_distance = 0;
                   let userData = [];
                   const userFitbitDistances = values.map((x) => {
-                    if (x.exists()) {
+                    if (x && x.exists()) {
                       const fitData = x.val()["FitData"];
                       //console.log(fitData);
                       let user_name = "";
@@ -100,7 +104,7 @@ class DataVisualization1 extends React.Component {
                         //console.log(lastSelfReportTime);
                         lastSelfReportTime.forEach((time) => {
                           const data = selfReportData[time];
-                          console.log(data);
+                          //console.log(data);
 
                           if (!user_name || user_name === "")
                             user_name = data["username"];
