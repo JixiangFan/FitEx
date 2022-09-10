@@ -907,6 +907,7 @@ class MET extends React.Component {
       des_string: "",
       total_result: 0,
       total_mile: 0,
+      total_step: 0,
       table_array: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -929,6 +930,7 @@ class MET extends React.Component {
       const time = this.state.time;
       const result = metValue * weight * time;
       const result2 = (Math.round(time * 60) / 57).toFixed(2);
+      const result3 = (Math.round(result2 * 2000)).toFixed(2);
       {
         console.log(weight);
       }
@@ -936,9 +938,12 @@ class MET extends React.Component {
       el.innerText = result;
       const el2 = document.getElementById("result2");
       el2.innerText = result2;
+      const el3 = document.getElementById("result3");
+      el3.innerText = result3;
       this.setState({
         total_result: result,
         total_mile: result2,
+        total_step: result3,
       });
 
       this.setState({
@@ -950,6 +955,7 @@ class MET extends React.Component {
             des: this.state.des_string,
             res_calories: result,
             res_mile: result2,
+            res_step: result3,
           },
         ],
       });
@@ -992,6 +998,9 @@ class MET extends React.Component {
         </td>
         <td className="border-1 border-slate-500">
           {x.res_mile ? x.res_mile : ""}
+        </td>
+        <td className="border-1 border-slate-500">
+          {x.res_step ? x.res_step : ""}
         </td>
       </tr>
     ));
@@ -1161,6 +1170,11 @@ class MET extends React.Component {
           <div id="result2"></div>
           <br />
 
+          <label>Total Exercise Steps:</label>
+          <br />
+          <div id="result3"></div>
+          <br />
+
           <div id="MET-Result">
             <h1>
               <b className="text-2xl">Results Table</b>
@@ -1172,6 +1186,7 @@ class MET extends React.Component {
               <th>Description</th>
               <th>Total Calories Burned </th>
               <th>Total Exercise Miles </th>
+              <th>Total Exercise Steps </th>
               {this.getTableRow()}
             </table>
             <br />

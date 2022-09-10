@@ -183,6 +183,7 @@ class FitbitSync extends React.Component {
                               method: "GET",
                               headers: {
                                 Authorization: "Bearer " + access_token,
+                                "accept-language": "en_US",
                               },
                             }
                           )
@@ -201,66 +202,63 @@ class FitbitSync extends React.Component {
                               const week_array_d =
                                 weekly_d["activities-distance"];
 
-                                fetch(
-                                  `https://api.fitbit.com/1/user/-/activities/calories/date/${startOfWeek}/${lastofWeek}.json`,
-                                  {
-                                    method: "GET",
-                                    headers: {
-                                      Authorization: "Bearer " + access_token,
-                                    },
+                              fetch(
+                                `https://api.fitbit.com/1/user/-/activities/calories/date/${startOfWeek}/${lastofWeek}.json`,
+                                {
+                                  method: "GET",
+                                  headers: {
+                                    Authorization: "Bearer " + access_token,
+                                  },
+                                }
+                              )
+                                .then((response, reject) => {
+                                  if (response.ok) {
+                                    return response.json();
+                                  } else {
+                                    this.setState({
+                                      error_response: response,
+                                    });
+                                    return Promise.reject(reject);
                                   }
-                                )
-                                  .then((response, reject) => {
-                                    if (response.ok) {
-                                      return response.json();
-                                    } else {
-                                      this.setState({
-                                        error_response: response,
-                                      });
-                                      return Promise.reject(reject);
-                                    }
-                                  })
+                                })
 
-                                  .then((weekly_c) => {
-                                    //const summary_array = result["activities-steps-intraday"].dataset;
-                                    console.log(weekly_c);
-                                    const week_array_c =
-                                      weekly_c["activities-calories"];
-                                    
-                                      writeDeviceData(
-                                        uid,
-                                        u_name,
-                                        true,
-                                        activities,
-                                        this.toObject(devices),
-                                        intra_array,
-                                        week_array,
-                                        week_array_d,
-                                        week_array_c
-                                      );
+                                .then((weekly_c) => {
+                                  //const summary_array = result["activities-steps-intraday"].dataset;
+                                  console.log(weekly_c);
+                                  const week_array_c =
+                                    weekly_c["activities-calories"];
 
-                                      //console.log(activities);
-                                      const key_names = [
-                                        "steps",
-                                        "caloriesOut",
-                                      ];
-                                      const summary_array = key_names.map(
-                                        (key_name) => ({
-                                          Name: key_name,
-                                          Value: activities.summary[key_name],
-                                        })
-                                      );
+                                  writeDeviceData(
+                                    uid,
+                                    u_name,
+                                    true,
+                                    activities,
+                                    this.toObject(devices),
+                                    intra_array,
+                                    week_array,
+                                    week_array_d,
+                                    week_array_c
+                                  );
 
-                                      this.setState({
-                                        devices_result: devices,
-                                        activities_result: activities,
-                                        summary_array: summary_array,
-                                        intraday_result: intra_array,
-                                        week_step_result: week_array,
-                                        week_distance_result: week_array_d,
-                                        week_calories_result: week_array_c,
-                                      });
-                                  });                 
+                                  //console.log(activities);
+                                  const key_names = ["steps", "caloriesOut"];
+                                  const summary_array = key_names.map(
+                                    (key_name) => ({
+                                      Name: key_name,
+                                      Value: activities.summary[key_name],
+                                    })
+                                  );
+
+                                  this.setState({
+                                    devices_result: devices,
+                                    activities_result: activities,
+                                    summary_array: summary_array,
+                                    intraday_result: intra_array,
+                                    week_step_result: week_array,
+                                    week_distance_result: week_array_d,
+                                    week_calories_result: week_array_c,
+                                  });
+                                });
                             });                 
                         });
                     });
