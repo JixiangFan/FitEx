@@ -15,3 +15,4 @@ export default function PrivateRoute({ component: Component, ...rest }) {
   var hour = moment.duration(endUnixTime.diff(startUnixTime)).asHours();
   return currentUser ? <Outlet /> : <Navigate to="/login" />;
 }
+

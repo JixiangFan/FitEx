@@ -73,6 +73,8 @@ const App = () => {
 
                 <Routes>
                   {/*Dashboard*/}
+                  {user ? <Route path="/" element={(<Welcome />)} />
+                  :  <Route exact path="/" element={(<Dashboard />)} />}
 
                   <Route path="/" element={(<Welcome />)} />
                   <Route exact path='/' element={<PrivateRoute />}>
