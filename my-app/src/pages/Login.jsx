@@ -24,7 +24,8 @@ const Login = () => {
       setError("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      navigate('/');
+      navigate('/dashboard');
+      window.location.reload();
     } catch {
       setError("Failed to log in")
     }

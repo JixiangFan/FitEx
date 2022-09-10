@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from '../contexts/AuthContext'
 import { getDatabase, ref, child, get } from "firebase/database";
 import updateUserdata from '../components/Firebase/updateUserdata'
+import { getAuth, updateProfile } from "firebase/auth";
+
 const Register2 = () => {
     const nameRef = useRef()
     const genderRef = useRef()
@@ -20,6 +22,7 @@ const Register2 = () => {
     const navigate = useNavigate();
     const [teamData, setTeamData] = useState([]);
     const dbRef = ref(getDatabase());
+    const auth = getAuth();
 
 
     get(child(dbRef, `team/`)).then((snapshot) => {
@@ -41,12 +44,16 @@ const Register2 = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-     
+
         try
         {
+
             setError("")
             setLoading(true)
-            await updateUserdata(uid, nameRef.current.value, email, 0, false, deviceRef.current.value, teamRef.current.value,genderRef.current.value, ageRef.current.value, weightRef.current.value,heightRef.current.value, fitbitTokenRef.current.value, stepRef.current.value, foodRef.current.value)
+            await updateProfile(auth.currentUser, {
+                displayName: nameRef.current.value
+            })
+            await updateUserdata(uid, nameRef.current.value, email, 0, false, deviceRef.current.value, teamRef.current.value, genderRef.current.value, ageRef.current.value, weightRef.current.value, heightRef.current.value, fitbitTokenRef.current.value, stepRef.current.value, foodRef.current.value)
             if (teamRef.current.value == 0)
             {
                 navigate('/createTeam');
@@ -54,7 +61,7 @@ const Register2 = () => {
             else
             {
                 navigate('/register3');
-                }
+            }
         } catch {
             setError("Server error, try again")
         }
@@ -147,7 +154,7 @@ const Register2 = () => {
                                 <div className="mb-3">
                                     <label className="form-label">Fit Bit Access Token</label>
                                     <div className="input-group mb-3">
-                                        <input type="text" className="form-control"  aria-label="weight" aria-describedby="basic-addon2" ref={fitbitTokenRef} required></input>
+                                        <input type="text" className="form-control" aria-label="weight" aria-describedby="basic-addon2" ref={fitbitTokenRef}></input>
                                         <span className="input-group-text" id="basic-addon2">?</span>
                                     </div>
                                 </div>
@@ -164,7 +171,7 @@ const Register2 = () => {
                                     <div className="col mb-3 w-25">
                                         <label className="form-label">Daily Nutrition Goals</label>
                                         <div className="input-group mb-3">
-                                            <input type="number" className="form-control" min="0" aria-label="weight" aria-describedby="basic-addon2" ref={foodRef}  required></input>
+                                            <input type="number" className="form-control" min="0" aria-label="weight" aria-describedby="basic-addon2" ref={foodRef} required></input>
                                             <span className="input-group-text" id="basic-addon2">cup</span>
                                         </div>
                                     </div>

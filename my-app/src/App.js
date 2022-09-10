@@ -16,8 +16,8 @@ import Register1 from './pages/register_1'
 import PrivateRoute from './components/Privateroutes';
 import Register2 from './pages/register_2';
 import Register3 from './pages/register_3';
-import RegisterQuestion from './pages/register_question';
 import Reminder from './pages/reminder';
+import Leaderboard from './pages/leaderboard';
 
 const App = () => {
   const auth = getAuth();
@@ -44,18 +44,14 @@ const App = () => {
                 </TooltipComponent>
               </div>
             }
-            {activeMenu ?
-              (<div id="side" className="fixed sidebar 
+
+            {user && <div id="side" className="fixed sidebar 
                             dark:bg-secondary-dark-bg 
                             bg-white">
-                <Sidebar />
-              </div>)
-              : (
-                <div id="side" className="w-0 
-                            dark:bg-secondary-dark-bg">
-                  <Sidebar />
-                </div>
-              )}
+              <Sidebar />
+            </div>}
+
+
 
             <div className={
               activeMenu && user
@@ -68,13 +64,22 @@ const App = () => {
               </div>
 
 
-              <div>
+
+
+              <div className="fixed w-full pl-10 h-full">
                 {themeSettings && (<ThemeSettings />)}
 
                 <Routes>
                   {/*Dashboard*/}
+                  {user ? <><Route path="/" element={(<Dashboard />)} />
+                    <Route path="*" element={(<Dashboard />)} /></>
+                    :
+                    <>
+                      <Route path="/" element={(<Welcome />)} />
+                      <Route path="*" element={<Login />} />
+                    </>
+                  }
 
-                  <Route path="/" element={(<Welcome />)} />
                   <Route exact path='/' element={<PrivateRoute />}>
                     <Route exact path="/dashboard" element={(<Dashboard />)} />
                     <Route path="/profile" element={<Profile />} />
@@ -87,12 +92,17 @@ const App = () => {
                     <Route path="/nutrition" element={<Nutrition />} />
                     <Route path="/fitbitSync" element={<FitbitSync />} />
                     <Route path="/task" element={<Task />} />
-                    <Route path="/registerprofile" element={<RegisterProfile />} />
+                    <Route path="/MET" element={<MET />} />
+                    <Route path="/nutrition" element={<Nutrition />} />
+                    <Route path="/fitbitSync" element={<FitbitSync />} />
+                    <Route path="/task" element={<Task />} />
+                    <Route path="/dataVisualization1" element={<DataVisualization1 />} />
+                    <Route path="/leaderboard" element={<Leaderboard />} />
                   </Route>
                   <Route path="/register" element={<Register1 />} />
                   <Route path="/login" element={<Login />} />
 
-                  <Route path="/forgetpassword" element={<ChangePassword/>}/>
+                  <Route path="/forgetpassword" element={<ChangePassword />} />
                   {/* 
                     <Route path="/competition" element={<Competition />} />
                     <Route path="/award" element={<Award />} />
@@ -101,17 +111,9 @@ const App = () => {
                     <Route path="/employeeTree" element={<EmployeeTree />} /> */}
 
                   {/* pages  */}
-                  <Route path="/MET" element={<MET />} />
-                  <Route path="/nutrition" element={<Nutrition />} />
-                  <Route path="/fitbitSync" element={<FitbitSync />} />
-                  <Route path="/task" element={<Task />} />
-                  <Route path="/dataVisualization1" element={<DataVisualization1 />} />
 
 
-                    
-                    
-                    <Route path="/registerprofile" element={<RegisterProfile />} />
-                    */}
+
                   {/* <Route path="/update" element={<RegisterQuestion />} /> */}
                 </Routes>
               </div>

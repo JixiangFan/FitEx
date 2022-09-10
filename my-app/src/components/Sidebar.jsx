@@ -28,7 +28,7 @@ const Sidebar = () => {
       <div className=" ml-3 h-screen pr-20
                     md:overflow-hidden overflow-auto 
                     md:hover:overflow-auto pb-10">
-        {activeMenu && (<>
+       
           <div className="flex justify-between items-center">
             <Link to="/" onClick={handleCloseSideBar} className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900">
               <IoFitness /> <span>FitEx</span>
@@ -68,8 +68,6 @@ const Sidebar = () => {
               </div>
             ))}
           </div>
-        </>)}
-
         </div>
     </div>
   )
