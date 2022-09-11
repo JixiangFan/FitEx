@@ -4,9 +4,7 @@ import { getDatabase, ref, child, get, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { Pie as PieChart } from "../components";
 
-//已知bug
-//如果一个组员离开小组，firebase无法自动更新key，会产生一个empty object导致程序自动弹出
-//建议在team或者member里进行调整
+//组员贡献百分比 distance
 
 var uid = "";
 var u_name = "";
@@ -52,7 +50,8 @@ class DataVisualization1 extends React.Component {
               if (snapshot.exists()) {
                 team_name = snapshot.val().team_name;
                 team_member = snapshot.val().team_member;
-                console.log(team_member);
+                //console.log(team_name);
+                //console.log(team_member);
 
                 const promises = team_member.map((member_id) =>
                   get(child(dbRef, "/FitEx/User/" + member_id))

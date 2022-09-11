@@ -20,7 +20,10 @@ export { default as CreateTeam } from './CreateTeam';
 export { default as Nutrition } from "./Nutrition";
 export { default as DataVisualization1 } from "./DataVisualization1";
 export { default as DataVisualization2 } from "./DataVisualization2";
-
+export { default as DataVisualization21 } from "./DataVisualization21";
+export { default as DataVisualization3 } from "./DataVisualization3";
+export { default as DataVisualization31 } from "./DataVisualization31";
+export { default as DataVisualization4 } from "./DataVisualization4";
 
 export { default as Area } from './Charts/Area';
 export { default as Bar } from './Charts/Bar';
