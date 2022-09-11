@@ -484,6 +484,22 @@ export const links = [
         name: 'DataVisualization2',
         icon: <HiCalculator />,
       },
+      {
+        name: 'DataVisualization21',
+        icon: <HiCalculator />,
+      },
+       {
+        name: 'DataVisualization3',
+        icon: <HiCalculator />,
+      },
+      {
+        name: 'DataVisualization31',
+        icon: <HiCalculator />,
+      },
+      {
+        name: 'DataVisualization4',
+        icon: <HiCalculator />,
+      },
     ],
   },
 ];
