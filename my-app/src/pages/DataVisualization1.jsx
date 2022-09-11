@@ -78,7 +78,7 @@ class DataVisualization1 extends React.Component {
                         //console.log(fitData[lastSyncTime]["week_distance"]);
 
                         user_fitbit_distance = fitData[lastSyncTime][
-                          "week_distance"
+                          "week_step"
                         ]?.reduce(
                           (prev, current) => prev + parseFloat(current.value),
                           0
@@ -110,7 +110,7 @@ class DataVisualization1 extends React.Component {
 
                           user_selfreport_distance += data["activity"]?.reduce(
                             (prev, current) =>
-                              prev + parseFloat(current["res_mile"]),
+                              prev + parseFloat(current["res_step"]),
                             0
                           );
                           //console.log(user_selfreport_distance);

@@ -117,6 +117,7 @@ class DataVisualization4 extends React.Component {
                 });
                 this.setState({
                   series: [((total_distance / team_goal) * 100).toFixed(2)],
+                  goal: team_goal
                 });
               });
             //   team_result = (total_distance / team_goal) * 100;
@@ -150,62 +151,80 @@ class DataVisualization4 extends React.Component {
 
     this.state = {
       series: [team_result],
-      options: {
-        chart: {
-          height: 350,
-          type: "radialBar",
-          offsetY: -10,
-        },
-        plotOptions: {
-          radialBar: {
-            startAngle: -135,
-            endAngle: 135,
-            dataLabels: {
-              name: {
-                fontSize: "16px",
-                color: undefined,
-                offsetY: 120,
-              },
-              value: {
-                offsetY: 76,
-                fontSize: "22px",
-                color: undefined,
-                formatter: function (val) {
-                  return val + "%";
-                },
-              },
-            },
-          },
-        },
-        fill: {
-          type: "gradient",
-          gradient: {
-            shade: "dark",
-            shadeIntensity: 0.15,
-            inverseColors: false,
-            opacityFrom: 1,
-            opacityTo: 1,
-            stops: [0, 50, 65, 91],
-          },
-        },
-        stroke: {
-          dashArray: 4,
-        },
-        labels: ["Task Progress"],
-      },
+      goal: team_goal,
     };
   }
 
   render() {
+    console.log(this.state.goal)
+    var option = {
+      chart: {
+        height: 350,
+        type: "radialBar",
+        offsetY: -10,
+      },
+      plotOptions: {
+        radialBar: {
+          startAngle: -135,
+          endAngle: 135,
+          dataLabels: {
+            name: {
+              fontSize: "16px",
+              color: undefined,
+              offsetY: 120,
+            },
+            value: {
+              offsetY: 76,
+              fontSize: "22px",
+              color: undefined,
+              formatter: function (val) {
+                return val + "%";
+              },
+            },
+          },
+        },
+      },
+      subtitle: {
+        text: `Team Goal: ${this.state.goal}`,
+        align: "center",
+        margin: 10,
+        offsetX: 0,
+        offsetY: 0,
+        floating: false,
+        style: {
+          fontSize: "25px",
+          fontWeight: "bold",
+          fontFamily: "Times New Roman",
+          color: "#9699a2",
+        },
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          shade: "dark",
+          shadeIntensity: 0.15,
+          inverseColors: false,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 50, 65, 91],
+        },
+      },
+      stroke: {
+        dashArray: 4,
+      },
+      labels: ["Task Progress"],
+    };
     return (
-      <div id="chart">
-        <ReactApexChart
-          options={this.state.options}
-          series={this.state.series}
-          type="radialBar"
-          height={350}
-        />
-      </div>
+      <>
+        <div id="chart">
+          <ReactApexChart
+            options={option}
+            series={this.state.series}
+            type="radialBar"
+            height={350}
+          />
+        </div>
+      </>
     );
   }
 }
