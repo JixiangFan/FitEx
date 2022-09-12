@@ -25,7 +25,7 @@ var access_token = "";
 var uid = "";
 var u_name = "";
 
-const toolbarOptions = [`PdfExport`, `ExcelExport`, `CsvExport`, "Search"];
+const toolbarOptions = ['Search', 'Edit', 'Cancel'];
 
 const permission_Level = {
   0: "Member",
@@ -38,9 +38,11 @@ class EmployeeTree extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      team_result: [],
       participants_result: {},
+      participants_data: {}
     };
+    this.editOptions = { allowEditing: true };
+    this.ddParams = { params: { value: 'Germany' } };
   }
 
   componentDidMount() {
@@ -51,7 +53,8 @@ class EmployeeTree extends React.Component {
     get(child(dbRef, `profile/`))
       .then((snapshot) => {
         get(child(dbRef, `team/`)).then((snapshot2) => {
-          if (snapshot2.exists()) {
+          if (snapshot2.exists())
+          {
             //console.log(snapshot.val());
             const team_obj = {};
             Object.entries(snapshot2.val()).forEach(([key, value]) => {
@@ -63,19 +66,31 @@ class EmployeeTree extends React.Component {
             });
           }
 
-          if (snapshot.exists()) {
+          if (snapshot.exists())
+          {
             //console.log(snapshot.val());
             const participants_arr = Object.entries(snapshot.val()).map(
               ([key, value]) => {
                 value.usertype = permission_Level[value.usertype];
-                delete value["fitbitToken"];
-                value.team = this.state.team_result[value.team];
-                return value;
+                var returnObj = {
+                  'Name': value['displayname'],
+                  'Age': value['age'],
+                  'Email': value['email'],
+                  'Gender': value['gender'],
+                  'Height': value['height'],
+                  'Weight': value['weight'],
+                  'User Type': value['usertype'],
+                  'Step Goal': value['stepGoal'],
+                  'Food Goal': value['foodGoal'],
+                  'Report type': value['device']
+                }
+                return returnObj;
               }
             );
             //console.log(participants_arr);
             this.setState({
               participants_result: participants_arr,
+              participants_data: snapshot.val()
             });
           }
         });
@@ -94,17 +109,40 @@ class EmployeeTree extends React.Component {
           <h>Participants Information</h>
         </div>
         <GridComponent
-          width="auto"
+          width="75%"
           dataSource={this.state.participants_result}
           pageSettings={{ pageCount: 5 }}
+          editSettings={this.editOptions}
           allowPaging
           allowSorting
           allowExcelExport
           allowPdfExport
           toolbar={toolbarOptions}
         >
+           {/* 'Name': value['displayname'],
+                  'Age': value['age'],
+                  'Email': value['email'],
+                  'Gender': value['gender'],
+                  'Height': value['height'],
+                  'Weight': value['weight'],
+                  'User Type': value['usertype'],
+                  'Step Goal': value['stepGoal'],
+                  'Food Goal': value['foodGoal'],
+                  'Report type': value['device'] */}
+          <ColumnsDirective>
+            <ColumnDirective field='Name' headerText='Name' />
+            <ColumnDirective field='Email' headerText='Email' />
+            <ColumnDirective field='Gender' headerText='Gender' />
+            <ColumnDirective field='Height' headerText='Height' />
+            <ColumnDirective field='Weight' headerText='Weight'/>
+            <ColumnDirective field='User Type' headerText='User Type' editType='dropdownedit' edit={this.ddParams} width='150' />
+            <ColumnDirective field='Step Goal' headerText='Step Goal' />
+            <ColumnDirective field='Food Goal' headerText='Food Goal' />
+            <ColumnDirective field='Report type' headerText='Report type'/>
+          </ColumnsDirective>
           <Inject
             services={[
+              Edit,
               Resize,
               Sort,
               ContextMenu,
@@ -116,6 +154,7 @@ class EmployeeTree extends React.Component {
             ]}
           />
         </GridComponent>
+
       </div>
     );
   }
