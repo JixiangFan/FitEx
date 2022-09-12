@@ -97,10 +97,10 @@ class TeamMember extends React.Component {
   render() {
     return (
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header category="Page" title="Fitbit Data" />
+        <Header category="Page" title="My Team" />
 
         <div>
-          <h>Exercise Information</h>
+          <h>My Teammates:</h>
         </div>
         <GridComponent
           width="auto"
