@@ -18,7 +18,9 @@ import Register2 from './pages/register_2';
 import Register3 from './pages/register_3';
 import Reminder from './pages/reminder';
 import Leaderboard from './pages/leaderboard';
-
+import Leaderboard2 from './pages/leaderboard2';
+import DailyBarGraph from './pages/DailyBarGraph'
+import DailySelfReport from './pages/DailyselfReport'
 const App = () => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -99,7 +101,13 @@ const App = () => {
                     <Route path="/fitbitSync" element={<FitbitSync />} />
                     <Route path="/task" element={<Task />} />
                     <Route path="/dataVisualization1" element={<DataVisualization1 />} />
+                    <Route path="/dataVisualization2" element={<DataVisualization2 />} />
                     <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/teamMember" element={<TeamMember />} />
+                    <Route path="/leaderboardteam" element={<Leaderboard2 />} />
+                    <Route path="/employeeTree" element={<EmployeeTree />} />
+                    <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
+                    <Route path="/dailySelfReport" element={<DailySelfReport />} />
                   </Route>
                   <Route path="/register" element={<Register1 />} />
                   <Route path="/login" element={<Login />} />

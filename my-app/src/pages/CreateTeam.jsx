@@ -40,13 +40,22 @@ const CreateTeam = () => {
             team_day_goal: dailyGoalRef.current.value
         };
         const updates = {};
+        setLoading(true)
         const newPostKey = push(child(ref(db), 'team')).key;
         updates['/team/' + newPostKey] = postData;
-        await update(ref(db), updates)
-        await promoteUser(newPostKey)
-        setError("")
-        setLoading(false)
-        navigate("/profile")
+        await update(ref(db), updates).then(
+            await promoteUser(newPostKey).then(
+                setLoading(false)
+
+            )
+        ).catch(
+            setLoading(false)
+        )
+        if (!loading)
+        {
+            navigate("/profile")
+        }
+       
     }
 
     function promoteUser(teamID) {
