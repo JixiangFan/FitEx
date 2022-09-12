@@ -1,6 +1,7 @@
 import React from 'react'
+import './cup.css';
 
-const Cup = () => {
+const Cup4 = () => {
     return (
         <div class="drop-container">
             <div class="drop"></div>
@@ -9,4 +10,4 @@ const Cup = () => {
     )
 }
 
-export default Cup
+export default Cup4

@@ -21,6 +21,7 @@ import Leaderboard from './pages/leaderboard';
 import Leaderboard2 from './pages/leaderboard2';
 import DailyBarGraph from './pages/DailyBarGraph'
 import DailySelfReport from './pages/DailyselfReport'
+import NeutriationDisplay from './pages/nutriationDisplay'
 const App = () => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -108,6 +109,7 @@ const App = () => {
                     <Route path="/employeeTree" element={<EmployeeTree />} />
                     <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
                     <Route path="/dailySelfReport" element={<DailySelfReport />} />
+                    <Route path="/NeutriationDisplay" element={<NeutriationDisplay/>}/>
                   </Route>
                   <Route path="/register" element={<Register1 />} />
                   <Route path="/login" element={<Login />} />
