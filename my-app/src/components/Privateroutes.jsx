@@ -4,7 +4,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import moment from "moment";
 export default function PrivateRoute({ component: Component, ...rest }) {
 
-  const { currentUser, UserMetadata } = useAuth();
+  const { currentUser} = useAuth();
 
   return currentUser ? <Outlet /> : <Navigate to="/login" />;
 }

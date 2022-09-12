@@ -14,7 +14,7 @@ import { getDatabase, ref, child, get, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import moment from "moment";
 
-//一周mile展示图
+//一周step展示图
 
 var uid = "";
 var goal = 0;
@@ -28,13 +28,12 @@ const startOfWeekTime = new Date(startOfWeek).getTime();
 var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 6));
 var lastofWeek = lastday.toISOString().split("T")[0];
 
-
 const SAMPLE_CSS = `
     .control-fluid {
 		padding: 0px !important;
     }`;
 
-class DataVisualization2 extends React.Component {
+class DataVisualization21 extends React.Component {
   onChartLoad(args) {
     let chart = document.getElementById("charts");
     chart.setAttribute("title", "");
@@ -69,8 +68,8 @@ class DataVisualization2 extends React.Component {
       .then((snapshot) => {
         if (snapshot.exists()) {
           //console.log(snapshot.val());
-          goal = (snapshot.val().stepGoal / 2000).toFixed(2);
-          console.log(goal);
+          goal = snapshot.val().stepGoal;
+          //console.log(goal);
 
           get(child(dbRef, `/FitEx/User/${user["uid"]}`)).then((snapshot) => {
             if (snapshot.exists()) {
@@ -86,7 +85,7 @@ class DataVisualization2 extends React.Component {
                   a < b ? b : a
                 );
 
-                user_fitbit_distance = fitData[lastSyncTime]["week_distance"];
+                user_fitbit_distance = fitData[lastSyncTime]["week_step"];
                 //console.log(user_fitbit_distance);
 
                 const userData = user_fitbit_distance.map((element) => {
@@ -150,7 +149,7 @@ class DataVisualization2 extends React.Component {
                   const temp = temp_data.map((x) => {
                     userData4.push({
                       dateTime: iso,
-                      value: x["res_mile"],
+                      value: x["res_step"],
                     });
                   });
                 });
@@ -196,7 +195,7 @@ class DataVisualization2 extends React.Component {
                 userData5 = userData5.sort((a, b) =>
                   a.dateTime < b.dateTime ? -1 : 1
                 );
-                console.log(userData5);
+                //console.log(userData5);
 
                 this.setState({
                   chartData2: userData3,
@@ -238,8 +237,8 @@ class DataVisualization2 extends React.Component {
               title: "Exercises",
               lineStyle: { width: 0 },
               minimum: 0,
-              maximum: 10,
-              interval: 0.5,
+              maximum: 20000,
+              interval: 1000,
               majorTickLines: { width: 0 },
               majorGridLines: { width: 1 },
               minorGridLines: { width: 1 },
@@ -249,7 +248,7 @@ class DataVisualization2 extends React.Component {
             width={Browser.isDevice ? "100%" : "60%"}
             chartArea={{ border: { width: 0 } }}
             load={this.load.bind(this)}
-            title="This Week's Activity Miles"
+            title="This Week's Activity Steps"
             loaded={this.onChartLoad.bind(this)}
             tooltip={{ enable: true }}
           >
@@ -261,21 +260,21 @@ class DataVisualization2 extends React.Component {
                 dataSource={this.state.chartData}
                 xName="dateTime"
                 yName="value"
-                name="Fitbit Reported Miles"
+                name="Fitbit Reported Steps"
                 type="StackingColumn"
               ></SeriesDirective>
               <SeriesDirective
                 dataSource={this.state.chartData3}
                 xName="dateTime"
                 yName="value"
-                name="Self-Report Completed Miles"
+                name="Self-Report Completed Steps"
                 type="StackingColumn"
               ></SeriesDirective>
               <SeriesDirective
                 dataSource={this.state.chartData2}
                 xName="dateTime"
                 yName="value"
-                name="Incomplete Miles"
+                name="Incomplete Steps"
                 type="StackingColumn"
               ></SeriesDirective>
             </SeriesCollectionDirective>
@@ -286,4 +285,4 @@ class DataVisualization2 extends React.Component {
   }
 }
 
-export default DataVisualization2;
+export default DataVisualization21;
