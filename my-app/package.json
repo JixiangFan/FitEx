@@ -1,12 +1,4 @@
 {
-  "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
-  },
   "name": "fitaware_dash",
   "version": "0.1.0",
   "private": true,
@@ -42,6 +34,14 @@
     "serve": "^14.0.1",
     "styled-components": "^5.3.5",
     "svg": "^0.1.0"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": [
