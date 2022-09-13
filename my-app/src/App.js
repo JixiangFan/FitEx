@@ -22,6 +22,8 @@ import Leaderboard2 from './pages/leaderboard2';
 import DailyBarGraph from './pages/DailyBarGraph'
 import DailySelfReport from './pages/DailyselfReport'
 import NeutriationDisplay from './pages/nutriationDisplay'
+import LeadBoard from './pages/Leadboard'
+import UpdateProfileLocal from './pages/updateProfile';
 const App = () => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -69,7 +71,7 @@ const App = () => {
 
 
 
-              <div className="fixed w-full pl-10 h-full">
+              <div className="w-full pl-10 h-full">
                 {themeSettings && (<ThemeSettings />)}
 
                 <Routes>
@@ -111,10 +113,9 @@ const App = () => {
                     <Route path="/employeeTree" element={<EmployeeTree />} />
                     <Route path="/team" element={(<Team />)} />
                     <Route path="/teamMember" element={<TeamMember />} />
-
-                    <Route path="/leaderboard" element={<Leaderboard />} />
+                    <Route path="/updateProfile" element={<UpdateProfileLocal/>} />
+                    <Route path="/leaderboard" element={<LeadBoard />} />
                     <Route path="/teamMember" element={<TeamMember />} />
-                    <Route path="/leaderboardteam" element={<Leaderboard2 />} />
                     <Route path="/employeeTree" element={<EmployeeTree />} />
                     <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
                     <Route path="/dailySelfReport" element={<DailySelfReport />} />

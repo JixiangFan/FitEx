@@ -30,6 +30,10 @@ const CreateTeam = () => {
         const db = getDatabase();
         const uid = currentUser['uid']
         const teamMemberList = [uid]
+        const auth = getAuth()
+        const user = auth.currentUser;
+        const dbRef = ref(getDatabase());
+        var userType = 0;
         const postData = {
             team_name: teamnameRef.current.value,
             team_member: teamMemberList,
@@ -43,70 +47,63 @@ const CreateTeam = () => {
         setLoading(true)
         const newPostKey = push(child(ref(db), 'team')).key;
         updates['/team/' + newPostKey] = postData;
-        await update(ref(db), updates).then(
-            await promoteUser(newPostKey).then(
-                setLoading(false)
-
-            )
-        ).catch(
-            setLoading(false)
-        )
-        if (!loading)
-        {
-            navigate("/profile")
-        }
-       
-    }
-
-    function promoteUser(teamID) {
-        const auth = getAuth()
-        const user = auth.currentUser;
-        const dbRef = ref(getDatabase());
-        var userType = 0;
-        get(child(dbRef, `profile/${user['uid']}`)).then((snapshot) => {
-            userType = snapshot.val().usertype
-            if (userType === 0)
-            {
-                const postData = {
-                    displayname: snapshot.val().displayname,
-                    email: snapshot.val().email,
-                    usertype: 1,
-                    device: snapshot.val().device,
-                    questionnaire: snapshot.val().questionnaire,
-                    team: teamID,
-                    gender: snapshot.val().gender,
-                    age: snapshot.val().age,
-                    weight: snapshot.val().weight,
-                    fitbitToken: snapshot.val().fitbitToken,
-                    exerciseGoal: snapshot.val().exerciseGoal
-                };
-                const updates = {};
-                updates['/profile/' + user['uid']] = postData;
-                return update(ref(getDatabase()), updates);
-            }
+        update(ref(db), updates).then(() => {
+            get(child(dbRef, `profile/${user['uid']}`)).then((snapshot) => {
+                userType = snapshot.val().usertype
+                if (userType === 0)
+                {
+                    const postData = {
+                        age: snapshot.val().age,
+                        device: snapshot.val().device,
+                        displayname: snapshot.val().displayname,
+                        email: snapshot.val().email,
+                        fitbitToken: snapshot.val().fitbitToken,
+                        foodGoal: snapshot.val().foodGoal,
+                        gender: snapshot.val().gender,
+                        height: snapshot.val().height,
+                        questionnaire: snapshot.val().questionnaire,
+                        stepGoal: snapshot.val().stepGoal,
+                        team: newPostKey,
+                        usertype: 1,
+                        weight: snapshot.val().weight,
+                    };
+                    const updates = {};
+                    updates['/profile/' + user['uid']] = postData;
+                    update(ref(getDatabase()), updates).then(
+                      //jump to next page
+                    )
+                }
+            })
         })
 
     }
 
+    function launcherror() {
+        setError("Name exist")
+        setLoading(false)
+    }
+
     async function handleSubmit(e) {
+        e.preventDefault()
         setLoading(true)
         setTeamSize(0)
         setError("")
-
         const email = currentUser['email']
-        e.preventDefault()
-
+   
+        console.log(loading)
         const dbRef = ref(getDatabase());
         const proceed = true;
         await get(child(dbRef, `team/`)).then((snapshot) => {
             checkTeamExist(teamnameRef.current.value, snapshot.val()).then(result =>
-                duplcate ? setError("Name exist")
-                    : createNewTeam()
+                duplcate ?
+                    launcherror()
+                    :
+                    createNewTeam()
             )
         }
         )
-        navigate('/register3');
-        setLoading(false)
+
+        
     }
 
     let mainStyle = {

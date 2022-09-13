@@ -1,7 +1,6 @@
 import React from "react";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { withRouter } from '../components/withRouter';
-import '../css/leaderboard.css'
 import getUserdata from "../components/Firebase/getUserdata";
 
 class LeaderBoard2 extends React.Component {

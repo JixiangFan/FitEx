@@ -21,7 +21,7 @@ import { Header } from "../components";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
-const toolbarOptions = [`PdfExport`, `ExcelExport`, `CsvExport`, "Search"];
+const toolbarOptions = ["Search"];
 
 class Team extends React.Component {
   constructor(props) {

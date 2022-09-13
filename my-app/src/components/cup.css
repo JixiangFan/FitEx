@@ -1,8 +1,4 @@
-body {
-    overflow: hidden;
-    background: rgb(25,35,125);
-  }
-  
+
   div.drop-container {
     position: absolute;
     top: 0;
@@ -27,7 +23,7 @@ body {
     animation: drip 4s forwards;
   }
   
-  h1 {
+  #cupMessage {
     color: white;
     position: absolute;
     font-size: 2.5em;

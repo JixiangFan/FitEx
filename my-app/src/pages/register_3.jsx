@@ -15,8 +15,9 @@ const Register1 = () => {
     const email = currentUser.email
     async function handleSubmit(e) {
         e.preventDefault()
-        navigate('/profile');
-        window.open("https://docs.google.com/forms/d/e/1FAIpQLSfOXgkheNu29BvKhbCdtm57Zy0veN9FhCQP96h7V4JOwuWU0Q/viewform?usp=pp_url&entry.1038252029="+uid);
+        navigate('/dashboard');
+        window.location.reload()
+        window.open("https://docs.google.com/forms/d/e/1FAIpQLSfOXgkheNu29BvKhbCdtm57Zy0veN9FhCQP96h7V4JOwuWU0Q/viewform?usp=pp_url&entry.1038252029=" + uid); 
         setLoading(false)
     }
 
