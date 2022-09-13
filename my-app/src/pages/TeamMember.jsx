@@ -103,7 +103,7 @@ class TeamMember extends React.Component {
         <Header category="Page" title="My Team" />
 
         <div>
-          <h>My Teammates:</h>
+          <h>My Teammates</h>
         </div>
         <GridComponent
           width="75%"
