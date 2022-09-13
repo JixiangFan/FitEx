@@ -1,6 +1,5 @@
 import React from "react";
 import { getDatabase, ref, child, get } from "firebase/database";
-import { withRouter } from '../components/withRouter';
 
 import getUserdata from "../components/Firebase/getUserdata";
 
@@ -303,5 +302,5 @@ class LeaderBoard extends React.Component {
     }
 }
 
-export default withRouter(LeaderBoard)
+export default LeaderBoard
 

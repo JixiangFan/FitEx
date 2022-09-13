@@ -316,5 +316,5 @@ class LeaderBoard2 extends React.Component {
     }
 }
 
-export default withRouter(LeaderBoard2)
+export default LeaderBoard2
 
