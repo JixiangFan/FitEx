@@ -155,7 +155,7 @@ const Register2 = () => {
                                     <label className="form-label">Fit Bit Access Token</label>
                                     <div className="input-group mb-3">
                                         <input type="text" className="form-control" aria-label="weight" aria-describedby="basic-addon2" ref={fitbitTokenRef}></input>
-                                        <span className="input-group-text" id="basic-addon2">?</span>
+                                        <span className="input-group-text" id="basic-addon2" ><Link to="/knowledgeBase" target="_blank">?</Link></span>
                                     </div>
                                 </div>
 
