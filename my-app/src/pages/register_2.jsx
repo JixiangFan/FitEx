@@ -169,7 +169,7 @@ const Register2 = () => {
                                         </div>
                                     </div>
                                     <div className="col mb-3 w-25">
-                                        <label className="form-label">Daily Nutrition Goals</label>
+                                        <label className="form-label">Daily Vegetable and Fruit Cups</label>
                                         <div className="input-group mb-3">
                                             <input type="number" className="form-control" min="0" aria-label="weight" aria-describedby="basic-addon2" ref={foodRef} required></input>
                                             <span className="input-group-text" id="basic-addon2">cup</span>
