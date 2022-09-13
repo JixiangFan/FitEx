@@ -1,9 +1,16 @@
 import React from 'react'
+import SinglePagePDFViewer from "../components/pdf/single-page";
 
-const KnowledgeBase = () => {
+import samplePDF from "../QA.pdf";
+import "../css/styles.css"
+
+export default function KnowledgeBase() {
   return (
-    <div>KnowledgeBase</div>
-  )
-}
+    <div className="App">
+      <h4>QA Center</h4>
+      <SinglePagePDFViewer pdf={samplePDF} />
 
-export default KnowledgeBase
+      <hr />
+    </div>
+  );
+}

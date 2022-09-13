@@ -1,17 +1,15 @@
 import React from 'react';
-import { AiOutlineCalendar, AiOutlineSync, AiFillFire, AiOutlineNotification, AiOutlineTeam } from 'react-icons/ai';
-import { FiEdit, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
-import { BsKanban, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
-import { BiGame, BiGroup, BiTask } from 'react-icons/bi';
-import { RiBook3Line} from 'react-icons/ri';
-import { MdAnalytics, MdDashboard, MdEditNote, MdGroups} from 'react-icons/md';
+import { AiOutlineSync, AiFillFire, AiOutlineUnorderedList } from 'react-icons/ai';
+import { FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
+import { BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
+import { BiGroup, BiBook } from 'react-icons/bi';
+import { MdDashboard,  MdGroups, MdOutlineLeaderboard} from 'react-icons/md';
 import { TiTick } from 'react-icons/ti';
-import { GiFamilyTree, GiRun } from 'react-icons/gi';
+import { GiRun, GiKiwiFruit, GiOrganigram, GiFruitBowl } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
 import { IoFootstepsOutline } from "react-icons/io5";
 import { FaWalking } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
-import { TbReport } from "react-icons/tb";
 import { HiCalculator } from "react-icons/hi";
 
 import avatar from './avatar.jpg';
@@ -442,13 +440,13 @@ export const links = [
         icon: <MdDashboard />,
       },
       {
-        name: 'compeition',
-        icon: <BiGame />,
+        name: 'leaderboard',
+        icon: <MdOutlineLeaderboard />,
       },
       
       {
         name: 'team',
-        icon: <AiOutlineTeam />,
+        icon: <AiOutlineUnorderedList />,
       },
       {
         name: 'teamMember',
@@ -456,13 +454,13 @@ export const links = [
       },
       {
         name: 'employeeTree',
-        icon: <GiFamilyTree />,
+        icon: <GiOrganigram />,
       },
     ],
   },
 
   {
-    title: 'Self Report',
+    title: 'Fitness Report',
     links: [
       {
         name: 'MET',
@@ -470,12 +468,21 @@ export const links = [
       },
       {
         name: 'nutrition',
-        icon: <TbReport />,
+        icon: <GiFruitBowl />,
       },
       {
         name: 'FitbitSync',
-        icon: <HiCalculator />,
+        icon: <AiOutlineSync />,
       }
+    ],
+  },
+  {
+    title: 'Apps',
+    links: [
+      {
+        name: 'KnowledgeBase',
+        icon: <BiBook />,
+      },
     ],
   },
 ];
