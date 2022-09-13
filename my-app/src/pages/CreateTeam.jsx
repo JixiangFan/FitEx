@@ -141,7 +141,7 @@ const CreateTeam = () => {
                             </p>
 
                             <p className="text-center p text-white">
-                                To start, let's finish setup your account first
+                                Nice to meet you! Let's create a team and have fun with friends!
                             </p>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ const CreateTeam = () => {
                                                 <Form.Label>Weekly Goal</Form.Label>
                                                 <Form.Control type="number" min="0" ref={dailyGoalRef} required />
                                                 <Form.Text id="fitbithelp" muted>
-                                                    Please fill your team's daily step goal.
+                                                    Please fill your team's weekly step goal.
                                                 </Form.Text>
                                             </Form.Group>
 
