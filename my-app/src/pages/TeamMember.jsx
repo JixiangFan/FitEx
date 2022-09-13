@@ -21,7 +21,7 @@ import { getDatabase, ref, child, get } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import DataVisualization4 from "./DataVisualization4";
 import DataVisualization1 from "./DataVisualization1";
-const toolbarOptions = [`PdfExport`, `ExcelExport`, `CsvExport`, "Search"];
+const toolbarOptions = ["Search"];
 
 const permission_Level = {
   0: "Member",

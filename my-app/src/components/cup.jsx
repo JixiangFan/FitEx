@@ -4,7 +4,7 @@ import './cup.css';
 const Cup = (props) => {
     return (
         <>
-            <h1>{props.message}</h1>
+            <div id='cupMessage'>{props.message}</div>
             <div class="drop-container">
                 <div class="drop"></div>
             </div>

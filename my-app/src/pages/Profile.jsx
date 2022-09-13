@@ -71,7 +71,7 @@ class Profile extends React.Component {
   }
 
   updateProfile() {
-    this.props.navigate('/registerprofile')
+    this.props.navigate('/updateProfile')
   }
 
   createTeam() {
@@ -134,6 +134,7 @@ class Profile extends React.Component {
                   <p className="card-text">User Type: {permission_Level[this.state.profileData.usertype]}</p>
                   <p className="card-text">Report Device: {this.state.profileData.device}</p>
                   <button className="mt-10 btn btn-primary  w-100">Update fitbit access token</button>
+                  <button className="mt-10 btn btn-primary  w-100" onClick={() => { this.updateProfile() }}>Update Profile</button>
                 </div>
               </div>
             </div>

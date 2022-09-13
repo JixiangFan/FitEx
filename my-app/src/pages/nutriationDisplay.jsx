@@ -8,11 +8,6 @@ import { SampleBase } from '../common/sample-base';
 import { getDatabase, ref, child, get, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import Cup from "../components/cup"
-import Cup1 from "../components/cup1"
-import Cup2 from "../components/cup2"
-import Cup3 from "../components/cup3"
-import Cup4 from "../components/cup4"
-
 class Counter extends React.Component {
     render() {
       return <div>{this.props.age}</div>;
