@@ -59,9 +59,7 @@ class Team extends React.Component {
     return (
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
         <Header category="Page" title="All Team" />
-        <div>
-          Team Detail List
-        </div>
+        <div>Team Detail List</div>
 
         <GridComponent
           width="auto"
@@ -73,6 +71,25 @@ class Team extends React.Component {
           allowPdfExport
           toolbar={toolbarOptions}
         >
+          <ColumnsDirective>
+            <ColumnDirective field="team_name" headerText="team_name" />
+            <ColumnDirective
+              field="team_day_step_total"
+              headerText="team_day_step_total"
+            />
+            <ColumnDirective
+              field="team_day_goal"
+              headerText="team_day_goal"
+            />
+            <ColumnDirective
+              field="team_day_step_lift"
+              headerText="team_day_step_lift"
+            />
+            <ColumnDirective
+              field="team_day_rank"
+              headerText="team_day_rank"
+            />
+          </ColumnsDirective>
           <Inject
             services={[
               Resize,
