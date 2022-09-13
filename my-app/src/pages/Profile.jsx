@@ -111,8 +111,8 @@ class Profile extends React.Component {
                     <div className="row">
                       <div className="col-8">
                         <h5 className="card-title">Team: </h5>
-                        <p className="card-text">Food Goal: </p>
-                        <p className="card-text">Step Goal:</p>
+                        <p className="card-text">Daily F/V Cups: </p>
+                        <p className="card-text">Daily Step Goal:</p>
                        
                       </div>
                       <div className="col-4">
@@ -130,7 +130,7 @@ class Profile extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title"> Height: {this.state.profileData.height} ft</h5>
                   <p className="card-text">Weight: {this.state.profileData.weight} lb</p>
-                  <p className="card-title">Finished questionnaire? : {this.state.profileData.questionnaire ? "True" : "False"}</p>
+                  <p className="card-title">Questionnaire Done: {this.state.profileData.questionnaire ? "True" : "False"}</p>
                   <p className="card-text">User Type: {permission_Level[this.state.profileData.usertype]}</p>
                   <p className="card-text">Report Device: {this.state.profileData.device}</p>
                   <button className="mt-10 btn btn-primary  w-100">Update fitbit access token</button>

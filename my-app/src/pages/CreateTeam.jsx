@@ -50,6 +50,7 @@ const CreateTeam = () => {
         update(ref(db), updates).then(() => {
             get(child(dbRef, `profile/${user['uid']}`)).then((snapshot) => {
                 userType = snapshot.val().usertype
+                console.log(snapshot.val());
                 if (userType === 0)
                 {
                     const postData = {
@@ -68,10 +69,14 @@ const CreateTeam = () => {
                         weight: snapshot.val().weight,
                     };
                     const updates = {};
+                    console.log(postData);
                     updates['/profile/' + user['uid']] = postData;
                     update(ref(getDatabase()), updates).then(
-                      //jump to next page
+                      navigate('/register3')
                     )
+                }
+                else{
+                    navigate("/register3");
                 }
             })
         })
