@@ -19,7 +19,8 @@ import {
 import { Header } from "../components";
 import { getDatabase, ref, child, get } from "firebase/database";
 import { getAuth } from "firebase/auth";
-
+import DataVisualization4 from "./DataVisualization4";
+import DataVisualization1 from "./DataVisualization1";
 const toolbarOptions = [`PdfExport`, `ExcelExport`, `CsvExport`, "Search"];
 
 const permission_Level = {
@@ -48,7 +49,8 @@ class TeamMember extends React.Component {
     get(child(dbRef, `profile/`))
       .then((snapshot) => {
         get(child(dbRef, `team/`)).then((snapshot2) => {
-          if (snapshot2.exists()) {
+          if (snapshot2.exists())
+          {
             //console.log(snapshot.val());
             const team_obj = {};
             Object.entries(snapshot2.val()).forEach(([key, value]) => {
@@ -60,7 +62,8 @@ class TeamMember extends React.Component {
             });
           }
 
-          if (snapshot.exists()) {
+          if (snapshot.exists())
+          {
             //console.log(snapshot.val());
             // this.setState({
             //   profile: snapshot,
@@ -116,12 +119,12 @@ class TeamMember extends React.Component {
             <ColumnDirective field='email' headerText='Email' />
             <ColumnDirective field='gender' headerText='Gender' />
             <ColumnDirective field='height' headerText='Height' />
-            <ColumnDirective field='weight' headerText='Weight'/>
+            <ColumnDirective field='weight' headerText='Weight' />
             <ColumnDirective field='usertype' headerText='User Type' editType='dropdownedit' edit={this.ddParams} width='150' />
             <ColumnDirective field='stepGoal' headerText='Step Goal' />
             <ColumnDirective field='foodGoal' headerText='Food Goal' />
             <ColumnDirective field='team' headerText='Team' />
-            <ColumnDirective field='device' headerText='Device'/>
+            <ColumnDirective field='device' headerText='Device' />
           </ColumnsDirective>
           <Inject
             services={[
@@ -136,6 +139,15 @@ class TeamMember extends React.Component {
             ]}
           />
         </GridComponent>
+        <div className="row pt-1 mt-10">
+          <div className="col-4">
+            <DataVisualization4></DataVisualization4>
+          </div>
+          <div className="col-4">
+            <DataVisualization1></DataVisualization1>
+          </div>
+        </div>
+
       </div>
     );
   }

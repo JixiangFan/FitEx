@@ -156,7 +156,7 @@ class DataVisualization4 extends React.Component {
   }
 
   render() {
-    console.log(this.state.goal)
+
     var option = {
       chart: {
         height: 350,

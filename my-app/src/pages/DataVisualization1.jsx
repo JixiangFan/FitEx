@@ -39,7 +39,8 @@ class DataVisualization1 extends React.Component {
     //console.log(dbRef);
     get(child(dbRef, `profile/${user["uid"]}`))
       .then((snapshot) => {
-        if (snapshot.exists()) {
+        if (snapshot.exists())
+        {
           //console.log(snapshot.val());
           u_name = snapshot.val().displayname;
           team_id = snapshot.val().team;
@@ -47,7 +48,8 @@ class DataVisualization1 extends React.Component {
 
           get(child(dbRef, "/team/" + team_id))
             .then((snapshot) => {
-              if (snapshot.exists()) {
+              if (snapshot.exists())
+              {
                 team_name = snapshot.val().team_name;
                 team_member = snapshot.val().team_member;
                 //console.log(team_name);
@@ -64,12 +66,14 @@ class DataVisualization1 extends React.Component {
                   let total_distance = 0;
                   let userData = [];
                   const userFitbitDistances = values.map((x) => {
-                    if (x && x.exists()) {
+                    if (x && x.exists())
+                    {
                       const fitData = x.val()["FitData"];
                       //console.log(fitData);
                       let user_name = "";
                       let user_fitbit_distance = 0;
-                      if (fitData) {
+                      if (fitData)
+                      {
                         //console.log(fitData);
                         const lastSyncTime = Object.keys(fitData).reduce(
                           (a, b) => (a < b ? b : a)
@@ -92,7 +96,8 @@ class DataVisualization1 extends React.Component {
 
                       let user_selfreport_distance = 0;
                       const selfReportData = x.val()["SelfReportData"];
-                      if (selfReportData) {
+                      if (selfReportData)
+                      {
                         const lastSelfReportTime = Object.keys(
                           selfReportData
                         ).filter((x) => {
@@ -139,14 +144,16 @@ class DataVisualization1 extends React.Component {
                     pieChartData: chartData,
                   });
                 });
-              } else {
+              } else
+              {
                 console.log("No data available");
               }
             })
             .catch((error) => {
               console.error(error);
             });
-        } else {
+        } else
+        {
           console.log("No data available");
         }
       })
@@ -157,26 +164,18 @@ class DataVisualization1 extends React.Component {
 
   render() {
     return (
-      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header category="Page" title="DA1" />
 
-        <div className="flex gap-10 flex-wrap justify-center">
-          <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780  ">
-            <div className="flex justify-between">
-              <p className="font-semibold text-xl">Team Task Contribution</p>
-            </div>
 
-            <div className="w-full">
-              <PieChart
-                id="chart-pie"
-                data={this.state.pieChartData}
-                legendVisiblity
-                height="full"
-              />
-            </div>
-          </div>
-        </div>
+      <div>
+        <PieChart
+          id="chart-pie"
+          data={this.state.pieChartData}
+          legendVisiblity
+          height="full"
+        />
       </div>
+
+
     );
   }
 }

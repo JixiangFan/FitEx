@@ -475,31 +475,7 @@ export const links = [
       {
         name: 'FitbitSync',
         icon: <HiCalculator />,
-      },
-       {
-        name: 'DataVisualization1',
-        icon: <HiCalculator />,
-      },
-       {
-        name: 'DataVisualization2',
-        icon: <HiCalculator />,
-      },
-      {
-        name: 'DataVisualization21',
-        icon: <HiCalculator />,
-      },
-       {
-        name: 'DataVisualization3',
-        icon: <HiCalculator />,
-      },
-      {
-        name: 'DataVisualization31',
-        icon: <HiCalculator />,
-      },
-      {
-        name: 'DataVisualization4',
-        icon: <HiCalculator />,
-      },
+      }
     ],
   },
 ];

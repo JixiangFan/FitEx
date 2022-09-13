@@ -109,7 +109,7 @@ class DataVisualization31 extends Component {
               }
 
               total = fitbit_result + self_report_result;
-              //console.log(total);
+              console.log(total);
 
               this.setState({
                 series: [
@@ -238,7 +238,7 @@ class DataVisualization31 extends Component {
                 label: "Step Goal",
                 color: "#373d3f",
                 formatter: function (w) {
-                  return goal.toFixed(2);
+                  return goal;
                 },
               },
             },
