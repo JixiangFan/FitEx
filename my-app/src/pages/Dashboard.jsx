@@ -57,7 +57,7 @@ const Dashboard = () => {
         </GridItemWrapper>
         <GridItemWrapper key="upRight">
           <GridItemContent>
-            <div className="h1 pt-10 pl-10">Neutration Goal</div>
+            <div className="h1 pt-10 pl-10">Nutrition Goal</div>
             <NeutriationDisplay></NeutriationDisplay>
 
           </GridItemContent>

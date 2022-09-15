@@ -463,7 +463,7 @@ export const links = [
     title: 'Fitness Report',
     links: [
       {
-        name: 'MET',
+        name: 'PhysicalActivity',
         icon: <HiCalculator />,
       },
       {

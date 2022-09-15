@@ -44,68 +44,103 @@ const Register1 = () => {
 
 
     return (
-        <div className="container h-100 bg-light" style={mainStyle}>
-            <div className="row h-100">
-                <div className="col-3 justify-content-center" style={{ 'backgroundColor': '#8AABBD' }}>
-                    <div className="row">
-                        <div className="col-5">
-                            <img src='./logo.png' className="rounded float-left" alt="logo"></img>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-1 gap-4 place-content-center h-75">
-                        <p className="text-center h2 text-white">
-                            <u>Welcome to FitEx</u>
-                        </p>
-
-                        <p className="text-center p text-white">
-                            In FitEx, You can:
-                            <br></br>
-                            description put here
-                        </p>
-
-                        <p className="text-center p text-white">
-                            To start, let's finish setup your account first
-                        </p>
-                    </div>
-                </div>
-                <div className="col-7 place-content-center bg-light">
-                    <div className="row h-100 place-content-center">
-                        <div className="col">
-                            <div className="h1 text-center">Register</div>
-                            {error && <Alert variant="danger">{error}</Alert>}
-                            <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label className="form-label">Email address</label>
-                                    <input type="email" className="form-control" id="emailInput" aria-describedby="emailHelp" ref={emailRef} required />
-                                    <div id="emailHelp" className="form-text">Enter your email here.</div>
-                                </div>
-
-                                <div className="mb-3">
-                                    <label className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="password1" aria-describedby="password" ref={passwordRef} required />
-                                    <div id="emailHelp" className="form-text">Password need to be 6 character and more.</div>
-                                </div>
-
-                                <div className="mb-3">
-                                    <label className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="password2" aria-describedby="password" ref={passwordRef2} required />
-                                    <div id="emailHelp" className="form-text">Confirm your passowrd here.</div>
-                                </div>
-
-                                <button disabled={loading} className="btn btn-outline-primary  w-100" type="submit">
-                                    Register
-                                </button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
+      <div className="container h-100 bg-light" style={mainStyle}>
+        <div className="row h-100">
+          <div
+            className="col-3 justify-content-center"
+            style={{ backgroundColor: "#8AABBD" }}
+          >
+            <div className="row">
+              <div className="col-5">
+                <img
+                  src="./logo.png"
+                  className="rounded float-left"
+                  alt="logo"
+                />
+              </div>
             </div>
+            <div className="grid grid-cols-1 gap-4 place-content-center h-75">
+              <p className="text-center h2 text-white">
+                <u>Welcome to FitEx</u>
+              </p>
+
+              <p className="text-center p text-white">
+                <br />
+                FitEx is an evidence-based, 8-week, statewide walking and
+                fruit/vegetable consumption program delivered to teams and
+                individuals across the state.
+              </p>
+
+              <p className="text-center p text-white">
+                To start, let's finish setup your account first
+              </p>
+            </div>
+          </div>
+          <div className="col-7 place-content-center bg-light">
+            <div className="row h-100 place-content-center">
+              <div className="col">
+                <div className="h1 text-center">Register</div>
+                {error && <Alert variant="danger">{error}</Alert>}
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <label className="form-label">Email address</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="emailInput"
+                      aria-describedby="emailHelp"
+                      ref={emailRef}
+                      required
+                    />
+                    <div id="emailHelp" className="form-text">
+                      Enter your email here.
+                    </div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password1"
+                      aria-describedby="password"
+                      ref={passwordRef}
+                      required
+                    />
+                    <div id="emailHelp" className="form-text">
+                      Password need to be 6 character and more.
+                    </div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Password</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password2"
+                      aria-describedby="password"
+                      ref={passwordRef2}
+                      required
+                    />
+                    <div id="emailHelp" className="form-text">
+                      Confirm your passowrd here.
+                    </div>
+                  </div>
+
+                  <button
+                    disabled={loading}
+                    className="btn btn-outline-primary  w-100"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-
-
-
-    )
+      </div>
+    );
 }
 
 export default Register1

@@ -24,6 +24,7 @@ export { default as DataVisualization21 } from "./DataVisualization21";
 export { default as DataVisualization3 } from "./DataVisualization3";
 export { default as DataVisualization31 } from "./DataVisualization31";
 export { default as DataVisualization4 } from "./DataVisualization4";
+export { default as PhysicalActivity } from "./PhysicalActivity";
 
 export { default as Area } from './Charts/Area';
 export { default as Bar } from './Charts/Bar';
