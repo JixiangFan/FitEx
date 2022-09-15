@@ -1,7 +1,8 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from 'react-bootstrap'
 
 const Welcome = () => {
   let mainStyle = {
@@ -22,35 +23,58 @@ const Welcome = () => {
   }
 
   return (
-
     <div style={mainStyle}>
-      <div className='container-lg'>
-        <Row className = 'h-50'></Row>
-        <Row className="mt-5">
-          <Col></Col>
-          <div className="col-md-4 text-center">
-            <img src='./logo.png' className="rounded float-center" alt="logo"></img>
-            <h2 className="text-center"><strong>An evidence-based, 8-week online program to promote physical activity and fruit & vegetable tracking.</strong></h2>
+      <div className="row mt-64" />
+      <div className="row ml-48">
+        <div className="col">
+          <div className="container-lg mt-5">
+            <Container>
+              <div class="ratio ratio-16x9 ">
+                <iframe
+                  src="https://youtube.com/embed/Mzq-nZJd_cg"
+                  title="Welcome Video"
+                  allowFullScreen
+                />
+              </div>
+            </Container>
           </div>
-         
-        </Row>
-        <Row className="mt-5">
-          <Col></Col>
-          <div className="col-md-4 text-center">
-          <button className="btn btn-primary btn-lg w-75" onClick={register}>Join Now</button>          
+        </div>
+
+        <div className="col mt-40">
+          <div className="col-md-4 text-center ml-52">
+            <img
+              src="./logo.png"
+              className="rounded float-center"
+              alt="logo"
+            />
+            <h2 className="text-center">
+              <strong>
+                An evidence-based, 8-week online program to promote physical
+                activity and fruit & vegetable tracking.
+              </strong>
+            </h2>
           </div>
-        </Row>
-        <Row className="mt-5">
-          <Col></Col>
-          <div className="col-md-4 text-center">
-          <button className="btn btn-primary btn-lg w-75" onClick={login}>Login</button>          
+
+          <div className="col mt-8">
+            <div className="col-md-4 text-center ml-52">
+              <button
+                className="btn btn-primary btn-lg w-75"
+                onClick={register}
+              >
+                Join Now
+              </button>
+            </div>
           </div>
-        </Row>
+
+          <div className="col-md-4 text-center mt-8 ml-52">
+            <button className="btn btn-primary btn-lg w-75" onClick={login}>
+              Login
+            </button>
+          </div>
+        </div>
       </div>
-
     </div>
-
-  )
+  );
 }
 
 export default Welcome

@@ -14,7 +14,7 @@
     "@syncfusion/ej2-react-richtexteditor": "^19.4.50",
     "@syncfusion/ej2-react-schedule": "^19.4.50",
     "apexcharts": "^3.35.5",
-    "bootstrap": "^5.2.0",
+    "bootstrap": "^5.2.1",
     "cors": "^2.8.5",
     "craco-plugin-scoped-css": "^1.1.1",
     "create-app-react": "^1.0.6",
