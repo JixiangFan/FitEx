@@ -41,7 +41,7 @@ const Register1 = () => {
                   src="./logo.png"
                   className="rounded float-left"
                   alt="logo"
-                ></img>
+                />
               </div>
             </div>
             <div className="grid grid-cols-1 gap-4 place-content-center h-75">
@@ -50,9 +50,10 @@ const Register1 = () => {
               </p>
 
               <p className="text-center p text-white">
-                In FitEx, You can:
-                <br></br>
-                description put here
+                <br />
+                FitEx is an evidence-based, 8-week, statewide walking
+                and fruit/vegetable consumption program delivered to teams
+                and individuals across the state.
               </p>
 
               <p className="text-center p text-white">
@@ -67,8 +68,14 @@ const Register1 = () => {
                 <div className="h1 text-center">Register</div>
                 {error && <Alert variant="danger">{error}</Alert>}
                 <form onSubmit={handleSubmit}>
-                  <h1 className="text-center mt-9">You are almost finish</h1>
-                  <p>we have some addictional questionnaire</p>
+                  <h1 className="text-center mt-9">
+                    You are almost finish!
+                  </h1>
+                  <p>
+                    Please complete the questionnaire, it will take you 5-10
+                    minutes. The questionnaire helps us to understand your
+                    needs and goals. Thank you for your patient!
+                  </p>
                   <button
                     disabled={loading}
                     className="mt-10 btn btn-outline-primary  w-100"
