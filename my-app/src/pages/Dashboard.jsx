@@ -17,6 +17,7 @@ import { Pie as PieChart } from '../components';
 import { DataVisualization1, DataVisualization2, DataVisualization21, DataVisualization3, DataVisualization31, DataVisualization4, Nutrition } from '../pages';
 import NeutriationDisplay from './nutriationDisplay'
 import DailyBarGraph from './DailyBarGraph'
+import DailySelfReport from './DailyselfReport'
 const layout = [
   { i: "upLeft", x: 0, y: 0, w: 3, h: 4 },
   { i: "upMid", x: 3, y: 0, w: 3, h: 4 },
@@ -66,12 +67,19 @@ const Dashboard = () => {
 
         <GridItemWrapper key="downLeft">
           <GridItemContent>
-            <div className="btn btn-primary" onClick={() => { setSwitchStep(!switchStep) }}>Switch {switchStep ?"Step":"Mile"}</div>
-            {switchStep ? <DataVisualization2></DataVisualization2> : <DataVisualization21></DataVisualization21>}
+
           </GridItemContent>
         </GridItemWrapper>
       </GridLayout>
+      <div className="row"> <div className="btn btn-primary" onClick={() => { setSwitchStep(!switchStep) }}>Switch {switchStep ? "Step" : "Mile"}</div>
+        {switchStep ? <DataVisualization2></DataVisualization2> : <DataVisualization21></DataVisualization21>}</div>
+      <div className="row">
+        <DailySelfReport></DailySelfReport>
+      </div>
+
     </Root>
+
+
   )
 }
 
