@@ -1169,7 +1169,7 @@ class PhysicalActivity extends React.Component {
             className="border-2 border-slate-500 bg-slate-300"
             onClick={this.calculating}
           >
-            Calculate
+            Report Activities
           </button>
           <br />
           <br />

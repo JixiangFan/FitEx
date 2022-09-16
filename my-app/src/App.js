@@ -5,7 +5,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { getAuth } from "firebase/auth";
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 
-import { PhysicalActivity, DataVisualization1, DataVisualization2, DataVisualization21, DataVisualization3, DataVisualization31,DataVisualization4, Nutrition, CreateTeam, RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase, TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, MET, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
+import { PhysicalActivity, DataVisualization1, DataVisualization2, DataVisualization21, DataVisualization3, DataVisualization31,DataVisualization4, Nutrition, CreateTeam, RegisterProfile, Calendar, Dashboard, DataAnalytics, EmployeeTree, Task, Kanban, Editor, KnowledgeBase,KnowledgeBase2, KnowledgeBase3,TeamMember, Login, Profile, Register, Competition, Award, FitbitSync, MET, Stacked, Pyramid, Line, Area, Bar, Pie, ColorMapping, Team, Notification } from './pages';
 
 import './App.css';
 import Welcome from './pages/Welcome.jsx'
@@ -122,6 +122,8 @@ const App = () => {
                     <Route path="/dailySelfReport" element={<DailySelfReport />} />
                     <Route path="/NeutriationDisplay" element={<NeutriationDisplay/>}/>
                     <Route path="/knowledgeBase" element={<KnowledgeBase />} />
+                    <Route path="/knowledgeBase2" element={<KnowledgeBase2 />} />
+                    <Route path="/knowledgeBase3" element={<KnowledgeBase3 />} />
                   </Route>
                   <Route path="/register" element={<Register1 />} />
                   <Route path="/login" element={<Login />} />
