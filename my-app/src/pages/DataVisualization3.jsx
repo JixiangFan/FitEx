@@ -182,9 +182,9 @@ class DataVisualization3 extends Component {
             highlightDataSeries: true,
           },
         },
-        plotOptions: {
+      
+        plotOptions: { 
           radialBar: {
-            size: undefined,
             inverseOrder: false,
             startAngle: 0,
             //endAngle: 275,
@@ -268,7 +268,7 @@ class DataVisualization3 extends Component {
           options={this.state.options}
           series={this.state.series}
           type="radialBar"
-          width="570"
+          width={window.innerWidth*30/100}
         />
       </div>
     );

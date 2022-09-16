@@ -245,7 +245,7 @@ class DataVisualization21 extends React.Component {
               minorTickLines: { width: 0 },
               labelFormat: "{value}",
             }}
-            width={Browser.isDevice ? "100%" : "60%"}
+            width={Browser.isDevice ? "100%" : "100%"}
             chartArea={{ border: { width: 0 } }}
             load={this.load.bind(this)}
             title="This Week's Activity Steps"
