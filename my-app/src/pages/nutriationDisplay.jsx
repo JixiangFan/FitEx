@@ -3,18 +3,9 @@
  */
 import * as React from "react";
 import { ChartComponent, SeriesCollectionDirective, SeriesDirective, Inject, LineSeries, DateTime, Legend, Tooltip } from '@syncfusion/ej2-react-charts';
-import { Browser } from '@syncfusion/ej2-base';
-import { SampleBase } from '../common/sample-base';
 import { getDatabase, ref, child, get, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import Cup from "../components/cup"
-class Counter extends React.Component {
-    render() {
-      return <div>{this.props.age}</div>;
-    }
-  }
-
-
 
 
 export default class NeutriationDisplay extends React.Component {
@@ -22,7 +13,6 @@ export default class NeutriationDisplay extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            age:0,
             chartData: []
         };
     }
