@@ -5,6 +5,8 @@ export { default as DataAnalytics } from './DataAnalytics';
 export { default as Editor } from './Editor';
 export { default as EmployeeTree } from './EmployeeTree';
 export { default as KnowledgeBase } from './KnowledgeBase';
+export { default as KnowledgeBase2 } from './KnowledgeBase2';
+export { default as KnowledgeBase3 } from './KnowledgeBase3';
 export { default as Task } from './Task';
 export { default as Login } from './Login';
 export { default as Register } from './Register';

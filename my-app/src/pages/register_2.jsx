@@ -250,7 +250,7 @@ const Register2 = () => {
                                             ref={fitbitTokenRef}
                                         />
                                         <span className="input-group-text" id="basic-addon2">
-                                            <Link to="/knowledgeBase" target="_blank">
+                                            <Link to="/knowledgeBase3" target="_blank">
                                                 ?
                                             </Link>
                                         </span>
