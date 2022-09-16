@@ -4,7 +4,7 @@ import { getDatabase, ref, child, get, onValue } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { Pie as PieChart } from "../components";
 
-//组员贡献百分比 distance
+//组员贡献百分比 steps
 
 var uid = "";
 var u_name = "";

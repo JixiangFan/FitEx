@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, child, get, onValue } from "firebase/database";
 
-//个人 step daily 
+//个人mile weekly
 
 var fitbit_result = 0;
 var self_report_result = 0;
@@ -28,7 +28,7 @@ const local_morning = date.getTime();
 function valueToPercent(value) {
   return (value * 100) / goal;
 }
-class DataVisualization31 extends Component {
+class DataVisualization32 extends Component {
   componentDidMount() {
     const auth = getAuth();
     const user = auth.currentUser;
@@ -41,7 +41,7 @@ class DataVisualization31 extends Component {
       .then((snapshot) => {
         if (snapshot.exists()) {
           //console.log(snapshot.val());
-          goal = snapshot.val().stepGoal;
+          goal = snapshot.val().stepGoal / 2000 * 7;
           //console.log(goal);
 
           let user_fitbit_distance = [];
@@ -51,7 +51,7 @@ class DataVisualization31 extends Component {
               //console.log(snapshot.val());
 
               const fitData = snapshot.val()["FitData"];
-              console.log(fitData);
+              //console.log(fitData);
               if (fitData) {
                 const lastSyncTime = Object.keys(fitData).reduce((a, b) =>
                   a < b ? b : a
@@ -59,14 +59,21 @@ class DataVisualization31 extends Component {
                 //console.log(lastSyncTime);
                 //console.log(lastSyncTime - local_morning);
 
-                //这里需要考虑没有上传sync，lastSyncTime是昨天的数据情况
-                if (lastSyncTime - local_morning >= 0) {
+                if (lastSyncTime > startOfWeekTime) {
                   user_fitbit_distance =
-                    fitData[lastSyncTime]["activity"]["summary"];
-                  fitbit_result = user_fitbit_distance.steps;
+                    fitData[lastSyncTime]["activity"][
+                      "summary"
+                    ]["distances"];
+                  //console.log(user_fitbit_distance);
+                  const found = user_fitbit_distance.find(
+                    (obj) => {
+                      return obj.activity === "total";
+                    }
+                  );
+
+                  fitbit_result = parseFloat(found.distance);
+                  //console.log(valueToPercent(fitbit_result));
                 }
-                
-                
               }
 
               const selfReportData = snapshot.val()["SelfReportData"];
@@ -76,25 +83,24 @@ class DataVisualization31 extends Component {
                 const lastSelfReportTime = Object.keys(selfReportData).filter(
                   (x) => {
                     //这里需要考虑
-                    //1.没有上传sync，lastSyncTime是昨天的数据情况
                     //2.移除上周数据
-                    if (x < startOfWeekTime || x - local_morning < 0)
+                    if (x < startOfWeekTime)
                       return false;
                     //console.log(x - local_morning);
                     return x;
                   }
                 );
-                console.log(lastSelfReportTime);
+                //console.log(lastSelfReportTime);
 
                 lastSelfReportTime.forEach((time) => {
                   const data = selfReportData[time];
-                  console.log(data);
+                  //console.log(data);
 
                   const temp_data = selfReportData[time]["activity"];
                   //console.log(temp_data);
                   const temp = temp_data.map((x) => {
                     userData4.push({
-                      value: parseFloat(x["res_step"]),
+                      value: parseFloat(x["res_mile"]),
                     });
                   });
                 });
@@ -109,7 +115,7 @@ class DataVisualization31 extends Component {
               }
 
               total = fitbit_result + self_report_result;
-              console.log(total);
+              //console.log(total);
 
               this.setState({
                 series: [
@@ -134,8 +140,8 @@ class DataVisualization31 extends Component {
 
     this.state = {
       options: {
-        colors: ["#336699", "#FFCC33", "#339933"],
-        labels: ["Total Steps", "Fitbit Steps", "SelfReport"],
+        colors: ["#FF0033", "#333399", "#CCCC00"],
+        labels: ["Total Miles", "Fitbit Miles", "SelfReport"],
         legend: {
           show: true,
           floating: true,
@@ -148,8 +154,8 @@ class DataVisualization31 extends Component {
           height: undefined,
           formatter: undefined,
           position: "right",
-          offsetX: 220,
-          offsetY: 7,
+          offsetX: 370,
+          offsetY: 15,
           labels: {
             useSeriesColors: true,
           },
@@ -176,7 +182,7 @@ class DataVisualization31 extends Component {
             size: undefined,
             inverseOrder: false,
             startAngle: 0,
-            endAngle: 275,
+            //endAngle: 275,
             offsetX: 100,
             offsetY: 0,
             hollow: {
@@ -229,16 +235,16 @@ class DataVisualization31 extends Component {
                 fontFamily: undefined,
                 color: undefined,
                 offsetY: 16,
-                formatter: function (val) {
+                formatter: function(val) {
                   return (val * (goal / 100)).toFixed(2);
                 },
               },
               total: {
                 show: true,
-                label: "Step Goal",
+                label: "Mile Goal",
                 color: "#373d3f",
-                formatter: function (w) {
-                  return goal;
+                formatter: function(w) {
+                  return goal.toFixed(2);
                 },
               },
             },
@@ -264,4 +270,4 @@ class DataVisualization31 extends Component {
   }
 }
 
-export default DataVisualization31;
+export default DataVisualization32;
