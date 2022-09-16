@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, child, get, onValue } from "firebase/database";
 
-//个人mile展示
+//个人mile daily
 
 var fitbit_result = 0;
 var self_report_result = 0;
