@@ -90,7 +90,7 @@ export default class DailyBarGraph extends SampleBase {
                 {SAMPLE_CSS}
             </style>
             <div className='control-section'>
-                <ChartComponent id='charts' style={{ textAlign: "center" }} primaryXAxis={{
+                <ChartComponent id='fiveGraph' style={{ textAlign: "center" }} primaryXAxis={{
                     valueType: 'DateTime',
                     labelFormat: 'hh:mm:ss',
                     range: { 

@@ -72,28 +72,51 @@ export default class DailySelfReport extends SampleBase {
         var startOfWeek = firstday.toISOString().split("T")[0];
         //console.log(startOfWeek);
         const startOfWeekTime = new Date(startOfWeek).getTime();
-
+        const date = new Date();
+        date.setHours(0, 0, 0, 0);
+        const local_morning = date.getTime();
+        //console.log(date.toISOString().split("T")[0]);
+        //console.log(local_morning);
         const dbRef = ref(getDatabase());
         //console.log(dbRef);
         get(child(dbRef, `FitEx/User/${uid}`))
             .then((snapshot) => {
                 if (snapshot.exists())
                 {
-                    if (snapshot.val()["SelfReportData"])
-                    {
-                        const sourceData = snapshot.val()["SelfReportData"]
-                        const day = Object.keys(sourceData)[Object.keys(sourceData).length - 1]
-                        if (day > startOfWeekTime)
-                        {
-                           
-                            var data = sourceData[Object.keys(sourceData)[Object.keys(sourceData).length - 1]].activity
-                            this.setState({
-                                chartData: data
-                            });
-                        }
+                    const selfReportData = snapshot.val()["SelfReportData"];
+                    let userData4 = [];
 
+                    if (selfReportData)
+                    {
+                        const lastSelfReportTime = Object.keys(selfReportData).filter(
+                            (x) => {
+                                //这里需要考虑
+                                //1.没有上传sync，lastSyncTime是昨天的数据情况
+                                //2.移除上周数据
+                                if (x < startOfWeekTime || x - local_morning < 0)
+                                    return false;
+                                //console.log(x - local_morning);
+                                return x;
+                            }
+                        );
+                        console.log(lastSelfReportTime);
+
+                        lastSelfReportTime.forEach((time) => {
+                            const data = selfReportData[time];
+                            console.log(data);
+
+                            var temp_data = selfReportData[time]["activity"];
+                            temp_data[0]["cal"] = temp_data[0]["time"]/60
+                            userData4.push(temp_data[0])
+                        })
+                        this.setState(
+                            {
+                                chartData: userData4
+                            }
+                        )
                     }
-                } else
+                }
+                else
                 {
                     console.log("No data available");
                 }
@@ -107,6 +130,7 @@ export default class DailySelfReport extends SampleBase {
 
 
     render() {
+        console.log(this.state.chartData)
         return (<div className='control-pane'>
             <style>
                 {SAMPLE_CSS}
@@ -119,8 +143,8 @@ export default class DailySelfReport extends SampleBase {
                     enableTrim: false,
                 }} primaryYAxis={{
                     minimum: 0,
-                    maximum: 5,
-                    labelFormat: Browser.isDevice ? '{value}' : '{value} hour',
+                    maximum: 20,
+                    labelFormat:'{value} hour',
                     edgeLabelPlacement: 'Shift',
                     majorGridLines: { width: 0 },
                     majorTickLines: { width: 0 },
@@ -131,7 +155,7 @@ export default class DailySelfReport extends SampleBase {
                 }} load={this.load.bind(this)} width={Browser.isDevice ? '100%' : '60%'} chartArea={{ border: { width: 0 } }} legendSettings={{ visible: false }} title={"Self Report Exercise"} pointRender={pointRender} loaded={this.onChartLoad.bind(this)} tooltip={{ enable: true, format: '${point.tooltip}' }}>
                     <Inject services={[BarSeries, Legend, Tooltip, DataLabel, Category]} />
                     <SeriesCollectionDirective>
-                        <SeriesDirective dataSource={this.state.chartData} xName='des' yName='time' type='Bar' width={2} tooltipMappingName='res_step' marker={{
+                        <SeriesDirective dataSource={this.state.chartData} xName='des' yName='cal' type='Bar' width={2} tooltipMappingName='res_step' marker={{
                             dataLabel: {
                                 visible: true,
                                 position: 'Top', font: {
@@ -143,7 +167,7 @@ export default class DailySelfReport extends SampleBase {
                         </SeriesDirective>
                     </SeriesCollectionDirective>
                 </ChartComponent>
-               
+
             </div>
         </div>);
     }
