@@ -42,44 +42,17 @@ const Dashboard = () => {
   const { height, width } = useWindowDimensions();
   const [switchStep, setSwitchStep] = useState(false);
   return (
-    <Root>
-      <GridLayout layout={layout} cols={8} rowHeight={height / 10} width={(width + 1000) / 2}>
-        <GridItemWrapper key="upLeft">
-          <GridItemContent>
-            <DataVisualization3></DataVisualization3>
-          </GridItemContent>
-        </GridItemWrapper>
-
-        <GridItemWrapper key="upMid">
-          <GridItemContent>
-            <DataVisualization31></DataVisualization31>
-
-          </GridItemContent>
-        </GridItemWrapper>
-        <GridItemWrapper key="upRight">
-          <GridItemContent>
-            <div className="h1 pt-10 pl-10">Nutrition Goal</div>
-            <NeutriationDisplay></NeutriationDisplay>
-
-          </GridItemContent>
-        </GridItemWrapper>
-
-
-        <GridItemWrapper key="downLeft">
-          <GridItemContent>
-
-          </GridItemContent>
-        </GridItemWrapper>
-      </GridLayout>
-      <div className="row"> <div className="btn btn-primary" onClick={() => { setSwitchStep(!switchStep) }}>Switch {switchStep ? "Step" : "Mile"}</div>
-        {switchStep ? <DataVisualization2></DataVisualization2> : <DataVisualization21></DataVisualization21>}</div>
+    <>
+      <div className="button" onClick={() => setSwitchStep(!switchStep)}>Switch {switchStep ? "Step" : "Miles"}</div>
       <div className="row">
-        <DailySelfReport></DailySelfReport>
+        <div className="col-1"> {switchStep ? <DataVisualization3></DataVisualization3> : <DataVisualization31></DataVisualization31>}</div>
+        <div className="col-5">      <NeutriationDisplay></NeutriationDisplay></div>
       </div>
-
-    </Root>
-
-
+      <div className="row">
+        {switchStep ? <DataVisualization2></DataVisualization2> : <DataVisualization21></DataVisualization21>}
+      </div>
+   
+    </>
   )
 }
 

@@ -78,7 +78,7 @@ export default class NeutriationDisplay extends React.Component {
 
 
     render() {
-        var outputString = this.state.chartData + "/5 cup"
+        var outputString = this.state.chartData + "/35 cup"
         return (
             <>
            
