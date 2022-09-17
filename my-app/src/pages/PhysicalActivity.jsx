@@ -925,27 +925,33 @@ class PhysicalActivity extends React.Component {
       total_mile: 0,
       total_step: 0,
       table_array: [],
+      hour: 0,
+      minute: 0,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDesChange = this.handleDesChange.bind(this);
     this.calculating = this.calculating.bind(this);
-    this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
+    this.handleHourUpdate = this.handleHourUpdate.bind(this);
+    this.handleMinuteUpdate = this.handleMinuteUpdate.bind(this);
     this.deleteLastRow = this.deleteLastRow.bind(this);
     this.toObject = this.toObject.bind(this);
     this.submitData = this.submitData.bind(this);
   }
 
   calculating() {
-    if (!this.state.time) {
+    if (!this.state.hour && !this.state.minute) {
       alert("Please enter valid time");
     } else if (!this.state.des_choice) {
       alert("Please choose valid activity and description");
     } else {
       const metValue = this.state.des_choice;
       const weight = database_weight;
-      const time = this.state.time;
-      const result = metValue * weight * time;
-      const result2 = (Math.round(time * 60) / 57).toFixed(2);
+      const hour = parseFloat(this.state.hour);
+      const minute = parseFloat(this.state.minute);
+      const result = Math.round(
+        (metValue * weight * ((hour * 60 + minute)) / 60.0)
+      ).toFixed(2);
+      const result2 = (Math.round(hour * 60 + minute) / 57).toFixed(2);
       const result3 = Math.round(result2 * 2000).toFixed(2);
       {
         console.log(weight);
@@ -966,12 +972,14 @@ class PhysicalActivity extends React.Component {
         table_array: [
           ...this.state.table_array,
           {
-            time: time,
+            time: hour * 60 + minute,
             activity: this.state.activity_choice,
             des: this.state.des_string,
             res_calories: result,
             res_mile: result2,
             res_step: result3,
+            hour: hour,
+            minute: minute,
           },
         ],
       });
@@ -995,16 +1003,29 @@ class PhysicalActivity extends React.Component {
     });
   }
 
-  handleTimeUpdate(e) {
+  handleHourUpdate(e) {
     this.setState({
-      time: e.target.value,
+      hour: e.target.value,
+    });
+  }
+
+  handleMinuteUpdate(e) {
+    this.setState({
+      minute: e.target.value,
     });
   }
 
   getTableRow() {
     return this.state.table_array.map((x) => (
       <tr>
-        <td className="border-1 border-slate-500">{x.time ? x.time : ""}</td>
+        <td className="border-1 border-slate-500">
+          {
+            "" +
+              (x.hour ? x.hour + "hrs" : "") +
+              "  " +
+              (x.minute ? x.minute + "mins" : "")
+          }
+        </td>
         <td className="border-1 border-slate-500">
           {Activity_Table[x.activity ? x.activity : ""]}
         </td>
@@ -1077,10 +1098,7 @@ class PhysicalActivity extends React.Component {
 
     return (
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header
-          category="Page"
-          title="Self-Report Portal: METs Calculator "
-        />
+        <Header category="Page" title="Self-Report Portal: METs Calculator " />
 
         <div id="MET">
           <label>Activity Time:</label>
@@ -1088,15 +1106,27 @@ class PhysicalActivity extends React.Component {
 
           <input
             className="border-2 border-slate-500"
-            type="text"
+            type="number"
             name="time"
-            id="time"
-            onChange={this.handleTimeUpdate}
-            required
+            id="time_hour"
+            placeholder="0"
+            max="24"
+            min="0"
+            onChange={this.handleHourUpdate}
           />
-          <select id="timeUnit">
-            <option value="hr">hr</option>
-          </select>
+          <span value="hr">Hours </span>
+          <input
+            className="border-2 border-slate-500"
+            type="number"
+            name="time"
+            id="time_minute"
+            placeholder="0"
+            max="24"
+            min="0"
+            onChange={this.handleMinuteUpdate}
+          />
+          <span value="hr">Minutes</span>
+
           <br />
           <br />
 
@@ -1120,17 +1150,16 @@ class PhysicalActivity extends React.Component {
             <option value="2">Conditioning Exercise</option>
             <option value="3">Dancing</option>
             <option value="4">Fishing and Hunting</option>
-            
+
             <option value="5">Lawn and Garden</option>
-            
+
             <option value="6">Running</option>
-            
+
             <option value="7">Sports</option>
-            
+
             <option value="8">Walking</option>
             <option value="9">Water Activities</option>
             <option value="10">Winter Activities</option>
-            
           </select>
 
           <br />
@@ -1191,9 +1220,7 @@ class PhysicalActivity extends React.Component {
           <div id="MET-Result">
             <h1>
               <b className="text-2xl">Results Table</b>
-              <p>
-                * Please input and calculate all activities before submit.
-              </p>
+              <p>* Please input and calculate all activities before submit.</p>
             </h1>
             <table className="border-2 border-slate-500 divide-x divide-y divide-solid divide-black">
               <th>Activity Time</th>
@@ -1242,15 +1269,15 @@ class PhysicalActivity extends React.Component {
               >
                 The metabolic equivalent of task
               </Text>
-              (MET) is the ratio of the metabolic rate during exercise to
-              the metabolic rate at rest. One MET corresponds to an energy
-              expenditure of 1 kcal/kg/hour. One MET can also be expressed
-              as oxygen uptake of 3.5 ml/kg/min.
+              (MET) is the ratio of the metabolic rate during exercise to the
+              metabolic rate at rest. One MET corresponds to an energy
+              expenditure of 1 kcal/kg/hour. One MET can also be expressed as
+              oxygen uptake of 3.5 ml/kg/min.
             </p>
             <br />
             <p>
-              METs are used to estimate how many calories are burned during
-              many common physical activities.
+              METs are used to estimate how many calories are burned during many
+              common physical activities.
             </p>
             <br />
 
@@ -1262,12 +1289,12 @@ class PhysicalActivity extends React.Component {
               example:
             </p>
             <p>
-              Susan is a 70kg (~154 lbs) woman who walked her dog for
-              exactly 30 min. According to the metabolic equivalent table ,
-              walking the dog corresponds to an energy expediture of 3.0
-              METs. In order to perform the calculation, all we have to do
-              is to multiply the weight (kg), the metabolic equivalent of a
-              task (MET) and the time of the activity (hr).
+              Susan is a 70kg (~154 lbs) woman who walked her dog for exactly 30
+              min. According to the metabolic equivalent table , walking the dog
+              corresponds to an energy expediture of 3.0 METs. In order to
+              perform the calculation, all we have to do is to multiply the
+              weight (kg), the metabolic equivalent of a task (MET) and the time
+              of the activity (hr).
             </p>
 
             <br />
@@ -1275,8 +1302,8 @@ class PhysicalActivity extends React.Component {
             <br />
 
             <p>
-              Units of time must be converted to hours. Therefore, 30 min =
-              0.5 hr
+              Units of time must be converted to hours. Therefore, 30 min = 0.5
+              hr
             </p>
             <br />
 
@@ -1290,8 +1317,8 @@ class PhysicalActivity extends React.Component {
 
             <p>
               It is important to know that this formula does not take into
-              consideration characteristics such as age and sex and should
-              only be used as estimates.
+              consideration characteristics such as age and sex and should only
+              be used as estimates.
             </p>
             <p>
               Still complicated? Don't worry, our calculator will do all the
@@ -1336,20 +1363,15 @@ class PhysicalActivity extends React.Component {
                 <td className="border-1 border-slate-500">2.8</td>
               </tr>
 
-              <th className="bg-green-300">
-                Moderate Intensity Activities
-              </th>
+              <th className="bg-green-300">Moderate Intensity Activities</th>
               <th className="bg-green-300">METs</th>
               <tr>
-                <td className="border-1 border-slate-500">
-                  Walking the dog
-                </td>
+                <td className="border-1 border-slate-500">Walking the dog</td>
                 <td className="border-1 border-slate-500">3.0</td>
               </tr>
               <tr>
                 <td className="border-1 border-slate-500">
-                  Walking, 2.8 - 3.2 mph (4.5 - 5.1 km/h), level, moderate
-                  pace
+                  Walking, 2.8 - 3.2 mph (4.5 - 5.1 km/h), level, moderate pace
                 </td>
                 <td className="border-1 border-slate-500">3.5</td>
               </tr>
@@ -1385,14 +1407,10 @@ class PhysicalActivity extends React.Component {
                 <td className="border-1 border-slate-500">5.8</td>
               </tr>
 
-              <th className="bg-green-300">
-                Vigorous Intensity Activities
-              </th>
+              <th className="bg-green-300">Vigorous Intensity Activities</th>
               <th className="bg-green-300">METs</th>
               <tr>
-                <td className="border-1 border-slate-500">
-                  Jogging, general
-                </td>
+                <td className="border-1 border-slate-500">Jogging, general</td>
                 <td className="border-1 border-slate-500">7.0</td>
               </tr>
               <tr>
