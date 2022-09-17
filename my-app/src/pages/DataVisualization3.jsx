@@ -264,11 +264,12 @@ class DataVisualization3 extends Component {
   render() {
     return (
       <div className="donut">
+        <h2 className="text-center text-2xl">Daily Miles</h2>
         <Chart
           options={this.state.options}
           series={this.state.series}
           type="radialBar"
-          width={window.innerWidth*30/100}
+          width="570"
         />
       </div>
     );

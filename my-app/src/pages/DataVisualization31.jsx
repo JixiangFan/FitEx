@@ -253,6 +253,7 @@ class DataVisualization31 extends Component {
   render() {
     return (
       <div className="donut">
+        <h2 className="text-center text-2xl">Daily Steps</h2>
         <Chart
           options={this.state.options}
           series={this.state.series}

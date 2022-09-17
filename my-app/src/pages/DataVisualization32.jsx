@@ -259,6 +259,7 @@ class DataVisualization32 extends Component {
   render() {
     return (
       <div className="donut">
+        <h2 className="text-center text-2xl">Weekly Miles</h2>
         <Chart
           options={this.state.options}
           series={this.state.series}
