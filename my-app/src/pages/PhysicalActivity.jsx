@@ -949,7 +949,7 @@ class PhysicalActivity extends React.Component {
       const hour = parseFloat(this.state.hour);
       const minute = parseFloat(this.state.minute);
       const result = Math.round(
-        (metValue * weight * ((hour * 60 + minute)) / 60.0)
+        (metValue * weight * (hour * 60 + minute)) / 60.0
       ).toFixed(2);
       const result2 = (Math.round(hour * 60 + minute) / 57).toFixed(2);
       const result3 = Math.round(result2 * 2000).toFixed(2);
@@ -1005,13 +1005,13 @@ class PhysicalActivity extends React.Component {
 
   handleHourUpdate(e) {
     this.setState({
-      hour: e.target.value,
+      hour: e.target.value ? e.target.value : 0,
     });
   }
 
   handleMinuteUpdate(e) {
     this.setState({
-      minute: e.target.value,
+      minute: e.target.value ? e.target.value : 0,
     });
   }
 
@@ -1019,12 +1019,10 @@ class PhysicalActivity extends React.Component {
     return this.state.table_array.map((x) => (
       <tr>
         <td className="border-1 border-slate-500">
-          {
-            "" +
-              (x.hour ? x.hour + "hrs" : "") +
-              "  " +
-              (x.minute ? x.minute + "mins" : "")
-          }
+          {"" +
+            (x.hour ? x.hour + "hrs" : "") +
+            "  " +
+            (x.minute ? x.minute + "mins" : "")}
         </td>
         <td className="border-1 border-slate-500">
           {Activity_Table[x.activity ? x.activity : ""]}
