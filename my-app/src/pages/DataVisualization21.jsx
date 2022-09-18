@@ -221,7 +221,7 @@ class DataVisualization21 extends React.Component {
         <style>{SAMPLE_CSS}</style>
         <div className="control-section">
           <ChartComponent
-            id="charts"
+            id="charts21"
             style={{ textAlign: "center" }}
             primaryXAxis={{
               majorGridLines: { width: 0 },

@@ -222,7 +222,7 @@ class DataVisualization2 extends React.Component {
         <style>{SAMPLE_CSS}</style>
         <div className="control-section">
           <ChartComponent
-            id="charts"
+            id="charts2"
             style={{ textAlign: "center" }}
             primaryXAxis={{
               majorGridLines: { width: 0 },

@@ -22,7 +22,9 @@ const layout = [
   { i: "upLeft", x: 0, y: 0, w: 3, h: 4 },
   { i: "upMid", x: 3, y: 0, w: 3, h: 4 },
   { i: "upRight", x: 6, y: 0, w: 2, h: 4 },
-  { i: "downLeft", x: 0, y: 4, w: 8, h: 4 },
+  { i: "mid", x: 0, y: 4, w: 8, h: 4 },
+  { i: "down", x: 0, y: 8, w: 8, h: 4 },
+  { i: "furtherdown", x: 0, y: 12, w: 8, h: 4 },
 
 ]
 const GridItemWrapper = styled.div`
@@ -67,9 +69,21 @@ const Dashboard = () => {
           </GridItemWrapper>
 
 
-          <GridItemWrapper key="downLeft">
+          <GridItemWrapper key="mid">
             <GridItemContent>
               {switchStep ? <DataVisualization2></DataVisualization2> : <DataVisualization21></DataVisualization21>}
+            </GridItemContent>
+          </GridItemWrapper>
+
+          <GridItemWrapper key="down">
+            <GridItemContent>
+              <DailyBarGraph></DailyBarGraph>
+            </GridItemContent>
+          </GridItemWrapper>
+
+          <GridItemWrapper key="furtherdown">
+            <GridItemContent>
+              <DailySelfReport></DailySelfReport>
             </GridItemContent>
           </GridItemWrapper>
         </GridLayout>

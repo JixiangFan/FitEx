@@ -259,6 +259,7 @@ class DataVisualization31 extends Component {
           series={this.state.series}
           type="radialBar"
           width="570"
+          id= "31"
         />
       </div>
     );

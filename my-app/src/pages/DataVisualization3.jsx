@@ -266,6 +266,7 @@ class DataVisualization3 extends Component {
       <div className="donut">
         <h2 className="text-center text-2xl">Daily Miles</h2>
         <Chart
+          id= "chart3"
           options={this.state.options}
           series={this.state.series}
           type="radialBar"

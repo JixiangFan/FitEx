@@ -216,7 +216,7 @@ class DataVisualization4 extends React.Component {
     };
     return (
       <>
-        <div id="chart">
+        <div id="chart4">
           <ReactApexChart
             options={option}
             series={this.state.series}
