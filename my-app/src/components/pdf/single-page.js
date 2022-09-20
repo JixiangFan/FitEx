@@ -39,14 +39,14 @@ export default function SinglePage(props) {
         </p>
         <button 
         style={{ backgroundColor: "#8AABBD" }}
-          className=" btn btn-secondary border-2 border-slate-500 cursor-pointer text-center px-2 py-1.5 w-31"
+          className=" btn btn-secondary border-2 border-slate-500 cursor-pointer text-center px-2 py-1.5 w-31 text-2xl"
 
          type="button1" disabled={pageNumber <= 1} onClick={previousPage}>
           Previous
         </button>
         <button
           style={{ backgroundColor: "#8AABBD" }}
-          className=" btn btn-secondary border-2 border-slate-500 cursor-pointer text-center px-4 py-1.5"
+          className=" btn btn-secondary border-2 border-slate-500 cursor-pointer text-center px-4 py-1.5 text-2xl"
           type="button1"
           disabled={pageNumber >= numPages}
           onClick={nextPage}

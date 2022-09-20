@@ -9,7 +9,7 @@ const LeadBoard = () => {
         <div>{team ? <Leaderboard /> : <Leaderboard2 />}</div>
         <div
           style={{ backgroundColor: "#8AABBD" }}
-          className=" btn btn-secondary border-2 border-slate-500"
+          className=" btn btn-secondary border-2 border-slate-500 text-2xl"
           onClick={() => {
             setTeam(!team);
           }}

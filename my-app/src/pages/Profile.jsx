@@ -166,13 +166,13 @@ class Profile extends React.Component {
                   </p>
                   <button
                     style={{ backgroundColor: "#8AABBD" }}
-                    className="mt-10 btn  w-100 border-2 border-slate-500"
+                    className="mt-10 btn  w-100 border-2 border-slate-500 text-2xl"
                   >
                     Update fitbit access token
                   </button>
                   <button
                     style={{ backgroundColor: "#8AABBD" }}
-                    className="mt-10 btn w-100 border-2 border-slate-500"
+                    className="mt-10 btn w-100 border-2 border-slate-500 text-2xl"
                     onClick={() => {
                       this.updateProfile();
                     }}
