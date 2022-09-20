@@ -45,8 +45,15 @@ const Dashboard = () => {
   const [switchStep, setSwitchStep] = useState(false);
   return (
     <>
-
-      <div className="btn btn-primary" style={ { backgroundColor: "#8AABBD" }} onClick={() => { setSwitchStep(!switchStep) }}>Switch {switchStep ? "Step" : "Mile"}</div>
+      <div
+        style={{ backgroundColor: "#8AABBD" }}
+        className=" btn btn-secondary border-2 border-slate-500"
+        onClick={() => {
+          setSwitchStep(!switchStep);
+        }}
+      >
+        Switch {switchStep ? "Step" : "Mile"}
+      </div>
 
       <Root>
         <GridLayout
@@ -69,11 +76,10 @@ const Dashboard = () => {
           </GridItemWrapper>
           <GridItemWrapper key="upRight">
             <GridItemContent>
-
-              <div className="text-xl pt-10 pl-10">Weekly Fruits & Vegetables progress</div>
-              <NeutriationDisplay></NeutriationDisplay>
-
-
+              <div className="text-xl pt-10 pl-10">
+                Weekly Fruits & Vegetables progress
+              </div>
+              <NeutriationDisplay />
             </GridItemContent>
           </GridItemWrapper>
 
