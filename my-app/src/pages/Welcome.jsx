@@ -31,7 +31,7 @@ const Welcome = () => {
             <Container>
               <div class="ratio ratio-16x9 ">
                 <iframe
-                  src="https://youtube.com/embed/Mzq-nZJd_cg"
+                  src="https://www.youtube.com/embed/SmSoZvSmHeU"
                   title="Welcome Video"
                   allowFullScreen
                 />

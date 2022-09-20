@@ -140,7 +140,7 @@ class DataVisualization32 extends Component {
 
     this.state = {
       options: {
-        colors: ["#FF0033", "#333399", "#CCCC00"],
+        colors: ["#336699", "#FFCC33", "#339933"],
         labels: ["Total Miles", "Fitbit Miles", "SelfReport"],
         legend: {
           show: true,
