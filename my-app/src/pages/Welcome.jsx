@@ -58,7 +58,8 @@ const Welcome = () => {
           <div className="col mt-8">
             <div className="col-md-4 text-center ml-52">
               <button
-                className="btn btn-primary btn-lg w-75"
+                style={{ backgroundColor: "#8AABBD" }}
+                className=" btn btn-secondary border-2 border-slate-500 btn-lg w-75"
                 onClick={register}
               >
                 Join Now
@@ -67,7 +68,11 @@ const Welcome = () => {
           </div>
 
           <div className="col-md-4 text-center mt-8 ml-52">
-            <button className="btn btn-primary btn-lg w-75" onClick={login}>
+            <button
+              style={{ backgroundColor: "#8AABBD" }}
+              className=" btn btn-secondary border-2 border-slate-500 btn-lg w-75"
+              onClick={login}
+            >
               Login
             </button>
           </div>

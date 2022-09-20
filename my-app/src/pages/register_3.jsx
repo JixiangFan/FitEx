@@ -51,9 +51,9 @@ const Register1 = () => {
 
               <p className="text-center p text-white">
                 <br />
-                FitEx is an evidence-based, 8-week, statewide walking
-                and fruit/vegetable consumption program delivered to teams
-                and individuals across the state.
+                FitEx is an evidence-based, 8-week, statewide walking and
+                fruit/vegetable consumption program delivered to teams and
+                individuals across the state.
               </p>
 
               <p className="text-center p text-white">
@@ -78,7 +78,9 @@ const Register1 = () => {
                   </p>
                   <button
                     disabled={loading}
-                    className="mt-10 btn btn-outline-primary  w-100"
+                    style={{ backgroundColor: "#8AABBD" }}
+                    className=" btn btn-secondary border-2 border-slate-500  w-100"
+                    //className="mt-10 btn btn-outline-primary  w-100"
                     type="submit"
                   >
                     Great, Entering FitEx!

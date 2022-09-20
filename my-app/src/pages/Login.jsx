@@ -47,13 +47,19 @@ const Login = () => {
 
 
   return (
-
     <div className="container h-100 bg-light" style={mainStyle}>
       <div className="row h-100">
-        <div className="col-3 justify-content-center" style={{ 'backgroundColor': '#8AABBD' }}>
+        <div
+          className="col-3 justify-content-center"
+          style={{ backgroundColor: "#8AABBD" }}
+        >
           <div className="row">
             <div className="col-5">
-              <img src='./logo.png' className="rounded float-left" alt="logo"></img>
+              <img
+                src="./logo.png"
+                className="rounded float-left"
+                alt="logo"
+              />
             </div>
           </div>
           <div className="grid grid-cols-1 gap-4 place-content-center h-75">
@@ -70,20 +76,48 @@ const Login = () => {
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label className="form-label">Email address</label>
-                  <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" ref={emailRef} required />
-                  <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    ref={emailRef}
+                    required
+                  />
+                  <div id="emailHelp" className="form-text">
+                    We'll never share your email with anyone else.
+                  </div>
                 </div>
 
                 <div className="mb-3">
                   <label className="form-label">Password</label>
-                  <input type="password" className="form-control" id="password" aria-describedby="password" ref={passwordRef} required />
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="password"
+                    aria-describedby="password"
+                    ref={passwordRef}
+                    required
+                  />
                 </div>
 
-                <button disabled={loading} className="btn btn-outline-primary  w-100" type="submit">
+                <button
+                  disabled={loading}
+                  style={{ backgroundColor: "#8AABBD" }}
+                  className=" btn btn-secondary border-2 border-slate-500  w-100"
+                  //className="btn btn-outline-primary  w-100"
+                  type="submit"
+                >
                   Log In
                 </button>
               </form>
-              <button disabled={loading} className="btn btn-outline-secondary  w-100" onClick={() => resetPassword()}>
+              <button
+                disabled={loading}
+                style={{ backgroundColor: "#8AABBD" }}
+                className=" btn btn-secondary border-2 border-slate-500  w-100"
+                //className="btn btn-outline-secondary  w-100"
+                onClick={() => resetPassword()}
+              >
                 Forget Passowrd
               </button>
             </div>
@@ -91,10 +125,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-
-
-
-  )
+  );
 }
 
 export default Login
