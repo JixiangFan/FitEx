@@ -13,7 +13,6 @@ export { default as Register } from './Register';
 export { default as Profile } from './Profile';
 export { default as Competition } from './Competition';
 export { default as Award } from './Award';
-export { default as MET } from "./MET";
 export { default as FitbitSync } from './FitbitSync';
 export { default as Team } from './Team';
 export { default as TeamMember } from './TeamMember';

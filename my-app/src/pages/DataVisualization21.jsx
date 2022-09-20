@@ -54,6 +54,7 @@ class DataVisualization21 extends React.Component {
       chartData2: [],
       chartData3: [],
     };
+    this.palette = ["#FFCC33", "#339933"];
   }
 
   componentDidMount() {
@@ -222,6 +223,7 @@ class DataVisualization21 extends React.Component {
         <div className="control-section">
           <ChartComponent
             id="charts21"
+            palettes={this.palette}
             style={{ textAlign: "center" }}
             primaryXAxis={{
               majorGridLines: { width: 0 },
@@ -234,10 +236,10 @@ class DataVisualization21 extends React.Component {
               valueType: "Category",
             }}
             primaryYAxis={{
-              title: "Exercises",
+              title: "Steps",
               lineStyle: { width: 0 },
               minimum: 0,
-              maximum: 20000,
+              maximum: 18000,
               interval: 1000,
               majorTickLines: { width: 0 },
               majorGridLines: { width: 1 },
@@ -248,7 +250,7 @@ class DataVisualization21 extends React.Component {
             width={Browser.isDevice ? "100%" : "100%"}
             chartArea={{ border: { width: 0 } }}
             load={this.load.bind(this)}
-            title="This Week's Activity Steps"
+            title="This Week's Activity Report"
             loaded={this.onChartLoad.bind(this)}
             tooltip={{ enable: true }}
           >
@@ -262,21 +264,23 @@ class DataVisualization21 extends React.Component {
                 yName="value"
                 name="Fitbit Reported Steps"
                 type="StackingColumn"
-              ></SeriesDirective>
+                colorName="#FFCC33"
+              />
               <SeriesDirective
                 dataSource={this.state.chartData3}
                 xName="dateTime"
                 yName="value"
                 name="Self-Report Completed Steps"
                 type="StackingColumn"
-              ></SeriesDirective>
-              <SeriesDirective
+                colorName="#339933"
+              />
+              {/* <SeriesDirective
                 dataSource={this.state.chartData2}
                 xName="dateTime"
                 yName="value"
                 name="Incomplete Steps"
                 type="StackingColumn"
-              ></SeriesDirective>
+              ></SeriesDirective> */}
             </SeriesCollectionDirective>
           </ChartComponent>
         </div>

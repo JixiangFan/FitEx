@@ -45,53 +45,59 @@ const Dashboard = () => {
   const [switchStep, setSwitchStep] = useState(false);
   return (
     <>
+
       <div className="btn btn-primary" style={ { backgroundColor: "#8AABBD" }} onClick={() => { setSwitchStep(!switchStep) }}>Switch {switchStep ? "Step" : "Mile"}</div>
+
       <Root>
-        <GridLayout isDraggable={false}  layout={layout} cols={8} rowHeight={height / 10} width={(width + 1000) / 2}>
+        <GridLayout
+          isDraggable={false}
+          layout={layout}
+          cols={8}
+          rowHeight={height / 10}
+          width={(width + 1000) / 2}
+        >
           <GridItemWrapper key="upLeft">
             <GridItemContent>
-              {switchStep ? <DataVisualization3></DataVisualization3> : <DataVisualization31></DataVisualization31>}
+              {switchStep ? <DataVisualization31 /> : <DataVisualization3 />}
             </GridItemContent>
           </GridItemWrapper>
 
           <GridItemWrapper key="upMid">
             <GridItemContent>
-              {switchStep ? <DataVisualization32></DataVisualization32> : <DataVisualization33></DataVisualization33>}
-
+              {switchStep ? <DataVisualization33 /> : <DataVisualization32 />}
             </GridItemContent>
           </GridItemWrapper>
           <GridItemWrapper key="upRight">
             <GridItemContent>
+
               <div className="text-xl pt-10 pl-10">Weekly Fruits & Vegetables progress</div>
               <NeutriationDisplay></NeutriationDisplay>
+
 
             </GridItemContent>
           </GridItemWrapper>
 
-
           <GridItemWrapper key="mid">
             <GridItemContent>
-              {switchStep ? <DataVisualization2></DataVisualization2> : <DataVisualization21></DataVisualization21>}
+              {switchStep ? <DataVisualization2 /> : <DataVisualization21 />}
             </GridItemContent>
           </GridItemWrapper>
 
           <GridItemWrapper key="down">
             <GridItemContent>
-              <DailyBarGraph></DailyBarGraph>
+              <DailyBarGraph />
             </GridItemContent>
           </GridItemWrapper>
 
           <GridItemWrapper key="furtherdown">
             <GridItemContent>
-              <DailySelfReport></DailySelfReport>
+              <DailySelfReport />
             </GridItemContent>
           </GridItemWrapper>
         </GridLayout>
-
-        
       </Root>
     </>
-  )
+  );
 }
 
 export default Dashboard;
