@@ -6,12 +6,7 @@ import { Container } from 'react-bootstrap'
 
 const Welcome = () => {
   let mainStyle = {
-    'height': '100%',
     'backgroundImage': `url(./background.jpg)`,
-    'position': 'absolute',
-    'left': '0px',
-    'width': '100%',
-    'backgroundSize': 'cover',
   }
 
   let navigate = useNavigate(); 
@@ -24,11 +19,9 @@ const Welcome = () => {
 
   return (
     <div style={mainStyle}>
-      <div className="row mt-64" />
-      <div className="row ml-48">
-        <div className="col">
-          <div className="container-lg mt-5">
-            <Container>
+      <div className="columns-2 h-screen">
+     
+            <Container className="pt-48 pl-20">
               <div class="ratio ratio-16x9 ">
                 <iframe
                   src="https://www.youtube.com/embed/SmSoZvSmHeU"
@@ -37,10 +30,8 @@ const Welcome = () => {
                 />
               </div>
             </Container>
-          </div>
-        </div>
-
-        <div className="col mt-40">
+  
+        <div className="col pt-48">
           <div className="col-md-4 text-center ml-52">
             <img
               src="./logo.png"
