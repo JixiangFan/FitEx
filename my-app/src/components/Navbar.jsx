@@ -76,35 +76,43 @@ const Navbar = () => {
 
   return (
     <div>
-      {currentUser
-       &&
+      {currentUser && (
         <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative text-2xl">
           <>
             <div className="flex pl-10">
-              <TooltipComponent content="Profile" position="BottomCenter" onClick={navigateToprofile}>
-                <div
-                  className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
-                >
+              <TooltipComponent
+                content="Profile"
+                position="BottomCenter"
+                onClick={navigateToprofile}
+              >
+                <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
                   <p>
-                    <span className="text-gray-400 text-14">Hi, </span>{' '}
-                    <span className="text-gray-400 font-bold ml-1 text-14">
-                    {currentUser.displayName}
+                    <span className="text-gray-400 text-3xl">Hi, </span>{" "}
+                    <span className="text-gray-400 font-bold ml-1 text-3xl">
+                      {currentUser.displayName}
                     </span>
                   </p>
                   <MdKeyboardArrowDown className="text-gray-400 text-14" />
                 </div>
               </TooltipComponent>
-              <button title="Logout" style={{ backgroundColor: "#8AABBD" }} className="btn btn-primary" onClick={handleLogout}>Logout</button>
+              <button
+                title="Logout"
+                style={{ backgroundColor: "#8AABBD" }}
+                className=" btn btn-secondary border-2 border-slate-500 text-2xl"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
             </div>
           </>
-          {isClicked.chat && (<Chat />)}
-          {isClicked.notification && (<Notification />)}
-          {isClicked.register && (<Register />)}
-          {isClicked.login && (<Login />)}
+          {isClicked.chat && <Chat />}
+          {isClicked.notification && <Notification />}
+          {isClicked.register && <Register />}
+          {isClicked.login && <Login />}
         </div>
-        }
+      )}
     </div>
-  )
+  );
 }
 
 export default Navbar

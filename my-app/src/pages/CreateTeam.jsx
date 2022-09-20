@@ -187,7 +187,9 @@ const CreateTeam = () => {
 
                         <Button
                           disabled={loading}
-                          className="w-100 btn btn-outline-primary"
+                          //className="w-100 btn btn-outline-primary"
+                          style={{ backgroundColor: "#8AABBD" }}
+                          className=" btn btn-secondary border-2 border-slate-500  w-100 text-2xl"
                           type="submit"
                         >
                           Create Team

@@ -1099,7 +1099,6 @@ class PhysicalActivity extends React.Component {
         <Header
           category="Page"
           title="Self-Report Portal: METs Calculator "
-          className="text-4xl"
         />
 
         <div id="MET">
@@ -1196,7 +1195,8 @@ class PhysicalActivity extends React.Component {
           <br />
 
           <button
-            className="border-2 border-slate-500 bg-slate-300"
+            style={{ backgroundColor: "#8AABBD" }}
+            className=" btn btn-secondary border-2 border-slate-500 text-2xl"
             onClick={this.calculating}
           >
             Report Activities
@@ -1238,7 +1238,8 @@ class PhysicalActivity extends React.Component {
             <br />
 
             <button
-              className="border-2 border-slate-500 bg-slate-300"
+              style={{ backgroundColor: "#8AABBD" }}
+              className=" btn btn-secondary border-2 border-slate-500 text-2xl"
               onClick={this.deleteLastRow}
             >
               Delete Last Row
@@ -1248,7 +1249,8 @@ class PhysicalActivity extends React.Component {
             <br />
 
             <button
-              className="border-2 border-slate-500 bg-slate-300"
+              style={{ backgroundColor: "#8AABBD" }}
+              className=" btn btn-secondary border-2 border-slate-500 text-2xl"
               onClick={this.submitData}
             >
               Confirm and Submit

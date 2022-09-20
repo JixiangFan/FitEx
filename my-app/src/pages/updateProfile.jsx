@@ -76,116 +76,217 @@ const UpdateProfileLocal = () => {
 
 
     return (
-        <div className="container h-100 bg-light" style={mainStyle}>
-            <div className="row h-100">
-                <div className="col-7 place-content-center bg-light">
-                    <div className="row h-100 place-content-center">
-                        <div className="col">
-                            <div className="h1 text-center">Update Profile</div>
-                            {error && <Alert variant="danger">{error}</Alert>}
-                            <form onSubmit={handleSubmit}>
-                                <label className="h3">Personal Info</label>
-                                <div className="mb-3">
-                                    <label className="form-label">Name</label>
-                                    <input type="text" className="form-control" id="nameInput" aria-describedby="emailHelp" ref={nameRef} required />
-                                    <div id="emailHelp" className="form-text">Enter your name here.</div>
-                                </div>
-
-                                <div className="mb-3">
-                                    <label className="form-label">Gender</label>
-                                    <select ref={genderRef} className="form-select" aria-label="Default select example" required>
-                                        <option>Select gender:</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="other">prefer not to enter</option>
-                                    </select>
-                                </div>
-
-                                <div className="mb-3">
-                                    <label className="form-label">Age</label>
-                                    <input type="number" className="form-control" id="age" aria-describedby="age" min="12" ref={ageRef} required />
-                                </div>
-
-                                <div className="row">
-                                    <div className="col mb-3 w-25">
-                                        <label className="form-label">Height</label>
-                                        <div className="input-group mb-3">
-                                            <input type="number" className="form-control" min="0" placeholder="Height" aria-label="height" aria-describedby="basic-addon2" ref={heightRef} required></input>
-                                            <span className="input-group-text" id="basic-addon2">ft</span>
-                                        </div>
-                                    </div>
-                                    <div className="col mb-3 w-25">
-                                        <label className="form-label">Weight</label>
-                                        <div className="input-group mb-3">
-                                            <input type="number" className="form-control" min="0" placeholder="Weight" aria-label="weight" aria-describedby="basic-addon2" ref={weightRef} required></input>
-                                            <span className="input-group-text" id="basic-addon2">lb</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <label className="h3">Report</label>
-                                <div className="mb-3">
-                                    <label className="form-label">Device</label>
-                                    <select ref={deviceRef} className="form-select" aria-label="Default select example" required>
-                                        <option>select your report device</option>
-                                        <option value="fitbit">Fitbit</option>
-                                        <option value="selfReport">selfReport</option>
-                                        <option value="mix">Mix both</option>
-                                    </select>
-                                </div>
-
-                                <div className="mb-3">
-                                    <label className="form-label">Fit Bit Access Token</label>
-                                    <div className="input-group mb-3">
-                                        <input type="text" className="form-control" aria-label="weight" aria-describedby="basic-addon2" ref={fitbitTokenRef}></input>
-                                        <span className="input-group-text" id="basic-addon2">?</span>
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <label className="h3">Goal</label>
-                                    <div className="col mb-3 w-25">
-                                        <label className="form-label">Daliy Steps Goal</label>
-                                        <div className="input-group mb-3">
-                                            <input type="number" className="form-control" min="0" aria-label="height" aria-describedby="basic-addon2" ref={stepRef} required></input>
-                                            <span className="input-group-text" id="basic-addon2">step</span>
-                                        </div>
-                                    </div>
-                                    <div className="col mb-3 w-25">
-                                        <label className="form-label">Daily Nutrition Goals</label>
-                                        <div className="input-group mb-3">
-                                            <input type="number" className="form-control" min="0" aria-label="weight" aria-describedby="basic-addon2" ref={foodRef} required></input>
-                                            <span className="input-group-text" id="basic-addon2">cup</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="mb-3">
-                                    <label className="form-label">Team</label>
-                                    <select ref={teamRef} className="form-select" aria-label="Default select example" required>
-                                        <option>select your exercise team</option>
-                                        {Object.keys(teamData).map(function (item) {
-                                            return <option value={item}>{teamData[item]['team_name']}</option>
-                                        })}
-                                        <option value="0">I will create my own team</option>
-                                    </select>
-                                </div>
-
-
-
-                                <button disabled={loading} className="btn btn-outline-primary  w-100" type="submit">
-                                    Update
-                                </button>
-                            </form>
-
-                        </div>
+      <div className="container h-100 bg-light" style={mainStyle}>
+        <div className="row h-100">
+          <div className="col-7 place-content-center bg-light">
+            <div className="row h-100 place-content-center">
+              <div className="col">
+                <div className="h1 text-center">Update Profile</div>
+                {error && <Alert variant="danger">{error}</Alert>}
+                <form onSubmit={handleSubmit}>
+                  <label className="h3">Personal Info</label>
+                  <div className="mb-3">
+                    <label className="form-label">Name</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="nameInput"
+                      aria-describedby="emailHelp"
+                      ref={nameRef}
+                      required
+                    />
+                    <div id="emailHelp" className="form-text">
+                      Enter your name here.
                     </div>
-                </div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Gender</label>
+                    <select
+                      ref={genderRef}
+                      className="form-select"
+                      aria-label="Default select example"
+                      required
+                    >
+                      <option>Select gender:</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">prefer not to enter</option>
+                    </select>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Age</label>
+                    <input
+                      type="number"
+                      className="form-control"
+                      id="age"
+                      aria-describedby="age"
+                      min="12"
+                      ref={ageRef}
+                      required
+                    />
+                  </div>
+
+                  <div className="row">
+                    <div className="col mb-3 w-25">
+                      <label className="form-label">Height</label>
+                      <div className="input-group mb-3">
+                        <input
+                          type="number"
+                          className="form-control"
+                          min="0"
+                          placeholder="Height"
+                          aria-label="height"
+                          aria-describedby="basic-addon2"
+                          ref={heightRef}
+                          required
+                        />
+                        <span
+                          className="input-group-text"
+                          id="basic-addon2"
+                        >
+                          ft
+                        </span>
+                      </div>
+                    </div>
+                    <div className="col mb-3 w-25">
+                      <label className="form-label">Weight</label>
+                      <div className="input-group mb-3">
+                        <input
+                          type="number"
+                          className="form-control"
+                          min="0"
+                          placeholder="Weight"
+                          aria-label="weight"
+                          aria-describedby="basic-addon2"
+                          ref={weightRef}
+                          required
+                        />
+                        <span
+                          className="input-group-text"
+                          id="basic-addon2"
+                        >
+                          lb
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <label className="h3">Report</label>
+                  <div className="mb-3">
+                    <label className="form-label">Device</label>
+                    <select
+                      ref={deviceRef}
+                      className="form-select"
+                      aria-label="Default select example"
+                      required
+                    >
+                      <option>select your report device</option>
+                      <option value="fitbit">Fitbit</option>
+                      <option value="selfReport">selfReport</option>
+                      <option value="mix">Mix both</option>
+                    </select>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">
+                      Fit Bit Access Token
+                    </label>
+                    <div className="input-group mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        aria-label="weight"
+                        aria-describedby="basic-addon2"
+                        ref={fitbitTokenRef}
+                      />
+                      <span className="input-group-text" id="basic-addon2">
+                        ?
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <label className="h3">Goal</label>
+                    <div className="col mb-3 w-25">
+                      <label className="form-label">Daliy Steps Goal</label>
+                      <div className="input-group mb-3">
+                        <input
+                          type="number"
+                          className="form-control"
+                          min="0"
+                          aria-label="height"
+                          aria-describedby="basic-addon2"
+                          ref={stepRef}
+                          required
+                        />
+                        <span
+                          className="input-group-text"
+                          id="basic-addon2"
+                        >
+                          step
+                        </span>
+                      </div>
+                    </div>
+                    <div className="col mb-3 w-25">
+                      <label className="form-label">
+                        Daily Nutrition Goals
+                      </label>
+                      <div className="input-group mb-3">
+                        <input
+                          type="number"
+                          className="form-control"
+                          min="0"
+                          aria-label="weight"
+                          aria-describedby="basic-addon2"
+                          ref={foodRef}
+                          required
+                        />
+                        <span
+                          className="input-group-text"
+                          id="basic-addon2"
+                        >
+                          cup
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Team</label>
+                    <select
+                      ref={teamRef}
+                      className="form-select"
+                      aria-label="Default select example"
+                      required
+                    >
+                      <option>select your exercise team</option>
+                      {Object.keys(teamData).map(function(item) {
+                        return (
+                          <option value={item}>
+                            {teamData[item]["team_name"]}
+                          </option>
+                        );
+                      })}
+                      <option value="0">I will create my own team</option>
+                    </select>
+                  </div>
+
+                  <button
+                    disabled={loading}
+                    style={{ backgroundColor: "#8AABBD" }}
+                    className=" btn btn-secondary border-2 border-slate-500 btn-lg w-75 text-2xl"
+                    type="submit"
+                  >
+                    Update
+                  </button>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
-
-
-
-    )
+      </div>
+    );
 }
 
 export default UpdateProfileLocal

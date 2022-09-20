@@ -43,6 +43,7 @@ const Register1 = () => {
   }
 
 
+
   return (
 
     <div className="container gap-8 columns-2 text-2xl flex items-stretch h-screen align-middle">
@@ -54,6 +55,7 @@ const Register1 = () => {
               className="rounded float-left"
               alt="logo"
             />
+
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 place-content-center h-75">
@@ -94,6 +96,7 @@ const Register1 = () => {
                 </div>
               </div>
 
+
               <div className="mb-3">
                 <label className="form-label">Password</label>
                 <input
@@ -107,6 +110,7 @@ const Register1 = () => {
                 <div id="emailHelp" className="form-text">
                   Password need to be 6 character and more.
                 </div>
+
               </div>
 
               <div className="mb-3">

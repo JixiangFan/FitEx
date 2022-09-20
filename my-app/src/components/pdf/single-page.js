@@ -37,11 +37,16 @@ export default function SinglePage(props) {
         <p>
           Page {pageNumber || (numPages ? 1 : "--")} of {numPages || "--"}
         </p>
-        <button className="mr-10 bg-[#3f51b5] text-white border-none px-2 py-4 w-31 cursor-pointer text-center shadow-md" type="button1" disabled={pageNumber <= 1} onClick={previousPage}>
+        <button 
+        style={{ backgroundColor: "#8AABBD" }}
+          className=" btn btn-secondary border-2 border-slate-500 cursor-pointer text-center px-2 py-1.5 w-31 text-2xl"
+
+         type="button1" disabled={pageNumber <= 1} onClick={previousPage}>
           Previous
         </button>
         <button
-          className="mr-10 bg-[#3f51b5] text-white border-none px-1 py-4 w-20 cursor-pointer text-center shadow-md"
+          style={{ backgroundColor: "#8AABBD" }}
+          className=" btn btn-secondary border-2 border-slate-500 cursor-pointer text-center px-4 py-1.5 text-2xl"
           type="button1"
           disabled={pageNumber >= numPages}
           onClick={nextPage}

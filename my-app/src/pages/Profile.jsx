@@ -93,19 +93,30 @@ class Profile extends React.Component {
               <div className="card mb-3">
                 <div className="row g-0">
                   <div className="col-md-4">
-                    <img src="./profile.jpg" className="img-fluid rounded-start" alt="..."></img>
+                    <img
+                      src="./profile.jpg"
+                      className="img-fluid rounded-start"
+                      alt="..."
+                    />
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
-                      <h5 className="card-title">{this.state.profileData.displayname}</h5>
-                      <p className="card-text">{this.state.profileData.email}</p>
-                      <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                      <h5 className="card-title">
+                        {this.state.profileData.displayname}
+                      </h5>
+                      <p className="card-text">
+                        {this.state.profileData.email}
+                      </p>
+                      <p className="card-text">
+                        <small className="text-muted">
+                          Last updated 3 mins ago
+                        </small>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="card mb-3">
-
                 <div className="col-md-8">
                   <div className="card-body">
                     <div className="row">
@@ -113,12 +124,17 @@ class Profile extends React.Component {
                         <h5 className="card-title">Team: </h5>
                         <p className="card-text">Daily F/V Cups: </p>
                         <p className="card-text">Daily Step Goal:</p>
-                       
                       </div>
                       <div className="col-4">
-                        <h5 className="card-title">{this.state.teamName}</h5>
-                        <p className="card-text">{this.state.profileData.foodGoal}</p>
-                        <p className="card-text">{this.state.profileData.stepGoal}</p>
+                        <h5 className="card-title">
+                          {this.state.teamName}
+                        </h5>
+                        <p className="card-text">
+                          {this.state.profileData.foodGoal}
+                        </p>
+                        <p className="card-text">
+                          {this.state.profileData.stepGoal}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -128,22 +144,48 @@ class Profile extends React.Component {
             <div className="col">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title"> Height: {this.state.profileData.height} ft</h5>
-                  <p className="card-text">Weight: {this.state.profileData.weight} lb</p>
-                  <p className="card-title">Questionnaire Done: {this.state.profileData.questionnaire ? "True" : "False"}</p>
-                  <p className="card-text">User Type: {permission_Level[this.state.profileData.usertype]}</p>
-                  <p className="card-text">Report Device: {this.state.profileData.device}</p>
-                  <button style={ { backgroundColor: "#8AABBD" }} className="mt-10 btn btn-primary  w-100">Update fitbit access token</button>
-                  <button style={ { backgroundColor: "#8AABBD" }} className="mt-10 btn btn-primary  w-100" onClick={() => { this.updateProfile() }}>Update Profile</button>
+                  <h5 className="card-title">
+                    {" "}
+                    Height: {this.state.profileData.height} ft
+                  </h5>
+                  <p className="card-text">
+                    Weight: {this.state.profileData.weight} lb
+                  </p>
+                  <p className="card-title">
+                    Questionnaire Done:{" "}
+                    {this.state.profileData.questionnaire
+                      ? "True"
+                      : "False"}
+                  </p>
+                  <p className="card-text">
+                    User Type:{" "}
+                    {permission_Level[this.state.profileData.usertype]}
+                  </p>
+                  <p className="card-text">
+                    Report Device: {this.state.profileData.device}
+                  </p>
+                  <button
+                    style={{ backgroundColor: "#8AABBD" }}
+                    className="mt-10 btn  w-100 border-2 border-slate-500 text-2xl"
+                  >
+                    Update fitbit access token
+                  </button>
+                  <button
+                    style={{ backgroundColor: "#8AABBD" }}
+                    className="mt-10 btn w-100 border-2 border-slate-500 text-2xl"
+                    onClick={() => {
+                      this.updateProfile();
+                    }}
+                  >
+                    Update Profile
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </>
-
-
-    )
+    );
   }
 }
 

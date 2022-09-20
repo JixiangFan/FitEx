@@ -5,7 +5,7 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { getAuth } from "firebase/auth";
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 
-import { PhysicalActivity, DataVisualization1, DataVisualization2, DataVisualization21, DataVisualization3, DataVisualization31, DataVisualization32, DataVisualization33, DataVisualization4, Nutrition, CreateTeam, Dashboard, EmployeeTree, Task, KnowledgeBase, KnowledgeBase2, KnowledgeBase3, TeamMember, Login, Profile, FitbitSync, Team } from './pages';
+import { Participants, AllTeams, PhysicalActivity, DataVisualization1, DataVisualization2, DataVisualization21, DataVisualization3, DataVisualization31, DataVisualization32, DataVisualization33, DataVisualization4, Nutrition, CreateTeam, Dashboard, EmployeeTree, Task, KnowledgeBase, KnowledgeBase2, KnowledgeBase3, TeamMember, Login, Profile, FitbitSync, Team } from './pages';
 
 import './App.css';
 import Welcome from './pages/Welcome.jsx'
@@ -88,36 +88,31 @@ const App = () => {
                     <Route path="/createTeam" element={<CreateTeam />} />
                     <Route path="/reminder" element={<Reminder />} />
                     {/* pages  */}
-                    
-                    <Route path="/nutrition" element={<Nutrition />} />
-                    <Route path="/fitbitSync" element={<FitbitSync />} />
-                    <Route path="/task" element={<Task />} />
-                   
                     <Route path="/physicalActivity" element={<PhysicalActivity />} />
                     <Route path="/nutrition" element={<Nutrition />} />
                     <Route path="/fitbitSync" element={<FitbitSync />} />
                     <Route path="/task" element={<Task />} />
                     <Route path="/dataVisualization1" element={<DataVisualization1 />} />
                     <Route path="/dataVisualization2" element={<DataVisualization2 />} />
-
                     <Route path="/dataVisualization21" element={<DataVisualization21 />} />
                     <Route path="/dataVisualization3" element={<DataVisualization3 />} />
                     <Route path="/dataVisualization31" element={<DataVisualization31 />} />
                     <Route path="/dataVisualization32" element={<DataVisualization32 />} />
                     <Route path="/dataVisualization33" element={<DataVisualization33 />} />
                     <Route path="/dataVisualization4" element={<DataVisualization4 />} />
-                    <Route path="/team" element={(<Team />)} />
+                    {/* <Route path="/team" element={(<Team />)} /> */}
+                    <Route path="/allTeams" element={(<AllTeams />)} />
                     <Route path="/teamMember" element={<TeamMember />} />
                     <Route path="/updateProfile" element={<UpdateProfileLocal />} />
                     <Route path="/leaderboard" element={<LeadBoard />} />
-                    <Route path="/teamMember" element={<TeamMember />} />
                     <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
                     <Route path="/dailySelfReport" element={<DailySelfReport />} />
                     <Route path="/NeutriationDisplay" element={<NeutriationDisplay />} />
                     <Route path="/knowledgeBase" element={<KnowledgeBase />} />
                     <Route path="/knowledgeBase2" element={<KnowledgeBase2 />} />
                     <Route path="/knowledgeBase3" element={<KnowledgeBase3 />} />
-                    <Route path="/employeeTree" element={<EmployeeTree />} />
+                    {/* <Route path="/employeeTree" element={<EmployeeTree />} /> */}
+                    <Route path="/participants" element={<Participants />} />
                   </Route>
 
 
