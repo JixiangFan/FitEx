@@ -55,7 +55,7 @@ const Register2 = () => {
                 displayName: nameRef.current.value
             })
             var height = heightRef.current.value * 12 + height2Ref.current.value
-            await updateUserdata(uid, nameRef.current.value, email, 0, false, deviceRef.current.value, teamRef.current.value, genderRef.current.value, ageRef.current.value, weightRef.current.value, height, fitbitTokenRef.current.value, stepRef.current.value, foodRef.current.value)
+            await updateUserdata(uid, nameRef.current.value, email, 0, false, deviceRef.current.value, teamRef.current.value, "", ageRef.current.value, weightRef.current.value, height, fitbitTokenRef.current.value, stepRef.current.value, foodRef.current.value)
             if (teamRef.current.value == 0)
             {
                 navigate('/createTeam');
@@ -78,7 +78,7 @@ const Register2 = () => {
 
 
     return (
-        <div className="container h-100 bg-light" style={mainStyle}>
+        <div className="container h-100 bg-light text-2xl" style={mainStyle}>
             <div className="row h-100">
                 <div
                     className="col-3 justify-content-center"
@@ -133,7 +133,7 @@ const Register2 = () => {
                                     </div>
                                 </div>
 
-                                <div className="mb-3">
+                                {/* <div className="mb-3">
                                     <label className="form-label">Gender</label>
                                     <select
                                         ref={genderRef}
@@ -146,7 +146,7 @@ const Register2 = () => {
                                         <option value="female">Female</option>
                                         <option value="other">prefer not to enter</option>
                                     </select>
-                                </div>
+                                </div> */}
 
                                 <div className="mb-3">
                                     <label className="form-label">Age</label>

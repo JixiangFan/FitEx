@@ -44,7 +44,7 @@ const Register1 = () => {
 
 
     return (
-      <div className="container h-100 bg-light" style={mainStyle}>
+      <div className="container h-100 bg-light text-2xl" style={mainStyle}>
         <div className="row h-100">
           <div
             className="col-3 justify-content-center"
@@ -72,7 +72,7 @@ const Register1 = () => {
               </p>
 
               <p className="text-center p text-white">
-                To start, let's finish setup your account first
+              Please register to start!, let's finish setup your account first.
               </p>
             </div>
           </div>
