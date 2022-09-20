@@ -60,8 +60,8 @@ class Nutrition extends React.Component {
           title="Self-Report Portal: Nutrition Registor"
         />
 
-        <div id="Nutrition Registor">
-          <b className="text-base">
+        <div id="Nutrition Registor" className="text-2xl">
+          <b>
             The national recommendations are for adults to consume at least
             5 cups of fruits/vegetables (F/V) per day
           </b>
@@ -85,7 +85,7 @@ class Nutrition extends React.Component {
         <br />
         <button
           style={{ backgroundColor: "#8AABBD" }}
-          className=" btn btn-secondary border-2 border-slate-500"
+          className=" btn btn-secondary border-2 border-slate-500 text-2xl"
           onClick={this.submitData}
         >
           Confirm and Submit

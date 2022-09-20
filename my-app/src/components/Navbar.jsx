@@ -87,8 +87,8 @@ const Navbar = () => {
               >
                 <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg">
                   <p>
-                    <span className="text-gray-400 text-14">Hi, </span>{" "}
-                    <span className="text-gray-400 font-bold ml-1 text-14">
+                    <span className="text-gray-400 text-3xl">Hi, </span>{" "}
+                    <span className="text-gray-400 font-bold ml-1 text-3xl">
                       {currentUser.displayName}
                     </span>
                   </p>
@@ -98,7 +98,7 @@ const Navbar = () => {
               <button
                 title="Logout"
                 style={{ backgroundColor: "#8AABBD" }}
-                className=" btn btn-secondary border-2 border-slate-500"
+                className=" btn btn-secondary border-2 border-slate-500 text-2xl"
                 onClick={handleLogout}
               >
                 Logout

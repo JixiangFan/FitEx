@@ -333,7 +333,7 @@ const Register2 = () => {
                   <button
                     disabled={loading}
                     style={{ backgroundColor: "#8AABBD" }}
-                    className=" btn btn-secondary border-2 border-slate-500  w-100"
+                    className=" btn btn-secondary border-2 border-slate-500  w-100 text-2xl"
                     //className="btn btn-outline-primary  w-100"
                     type="submit"
                   >

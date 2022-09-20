@@ -47,12 +47,12 @@ const Dashboard = () => {
     <>
       <div
         style={{ backgroundColor: "#8AABBD" }}
-        className=" btn btn-secondary border-2 border-slate-500"
+        className=" btn btn-secondary border-2 border-slate-500 text-2xl"
         onClick={() => {
           setSwitchStep(!switchStep);
         }}
       >
-        Switch {switchStep ? "Step" : "Mile"}
+        Show My {switchStep ? "Miles" : "Steps"}
       </div>
 
       <Root>

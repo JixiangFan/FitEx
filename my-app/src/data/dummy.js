@@ -440,20 +440,29 @@ export const links = [
         icon: <MdDashboard />,
       },
       {
+        name: 'teamMember',
+        icon: <MdGroups />,
+      },
+      {
         name: 'leaderboard',
         icon: <MdOutlineLeaderboard />,
       },
       
       {
-        name: 'team',
+        name: 'allTeams',
         icon: <AiOutlineUnorderedList />,
       },
+      // {
+      //   name: 'team',
+      //   icon: <AiOutlineUnorderedList />,
+      // },
+      
+      // {
+      //   name: 'employeeTree',
+      //   icon: <GiOrganigram />,
+      // },
       {
-        name: 'teamMember',
-        icon: <MdGroups />,
-      },
-      {
-        name: 'employeeTree',
+        name: 'participants',
         icon: <GiOrganigram />,
       },
     ],
