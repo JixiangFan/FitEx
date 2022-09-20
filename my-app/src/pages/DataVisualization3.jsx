@@ -145,7 +145,7 @@ class DataVisualization3 extends Component {
 
     this.state = {
       options: {
-        colors: ["#FF0033", "#333399", "#CCCC00"],
+        colors: ["#336699", "#FFCC33", "#339933"],
         labels: ["Total Miles", "Fitbit Miles", "SelfReport"],
         legend: {
           show: true,
@@ -182,8 +182,8 @@ class DataVisualization3 extends Component {
             highlightDataSeries: true,
           },
         },
-      
-        plotOptions: { 
+
+        plotOptions: {
           radialBar: {
             inverseOrder: false,
             startAngle: 0,
@@ -240,7 +240,7 @@ class DataVisualization3 extends Component {
                 fontFamily: undefined,
                 color: undefined,
                 offsetY: 16,
-                formatter: function (val) {
+                formatter: function(val) {
                   return (val * (goal / 100)).toFixed(2);
                 },
               },
@@ -248,7 +248,7 @@ class DataVisualization3 extends Component {
                 show: true,
                 label: "Mile Goal",
                 color: "#373d3f",
-                formatter: function (w) {
+                formatter: function(w) {
                   return goal.toFixed(2);
                 },
               },
