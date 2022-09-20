@@ -78,12 +78,9 @@ const Register2 = () => {
 
 
     return (
-        <div className="container h-100 bg-light text-2xl" style={mainStyle}>
-            <div className="row h-100">
-                <div
-                    className="col-3 justify-content-center"
-                    style={{ backgroundColor: "#8AABBD" }}
-                >
+
+            <div className="container gap-8 columns-2 text-2xl flex items-stretch h-screen align-middle">
+                <div className="w-1/3 h-full " style={{ backgroundColor: "#8AABBD" }}>
                     <div className="row">
                         <div className="col-5">
                             <img
@@ -110,7 +107,7 @@ const Register2 = () => {
                         </p>
                     </div>
                 </div>
-                <div className="col-7 place-content-center bg-light">
+                <div className="w-2/3 h-full w-full  bg-light p-10">
                     <div className="row h-100 place-content-center">
                         <div className="col">
                             <div className="h1 text-center">Register</div>
@@ -343,7 +340,7 @@ const Register2 = () => {
                     </div>
                 </div>
             </div>
-        </div>
+     
     );
 }
 
