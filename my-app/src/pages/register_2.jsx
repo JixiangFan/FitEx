@@ -78,25 +78,24 @@ const Register2 = () => {
 
 
     return (
-      <div className="container h-100 bg-light text-2xl" style={mainStyle}>
-        <div className="row h-100">
-          <div
-            className="col-3 justify-content-center"
-            style={{ backgroundColor: "#8AABBD" }}
-          >
-            <div className="row">
-              <div className="col-5">
-                <img
-                  src="./logo.png"
-                  className="rounded float-left"
-                  alt="logo"
-                />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-4 place-content-center h-75">
-              <p className="text-center h2 text-white">
-                <u>Welcome to FitEx</u>
-              </p>
+
+
+            <div className="container gap-8 columns-2 text-2xl flex items-stretch h-screen align-middle">
+                <div className="w-1/3 h-full " style={{ backgroundColor: "#8AABBD" }}>
+                    <div className="row">
+                        <div className="col-5">
+                            <img
+                                src="./logo.png"
+                                className="rounded float-left"
+                                alt="logo"
+                            />
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4 place-content-center h-75">
+                        <p className="text-center h2 text-white">
+                            <u>Welcome to FitEx</u>
+                        </p>
+
 
               <p className="text-center p text-white">
                 <br />
@@ -131,7 +130,31 @@ const Register2 = () => {
                     <div id="emailHelp" className="form-text">
                       Enter your name here.
                     </div>
-                  </div>
+
+                </div>
+                <div className="w-2/3 h-full w-full  bg-light p-10">
+                    <div className="row h-100 place-content-center">
+                        <div className="col">
+                            <div className="h1 text-center">Register</div>
+                            {error && <Alert variant="danger">{error}</Alert>}
+                            <form onSubmit={handleSubmit}>
+                                <label className="h3">Personal Info</label>
+                                <div className="mb-3">
+                                    <label className="text-dark">Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="nameInput"
+                                        placeholder="First Last"
+                                        aria-describedby="emailHelp"
+                                        ref={nameRef}
+                                        required
+                                    />
+                                    <div id="emailHelp" className="form-text">
+                                        Enter your name here.
+                                    </div>
+                                </div>
+
 
                   {/* <div className="mb-3">
                                     <label className="form-label">Gender</label>
@@ -342,9 +365,9 @@ const Register2 = () => {
                 </form>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+
+     
+
     );
 }
 
