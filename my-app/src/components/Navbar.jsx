@@ -78,7 +78,7 @@ const Navbar = () => {
     <div>
       {currentUser
        &&
-        <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative">
+        <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative text-2xl">
           <>
             <div className="flex pl-10">
               <TooltipComponent content="Profile" position="BottomCenter" onClick={navigateToprofile}>
@@ -94,7 +94,7 @@ const Navbar = () => {
                   <MdKeyboardArrowDown className="text-gray-400 text-14" />
                 </div>
               </TooltipComponent>
-              <button title="Logout" className="btn btn-primary" onClick={handleLogout}>Logout</button>
+              <button title="Logout" style={{ backgroundColor: "#8AABBD" }} className="btn btn-primary" onClick={handleLogout}>Logout</button>
             </div>
           </>
           {isClicked.chat && (<Chat />)}

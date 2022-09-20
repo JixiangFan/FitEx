@@ -117,14 +117,10 @@ class TeamMember extends React.Component {
           <ColumnsDirective>
             <ColumnDirective field='displayname' headerText='Name' />
             <ColumnDirective field='email' headerText='Email' />
-            <ColumnDirective field='gender' headerText='Gender' />
-            <ColumnDirective field='height' headerText='Height' />
-            <ColumnDirective field='weight' headerText='Weight' />
             <ColumnDirective field='usertype' headerText='User Type' editType='dropdownedit' edit={this.ddParams} width='150' />
             <ColumnDirective field='stepGoal' headerText='Step Goal' />
             <ColumnDirective field='foodGoal' headerText='Food Goal' />
             <ColumnDirective field='team' headerText='Team' />
-            <ColumnDirective field='device' headerText='Device' />
           </ColumnsDirective>
           <Inject
             services={[

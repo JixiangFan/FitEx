@@ -87,13 +87,13 @@ class Profile extends React.Component {
     };
     return (
       <>
-        <div className="container float-left w-100 pt-10 mt-10 mr-10">
+        <div className="container float-left w-100 pt-10 mt-10 mr-10 text-2xl">
           <div className="row">
             <div className="col">
               <div className="card mb-3">
                 <div className="row g-0">
                   <div className="col-md-4">
-                    <img src="https://pereaclinic.com/wp-content/uploads/2019/12/270x270-male-avatar.png" className="img-fluid rounded-start" alt="..."></img>
+                    <img src="./profile.jpg" className="img-fluid rounded-start" alt="..."></img>
                   </div>
                   <div className="col-md-8">
                     <div className="card-body">
@@ -133,8 +133,8 @@ class Profile extends React.Component {
                   <p className="card-title">Questionnaire Done: {this.state.profileData.questionnaire ? "True" : "False"}</p>
                   <p className="card-text">User Type: {permission_Level[this.state.profileData.usertype]}</p>
                   <p className="card-text">Report Device: {this.state.profileData.device}</p>
-                  <button className="mt-10 btn btn-primary  w-100">Update fitbit access token</button>
-                  <button className="mt-10 btn btn-primary  w-100" onClick={() => { this.updateProfile() }}>Update Profile</button>
+                  <button style={ { backgroundColor: "#8AABBD" }} className="mt-10 btn btn-primary  w-100">Update fitbit access token</button>
+                  <button style={ { backgroundColor: "#8AABBD" }} className="mt-10 btn btn-primary  w-100" onClick={() => { this.updateProfile() }}>Update Profile</button>
                 </div>
               </div>
             </div>
