@@ -921,7 +921,7 @@ class PhysicalActivity extends React.Component {
       des_choice: null,
       time: 0,
       des_string: "",
-      total_result: 0,
+      //total_result: 0,
       total_mile: 0,
       total_step: 0,
       table_array: [],
@@ -948,22 +948,22 @@ class PhysicalActivity extends React.Component {
       const weight = database_weight;
       const hour = parseFloat(this.state.hour);
       const minute = parseFloat(this.state.minute);
-      const result = Math.round(
-        (metValue * weight * (hour * 60 + minute)) / 60.0
-      ).toFixed(2);
-      const result2 = (Math.round(hour * 60 + minute) / 57).toFixed(2);
+      // const result = Math.round(
+      //   (metValue * weight * (hour * 60 + minute)) / 60.0
+      // ).toFixed(2);
+      const result2 = (Math.round (metValue * ( hour * 60 + minute)) / 57).toFixed(2);
       const result3 = Math.round(result2 * 2000).toFixed(2);
       {
         console.log(weight);
       }
-      const el = document.getElementById("result");
-      el.innerText = result;
+      // const el = document.getElementById("result");
+      // el.innerText = result;
       const el2 = document.getElementById("result2");
       el2.innerText = result2;
       const el3 = document.getElementById("result3");
       el3.innerText = result3;
       this.setState({
-        total_result: result,
+        //total_result: result,
         total_mile: result2,
         total_step: result3,
       });
@@ -975,7 +975,7 @@ class PhysicalActivity extends React.Component {
             time: hour * 60 + minute,
             activity: this.state.activity_choice,
             des: this.state.des_string,
-            res_calories: result,
+            //res_calories: result,
             res_mile: result2,
             res_step: result3,
             hour: hour,
@@ -1028,9 +1028,9 @@ class PhysicalActivity extends React.Component {
           {Activity_Table[x.activity ? x.activity : ""]}
         </td>
         <td className="border-1 border-slate-500">{x.des ? x.des : ""}</td>
-        <td className="border-1 border-slate-500">
+        {/* <td className="border-1 border-slate-500">
           {x.res_calories ? x.res_calories : ""}
-        </td>
+        </td> */}
         <td className="border-1 border-slate-500">
           {x.res_mile ? x.res_mile : ""}
         </td>
@@ -1095,8 +1095,12 @@ class PhysicalActivity extends React.Component {
     );
 
     return (
-      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-        <Header category="Page" title="Self-Report Portal: METs Calculator " />
+      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl text-2xl">
+        <Header
+          category="Page"
+          title="Self-Report Portal: METs Calculator "
+          className="text-4xl"
+        />
 
         <div id="MET">
           <label>Activity Time:</label>
@@ -1200,10 +1204,10 @@ class PhysicalActivity extends React.Component {
           <br />
           <br />
 
-          <label>Total Calories Burned:</label>
+          {/* <label>Total Calories Burned:</label>
           <br />
           <div id="result" />
-          <br />
+          <br /> */}
 
           <label>Total Exercise Miles:</label>
           <br />
@@ -1218,13 +1222,15 @@ class PhysicalActivity extends React.Component {
           <div id="MET-Result">
             <h1>
               <b className="text-2xl">Results Table</b>
-              <p>* Please input and calculate all activities before submit.</p>
+              <p>
+                * Please input and calculate all activities before submit.
+              </p>
             </h1>
             <table className="border-2 border-slate-500 divide-x divide-y divide-solid divide-black">
               <th>Activity Time</th>
               <th>Activity</th>
               <th>Description</th>
-              <th>Total Calories Burned </th>
+              {/* <th>Total Calories Burned </th> */}
               <th>Total Exercise Miles </th>
               <th>Total Exercise Steps </th>
               {this.getTableRow()}
@@ -1253,10 +1259,10 @@ class PhysicalActivity extends React.Component {
           </div>
 
           <div id="introduction">
-            <h1 className="text-3xl">
-              <b>Definition</b>
+            <h1 className="text-4xl">
+              <b>What's a MET?</b>
             </h1>
-            <p>
+            <p className="text-2xl">
               <Text
                 style={styles.hyperlinkStyle}
                 onPress={() => {
@@ -1267,19 +1273,19 @@ class PhysicalActivity extends React.Component {
               >
                 The metabolic equivalent of task
               </Text>
-              (MET) is the ratio of the metabolic rate during exercise to the
-              metabolic rate at rest. One MET corresponds to an energy
-              expenditure of 1 kcal/kg/hour. One MET can also be expressed as
-              oxygen uptake of 3.5 ml/kg/min.
+              (MET) is the ratio of the metabolic rate during exercise to
+              the metabolic rate at rest. One MET corresponds to an energy
+              expenditure of 1 kcal/kg/hour. One MET can also be expressed
+              as oxygen uptake of 3.5 ml/kg/min.
             </p>
             <br />
             <p>
-              METs are used to estimate how many calories are burned during many
-              common physical activities.
+              METs are used to estimate how many calories are burned during
+              many common physical activities.
             </p>
             <br />
 
-            <h1 className="text-3xl">
+            <h1 className="text-4xl">
               <b>How it works</b>
             </h1>
             <p>
@@ -1287,12 +1293,12 @@ class PhysicalActivity extends React.Component {
               example:
             </p>
             <p>
-              Susan is a 70kg (~154 lbs) woman who walked her dog for exactly 30
-              min. According to the metabolic equivalent table , walking the dog
-              corresponds to an energy expediture of 3.0 METs. In order to
-              perform the calculation, all we have to do is to multiply the
-              weight (kg), the metabolic equivalent of a task (MET) and the time
-              of the activity (hr).
+              Susan is a 70kg (~154 lbs) woman who walked her dog for
+              exactly 30 min. According to the metabolic equivalent table ,
+              walking the dog corresponds to an energy expediture of 3.0
+              METs. In order to perform the calculation, all we have to do
+              is to multiply the weight (kg), the metabolic equivalent of a
+              task (MET) and the time of the activity (hr).
             </p>
 
             <br />
@@ -1300,12 +1306,12 @@ class PhysicalActivity extends React.Component {
             <br />
 
             <p>
-              Units of time must be converted to hours. Therefore, 30 min = 0.5
-              hr
+              Units of time must be converted to hours. Therefore, 30 min =
+              0.5 hr
             </p>
             <br />
 
-            <p className="text-xl">
+            <p className="text-3xl">
               <b>
                 Calories burned = 70 kg x 3 kcal/kg/hr x 0.5 hr = 105 kcals
                 burned
@@ -1315,8 +1321,8 @@ class PhysicalActivity extends React.Component {
 
             <p>
               It is important to know that this formula does not take into
-              consideration characteristics such as age and sex and should only
-              be used as estimates.
+              consideration characteristics such as age and sex and should
+              only be used as estimates.
             </p>
             <p>
               Still complicated? Don't worry, our calculator will do all the
@@ -1330,8 +1336,8 @@ class PhysicalActivity extends React.Component {
               <b>Common Activities</b>
             </h1>
             <table className="border-2 border-slate-500 divide-x divide-y divide-solid divide-black">
-              <th className="bg-green-300">Light Intensity Activities </th>
-              <th className="bg-green-300">METs</th>
+              <th className="bg-[#8AABBD]">Light Intensity Activities </th>
+              <th className="bg-[#8AABBD]">METs</th>
               <tr>
                 <td className="border-1 border-slate-500">Sleeping</td>
                 <td className="border-1 border-slate-500">0.95</td>
@@ -1361,15 +1367,20 @@ class PhysicalActivity extends React.Component {
                 <td className="border-1 border-slate-500">2.8</td>
               </tr>
 
-              <th className="bg-green-300">Moderate Intensity Activities</th>
-              <th className="bg-green-300">METs</th>
+              <th className="bg-[#8AABBD]">
+                Moderate Intensity Activities
+              </th>
+              <th className="bg-[#8AABBD]">METs</th>
               <tr>
-                <td className="border-1 border-slate-500">Walking the dog</td>
+                <td className="border-1 border-slate-500">
+                  Walking the dog
+                </td>
                 <td className="border-1 border-slate-500">3.0</td>
               </tr>
               <tr>
                 <td className="border-1 border-slate-500">
-                  Walking, 2.8 - 3.2 mph (4.5 - 5.1 km/h), level, moderate pace
+                  Walking, 2.8 - 3.2 mph (4.5 - 5.1 km/h), level, moderate
+                  pace
                 </td>
                 <td className="border-1 border-slate-500">3.5</td>
               </tr>
@@ -1405,10 +1416,14 @@ class PhysicalActivity extends React.Component {
                 <td className="border-1 border-slate-500">5.8</td>
               </tr>
 
-              <th className="bg-green-300">Vigorous Intensity Activities</th>
-              <th className="bg-green-300">METs</th>
+              <th className="bg-[#8AABBD]">
+                Vigorous Intensity Activities
+              </th>
+              <th className="bg-[#8AABBD]">METs</th>
               <tr>
-                <td className="border-1 border-slate-500">Jogging, general</td>
+                <td className="border-1 border-slate-500">
+                  Jogging, general
+                </td>
                 <td className="border-1 border-slate-500">7.0</td>
               </tr>
               <tr>
