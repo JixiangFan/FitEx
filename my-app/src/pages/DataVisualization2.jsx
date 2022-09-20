@@ -55,6 +55,7 @@ class DataVisualization2 extends React.Component {
       chartData2: [],
       chartData3: [],
     };
+    this.palette = ["#FFCC33", "#339933"];
   }
 
   componentDidMount() {
@@ -224,6 +225,7 @@ class DataVisualization2 extends React.Component {
           <ChartComponent
             id="charts2"
             style={{ textAlign: "center" }}
+            palettes={this.palette}
             primaryXAxis={{
               majorGridLines: { width: 0 },
               minorGridLines: { width: 0 },
@@ -235,10 +237,10 @@ class DataVisualization2 extends React.Component {
               valueType: "Category",
             }}
             primaryYAxis={{
-              title: "Exercises",
+              title: "Miles",
               lineStyle: { width: 0 },
               minimum: 0,
-              maximum: 10,
+              maximum: 8,
               interval: 0.5,
               majorTickLines: { width: 0 },
               majorGridLines: { width: 1 },
@@ -249,7 +251,7 @@ class DataVisualization2 extends React.Component {
             width={Browser.isDevice ? "100%" : "100%"}
             chartArea={{ border: { width: 0 } }}
             load={this.load.bind(this)}
-            title="This Week's Activity Miles"
+            title="This Week's Activity Report"
             loaded={this.onChartLoad.bind(this)}
             tooltip={{ enable: true }}
           >
@@ -263,21 +265,21 @@ class DataVisualization2 extends React.Component {
                 yName="value"
                 name="Fitbit Reported Miles"
                 type="StackingColumn"
-              ></SeriesDirective>
+              />
               <SeriesDirective
                 dataSource={this.state.chartData3}
                 xName="dateTime"
                 yName="value"
                 name="Self-Report Completed Miles"
                 type="StackingColumn"
-              ></SeriesDirective>
-              <SeriesDirective
+              />
+              {/* <SeriesDirective
                 dataSource={this.state.chartData2}
                 xName="dateTime"
                 yName="value"
                 name="Incomplete Miles"
                 type="StackingColumn"
-              ></SeriesDirective>
+              /> */}
             </SeriesCollectionDirective>
           </ChartComponent>
         </div>
