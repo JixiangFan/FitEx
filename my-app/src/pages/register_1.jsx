@@ -72,7 +72,8 @@ const Register1 = () => {
               </p>
 
               <p className="text-center p text-white">
-              Please register to start!, let's finish setup your account first.
+                Please register to start!, let's finish setup your account
+                first.
               </p>
             </div>
           </div>
@@ -129,7 +130,9 @@ const Register1 = () => {
 
                   <button
                     disabled={loading}
-                    className="btn btn-outline-primary  w-100"
+                    style={{ backgroundColor: "#8AABBD" }}
+                    className=" btn btn-secondary border-2 border-slate-500  w-100"
+                    //className="btn btn-outline-primary  w-100"
                     type="submit"
                   >
                     Register
