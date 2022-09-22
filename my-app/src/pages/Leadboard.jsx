@@ -6,7 +6,6 @@ const LeadBoard = () => {
     const [team, setTeam] = useState(false)
     return (
       <>
-        <div>{team ? <Leaderboard /> : <Leaderboard2 />}</div>
         <div
           style={{ backgroundColor: "#8AABBD" }}
           className=" btn btn-secondary border-2 border-slate-500 text-2xl"
@@ -14,8 +13,9 @@ const LeadBoard = () => {
             setTeam(!team);
           }}
         >
-          Switch to {team ? "Team" : "Personal"}
+          Show {team ? "Team" : "Personal"} Rank
         </div>
+        <div>{team ? <Leaderboard /> : <Leaderboard2 />}</div>
       </>
     );
 }

@@ -197,122 +197,155 @@ class LeaderBoard2 extends React.Component {
         console.log(this.state.profileData)
 
         return (
-            <section className="main-content w-full h-full float-right">
-                <div className="container">
-                    <h1 className="float-center">Top Teams</h1>
-                    <div className="row">
-
-
-                        <div className="col-sm-4">
-                            <div className="leaderboard-card">
-                                <div className="leaderboard-card__top">
-                                    <h2 className="h3 text-center pb-1">No.2</h2>
-                                    <h3 className="h4 text-center">{ parseFloat(this.state.profileData[1][1]).toFixed(2)} miles</h3>
-                                </div>
-                                <div className="leaderboard-card__body">
-                                    <div className="text-center pt-10">
-                                        <h5 className="mb-0 pt-1 pb-1">{this.state.profileData[1][2]}</h5>
-
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <span><i className="fa fa-map-marker"></i>Blacksburg</span>
-                                            <button className="btn btn-outline-success btn-sm">Congratulate</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-sm-4">
-                            <div className="leaderboard-card">
-                                <div className="leaderboard-card__top">
-                                    <h2 className="h3 text-center pb-1">No.1</h2>
-                                    <h3 className="h4 text-center">{parseFloat(this.state.profileData[0][1]).toFixed(2)} miles</h3>
-                                </div>
-                                <div className="leaderboard-card__body">
-                                    <div className="text-center pt-10">
-                                        <h5 className="mb-0 pt-1 pb-1">{this.state.profileData[0][2]}</h5>
-
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <span><i className="fa fa-map-marker"></i>Blacksburg</span>
-                                            <button className="btn btn-outline-success btn-sm">Congratulate</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="col-sm-4">
-                            <div className="leaderboard-card">
-                                <div className="leaderboard-card__top">
-                                    <h2 className="h3 text-center pb-1">No.3</h2>
-                                    <h3 className="h4 text-center">{parseFloat(this.state.profileData[2][1]).toFixed(2)} miles</h3>
-                                </div>
-                                <div className="leaderboard-card__body">
-                                    <div className="text-center pt-10">
-                                        <h5 className="mb-0 pt-1 pb-1">{this.state.profileData[2][2]}</h5>
-
-                                        <div className="d-flex justify-content-between align-items-center">
-                                            <span><i className="fa fa-map-marker"></i>Blacksburg</span>
-                                            <button className="btn btn-outline-success btn-sm">Congratulate</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
+          <section className="main-content w-full h-full float-right">
+            <div className="container">
+              {/* <h1 className="float-center">Top Teams</h1> */}
+              <div className="row">
+                <div className="col-sm-4">
+                  <div className="leaderboard-card">
+                    <div className="leaderboard-card__top">
+                      <h2 className="h3 text-center pb-1">No.2</h2>
+                      <h3 className="h4 text-center">
+                        {parseFloat(
+                          this.state.profileData[1][1]
+                        ).toFixed(2)}{" "}
+                        miles
+                      </h3>
                     </div>
+                    <div className="leaderboard-card__body">
+                      <div className="text-center pt-10">
+                        <h5 className="mb-0 pt-1 pb-1">
+                          {this.state.profileData[1][2]}
+                        </h5>
 
-                    <h4>All Users</h4>
-
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Team</th>
-                                <th>Miles</th>
-                                <th>Location</th>
-                                <th>Congratulate</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {(this.state.profileData).map(function (object, i) {
-                              
-                                return <>
-                                    <tr>
-                                        <td>
-                                            <div className="d-flex align-items-center">
-                                                <div className="user-info__basic">
-                                                    <h5 className="mb-0">{object[2]}</h5>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="d-flex align-items-baseline">
-                                                <h4 className="mr-1">{parseFloat(object[1]).toFixed(2)}</h4><small className="text-success"><i className="fa fa-arrow-up"></i>5%</small>
-                                            </div>
-                                        </td>
-                                        <td>Blacksburg</td>
-                                        <td>
-                                            <button className="btn btn-success btn-sm">Congratulate</button>
-                                        </td>
-                                    </tr>
-                                </>;
-                            })}
-
-                        </tbody>
-                    </table>
-
-
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="fa fa-map-marker" />
+                            Blacksburg
+                          </span>
+                          <button className="btn btn-outline-success btn-sm">
+                            Congratulate
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </section >
 
-        )
+                <div className="col-sm-4">
+                  <div className="leaderboard-card">
+                    <div className="leaderboard-card__top">
+                      <h2 className="h3 text-center pb-1">No.1</h2>
+                      <h3 className="h4 text-center">
+                        {parseFloat(
+                          this.state.profileData[0][1]
+                        ).toFixed(2)}{" "}
+                        miles
+                      </h3>
+                    </div>
+                    <div className="leaderboard-card__body">
+                      <div className="text-center pt-10">
+                        <h5 className="mb-0 pt-1 pb-1">
+                          {this.state.profileData[0][2]}
+                        </h5>
+
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="fa fa-map-marker" />
+                            Blacksburg
+                          </span>
+                          <button className="btn btn-outline-success btn-sm">
+                            Congratulate
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-sm-4">
+                  <div className="leaderboard-card">
+                    <div className="leaderboard-card__top">
+                      <h2 className="h3 text-center pb-1">No.3</h2>
+                      <h3 className="h4 text-center">
+                        {parseFloat(
+                          this.state.profileData[2][1]
+                        ).toFixed(2)}{" "}
+                        miles
+                      </h3>
+                    </div>
+                    <div className="leaderboard-card__body">
+                      <div className="text-center pt-10">
+                        <h5 className="mb-0 pt-1 pb-1">
+                          {this.state.profileData[2][2]}
+                        </h5>
+
+                        <div className="d-flex justify-content-between align-items-center">
+                          <span>
+                            <i className="fa fa-map-marker" />
+                            Blacksburg
+                          </span>
+                          <button className="btn btn-outline-success btn-sm">
+                            Congratulate
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <br />
+              <br />
+              <h4 className="h4">All Teams</h4>
+
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Team</th>
+                    <th>Miles</th>
+                    <th>Location</th>
+                    <th>Congratulate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.profileData.map(function(object, i) {
+                    return (
+                      <>
+                        <tr>
+                          <td>
+                            <div className="d-flex align-items-center">
+                              <div className="user-info__basic">
+                                <h5 className="mb-0">{object[2]}</h5>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="d-flex align-items-baseline">
+                              <h4 className="mr-1">
+                                {parseFloat(object[1]).toFixed(2)}
+                              </h4>
+                              {/* <small className="text-success">
+                                <i className="fa fa-arrow-up" />
+                                5%
+                              </small> */}
+                            </div>
+                          </td>
+                          <td>Blacksburg</td>
+                          <td>
+                            <button className="btn btn-success btn-sm">
+                              Congratulate
+                            </button>
+                          </td>
+                        </tr>
+                      </>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        );
     }
 }
 
