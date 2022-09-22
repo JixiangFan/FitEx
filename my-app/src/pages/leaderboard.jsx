@@ -180,123 +180,162 @@ class LeaderBoard extends React.Component {
 
 
         return (
-            <div className="container w-full items-stretch h-screen">
+          <div className="container w-full items-stretch h-screen">
+            <div className="row">
+              <div className="col-sm-4">
+                <div className="leaderboard-card">
+                  <div className="leaderboard-card__top">
+                    <h2 className="h3 text-center pb-1">No.2</h2>
+                    <h3 className="h4 text-center">
+                      {parseFloat(this.state.stepData[1]).toFixed(2)}{" "}
+                      miles
+                    </h3>
+                  </div>
+                  <div className="leaderboard-card__body">
+                    <div className="text-center pt-10">
+                      <h5 className="mb-0">
+                        {this.state.profileData[1]["name"]}
+                      </h5>
+                      <p className="text-muted mb-0">
+                        {this.state.profileData[1]["email"]}
+                      </p>
 
-                <div className="row">
-
-
-                    <div className="col-sm-4">
-                        <div className="leaderboard-card">
-                            <div className="leaderboard-card__top">
-                                <h2 className="h3 text-center pb-1">No.2</h2>
-                                <h3 className="h4 text-center">{parseFloat((this.state.stepData)[1]).toFixed(2)} miles</h3>
-                            </div>
-                            <div className="leaderboard-card__body">
-                                <div className="text-center pt-10">
-                                    <h5 className="mb-0">{(this.state.profileData)[1]["name"]}</h5>
-                                    <p className="text-muted mb-0">{(this.state.profileData)[1]["email"]}</p>
-
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <span><i className="fa fa-map-marker"></i>Blacksburg</span>
-                                        <button className="btn btn-outline-success btn-sm">Congratulate</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <span>
+                          <i className="fa fa-map-marker" />
+                          Blacksburg
+                        </span>
+                        <button className="btn btn-outline-success btn-sm">
+                          Congratulate
+                        </button>
+                      </div>
                     </div>
-
-                    <div className="col-sm-4">
-                        <div className="leaderboard-card">
-                            <div className="leaderboard-card__top">
-                                <h2 className="h2 text-center pb-1">No.1</h2>
-                                <h3 className="h4 text-center">{parseFloat((this.state.stepData)[0]).toFixed(2)} miles</h3>
-                            </div>
-                            <div className="leaderboard-card__body">
-                                <div className="text-center pt-10">
-                                    <h5 className="mb-0">{(this.state.profileData)[0]["name"]}</h5>
-                                    <p className="text-muted mb-0">{(this.state.profileData)[0]["email"]}</p>
-
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <span><i className="fa fa-map-marker"></i>Blacksburg</span>
-                                        <button className="btn btn-outline-success btn-sm">Congratulate</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="col-sm-4">
-                        <div className="leaderboard-card">
-                            <div className="leaderboard-card__top">
-                                <h2 className="h3 text-center pb-1">No.3</h2>
-                                <h3 className="h4 text-center">{parseFloat((this.state.stepData)[2]).toFixed(2)} miles</h3>
-                            </div>
-                            <div className="leaderboard-card__body">
-                                <div className="text-center pt-10">
-                                    <h5 className="mb-0">{(this.state.profileData)[2]["name"]}</h5>
-                                    <p className="text-muted mb-0">{(this.state.profileData)[2]["email"]}</p>
-
-                                    <div className="d-flex justify-content-between align-items-center">
-                                        <span><i className="fa fa-map-marker"></i>Blacksburg</span>
-                                        <button className="btn btn-outline-success btn-sm">Congratulate</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                  </div>
                 </div>
-                <br></br>
-                <h4 className="h4">All Users</h4>
+              </div>
 
-                <table className="table">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Miles</th>
-                            <th>Location</th>
-                            <th>Email</th>
-                            <th>Congratulate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {(this.state.profileData).map(function (object, i) {
-                            console.log(i)
-                            console.log(object["step"])
-                            return <>
-                                <tr>
-                                    <td>
-                                        <div className="d-flex align-items-center">
-                                            <div className="user-info__basic">
-                                                <h5 className="mb-0">{object["name"]}</h5>
-                                                <p className="text-muted mb-0">{permission_Level[object["usertype"]]}</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div className="d-flex align-items-baseline">
-                                            <h4 className="mr-1">{parseFloat(object['step']).toFixed(2)}</h4><small className="text-success"><i className="fa fa-arrow-up"></i>5%</small>
-                                        </div>
-                                    </td>
-                                    <td>Blacksburg</td>
-                                    <td>{object["email"]}</td>
-                                    <td>
-                                        <button className="btn btn-success btn-sm">Congratulate</button>
-                                    </td>
-                                </tr>
-                            </>;
-                        })}
+              <div className="col-sm-4">
+                <div className="leaderboard-card">
+                  <div className="leaderboard-card__top">
+                    <h2 className="h2 text-center pb-1">No.1</h2>
+                    <h3 className="h4 text-center">
+                      {parseFloat(this.state.stepData[0]).toFixed(2)}{" "}
+                      miles
+                    </h3>
+                  </div>
+                  <div className="leaderboard-card__body">
+                    <div className="text-center pt-10">
+                      <h5 className="mb-0">
+                        {this.state.profileData[0]["name"]}
+                      </h5>
+                      <p className="text-muted mb-0">
+                        {this.state.profileData[0]["email"]}
+                      </p>
 
-                    </tbody>
-                </table>
+                      <div className="d-flex justify-content-between align-items-center">
+                        <span>
+                          <i className="fa fa-map-marker" />
+                          Blacksburg
+                        </span>
+                        <button className="btn btn-outline-success btn-sm">
+                          Congratulate
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+              <div className="col-sm-4">
+                <div className="leaderboard-card">
+                  <div className="leaderboard-card__top">
+                    <h2 className="h3 text-center pb-1">No.3</h2>
+                    <h3 className="h4 text-center">
+                      {parseFloat(this.state.stepData[2]).toFixed(2)}{" "}
+                      miles
+                    </h3>
+                  </div>
+                  <div className="leaderboard-card__body">
+                    <div className="text-center pt-10">
+                      <h5 className="mb-0">
+                        {this.state.profileData[2]["name"]}
+                      </h5>
+                      <p className="text-muted mb-0">
+                        {this.state.profileData[2]["email"]}
+                      </p>
 
+                      <div className="d-flex justify-content-between align-items-center">
+                        <span>
+                          <i className="fa fa-map-marker" />
+                          Blacksburg
+                        </span>
+                        <button className="btn btn-outline-success btn-sm">
+                          Congratulate
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <br />
+            <br />
+            <br />
+            <h4 className="h4">All Users</h4>
 
-        )
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Miles</th>
+                  <th>Location</th>
+                  <th>Email</th>
+                  <th>Congratulate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.profileData.map(function(object, i) {
+                  console.log(i);
+                  console.log(object["step"]);
+                  return (
+                    <>
+                      <tr>
+                        <td>
+                          <div className="d-flex align-items-center">
+                            <div className="user-info__basic">
+                              <h5 className="mb-0">{object["name"]}</h5>
+                              <p className="text-muted mb-0">
+                                {permission_Level[object["usertype"]]}
+                              </p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div className="d-flex align-items-baseline">
+                            <h4 className="mr-1">
+                              {parseFloat(object["step"]).toFixed(2)}
+                            </h4>
+                            {/* <small className="text-success">
+                              <i className="fa fa-arrow-up" />
+                              5%
+                            </small> */}
+                          </div>
+                        </td>
+                        <td>Blacksburg</td>
+                        <td>{object["email"]}</td>
+                        <td>
+                          <button className="btn btn-success btn-sm">
+                            Congratulate
+                          </button>
+                        </td>
+                      </tr>
+                    </>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        );
     }
 }
 
