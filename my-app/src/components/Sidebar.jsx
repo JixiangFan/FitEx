@@ -30,7 +30,7 @@ const Sidebar = () => {
                     md:hover:overflow-auto pb-10 text-2xl">
        
           <div className="flex justify-between items-center">
-            <Link to="/" onClick={handleCloseSideBar} className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900">
+            <Link to="/" onClick={handleCloseSideBar} className="items-center gap-3 ml-3 mt-4 flex text-4xl font-extrabold tracking-tight dark:text-white text-slate-900">
               <IoFitness /> <span>FitEx</span>
             </Link>
             <TooltipComponent content="Menu" position="BottomCenter">
@@ -57,7 +57,7 @@ const Sidebar = () => {
                     key={link.name}
                     onClick={handleCloseSideBar}
                     style={({ isActive }) => ({
-                      backgroundColor: isActive ? currentColor : '',
+                      backgroundColor: isActive ? "#8AABBD" : '',
                     })}
                     className={({ isActive }) => (isActive ? activeLink : normalLink)}
                   >

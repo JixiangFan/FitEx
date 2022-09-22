@@ -90,6 +90,9 @@ class Nutrition extends React.Component {
         >
           Confirm and Submit
         </button>
+        <br />
+
+        <img src="./cup.png" className="rounded float-left" alt="FV" />
       </div>
     );
   }
