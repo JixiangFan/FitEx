@@ -6,7 +6,9 @@ import { Container } from 'react-bootstrap'
 
 const Welcome = () => {
   let mainStyle = {
-    'backgroundImage': `url(./background.jpg)`,
+    'backgroundImage': `url(./background2.jpg)`,
+    'backgroundRepeat': 'no-repeat',
+  'backgroundSize': '100%',
   }
 
   let navigate = useNavigate(); 
