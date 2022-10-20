@@ -85,7 +85,7 @@ const Dashboard = () => {
 
           <GridItemWrapper key="mid">
             <GridItemContent>
-              {switchStep ? <DataVisualization2 /> : <DataVisualization21 />}
+              {switchStep ? <DataVisualization21 /> : <DataVisualization2 />}
             </GridItemContent>
           </GridItemWrapper>
 
