@@ -180,8 +180,8 @@ class LeaderBoard extends React.Component {
 
 
         return (
-          <div className="container w-full items-stretch h-screen">
-            <div className="row">
+          <div className="container w-full items-stretch h-screen sm:p-10">
+            <div className="sm:hidden row">
               <div className="col-sm-4">
                 <div className="leaderboard-card">
                   <div className="leaderboard-card__top">
@@ -278,9 +278,9 @@ class LeaderBoard extends React.Component {
                 </div>
               </div>
             </div>
-            <br />
-            <br />
-            <br />
+            <br className="sm:hidden"/>
+            <br className="sm:hidden"/>
+            <br className="sm:hidden"/>
             <h4 className="h4">All Users</h4>
 
             <table className="table">

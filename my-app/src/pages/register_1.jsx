@@ -46,8 +46,8 @@ const Register1 = () => {
 
   return (
 
-    <div className="container gap-8 columns-2 text-2xl flex items-stretch h-screen align-middle">
-      <div className="w-1/3 h-full " style={{ backgroundColor: "#8AABBD" }}>
+    <div className="container lg:gap-8 lg:columns-2 text-2xl flex items-stretch align-middle h-screen">
+      <div className="absolute lg:relative sm:h-1/5 sm:w-full lg:w-1/3 lg:h-full " style={{ backgroundColor: "#8AABBD" }}>
         <div className="row">
           <div className="col-5">
             <img
@@ -58,8 +58,8 @@ const Register1 = () => {
 
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-4 place-content-center h-75">
-          <p className="text-center h2 text-white">
+        <div className="grid grid-cols-1 gap-4 place-content-center lg:h-75">
+          <p className="text-center h2 text-white sm:pt-10">
             <u>Welcome to FitEx</u>
           </p>
 
@@ -75,7 +75,7 @@ const Register1 = () => {
           </p>
         </div>
       </div>
-      <div className="w-2/3 h-full w-full  bg-light p-10">
+      <div className="relative sm:w-full lg:w-2/3 lg:h-full">
         <div className="row h-100 place-content-center">
           <div className="col">
             <div className="h1 text-center">Register</div>
