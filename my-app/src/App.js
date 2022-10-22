@@ -38,26 +38,25 @@ const App = () => {
           <div id="top" className="relative w-full ">
             <Navbar />
           </div>
-          <div id="middle" classNmae="relative w-full mt-10 pt-20">
+          <div id="middle" className="relative w-full mt-10 pt-20">
             {user && <div id="side" className="sm:w-full lg:absolute lg:w-1/4">
               <div class="hidden lg:block accordion" id="accordionExample5">
                 <div class="accordion-item bg-white border border-gray-200">
                   <h2 class="accordion-header mb-0" id="headingOne5">
                     <button class="
-        accordion-button
-        relative
-        flex
-        items-center
-        w-full
-        py-4
-        px-5
-        text-2xl text-gray-800 text-left
-        bg-white
-        border-0
-        rounded-none
-        transition
-        focus:outline-none
-        
+                      accordion-button
+                      relative
+                      flex
+                      items-center
+                      w-full
+                      py-4
+                      px-5
+                      text-2xl text-gray-800 text-left
+                      bg-white
+                      border-0
+                      rounded-none
+                      transition
+                      focus:outline-none     
       " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
                       aria-controls="collapseOne5">
                       Navigation
@@ -73,21 +72,20 @@ const App = () => {
                 <div class="accordion-item bg-white border border-gray-200">
                   <h2 class="accordion-header mb-0" id="headingOne5">
                     <button class="
-        accordion-button
-        relative
-        flex
-        items-center
-        w-full
-        py-4
-        px-5
-        text-2xl text-gray-800 text-left
-        bg-white
-        border-0
-        rounded-none
-        transition
-        focus:outline-none
-        
-      " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
+                      accordion-button
+                      relative
+                      flex
+                      items-center
+                      w-full
+                      py-4
+                      px-5
+                      text-2xl text-gray-800 text-left
+                      bg-white
+                      border-0
+                      rounded-none
+                      transition
+                      focus:outline-none
+                      " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
                       aria-controls="collapseOne5">
                       Navigation
                     </button>

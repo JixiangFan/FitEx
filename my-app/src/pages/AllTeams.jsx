@@ -62,7 +62,7 @@ class AllTeams extends React.Component {
         <div className="text-2xl">Team Detail List</div>
 
         <GridComponent
-          width="auto"
+          width='1000'
           dataSource={this.state.team_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging
