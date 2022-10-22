@@ -99,7 +99,7 @@ const App = () => {
               </div>
             </div>}
 
-            <div id="main" className="lg:absolute lg:right-0 lg:h-full lg:w-3/4 sm:w-full">
+            <div id="main" className={"w-full lg:absolute lg:h-full lg:w-3/4 lg:inset-y-0" + (user ? " lg:right-0" : "lg:left-0")}>
               {themeSettings && (<ThemeSettings />)}
               <Routes>
                 {/*Dashboard*/}
