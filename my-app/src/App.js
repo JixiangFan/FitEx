@@ -39,8 +39,64 @@ const App = () => {
             <Navbar />
           </div>
           <div id="middle" classNmae="relative w-full mt-10 pt-20">
-            {user && <div id="side" className="lg:absolute lg:w-1/4 lg:visible sm:invisible">
-              <Sidebar />
+            {user && <div id="side" className="sm:w-full lg:absolute lg:w-1/4">
+              <div class="hidden lg:block accordion" id="accordionExample5">
+                <div class="accordion-item bg-white border border-gray-200">
+                  <h2 class="accordion-header mb-0" id="headingOne5">
+                    <button class="
+        accordion-button
+        relative
+        flex
+        items-center
+        w-full
+        py-4
+        px-5
+        text-2xl text-gray-800 text-left
+        bg-white
+        border-0
+        rounded-none
+        transition
+        focus:outline-none
+        
+      " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
+                      aria-controls="collapseOne5">
+                      Navigation
+                    </button>
+                  </h2>
+                  <div id="collapseOne5" class="block accordion-collapse collapse show" aria-labelledby="headingOne5">
+                    <Sidebar />
+                  </div>
+                </div>
+              </div>
+
+              <div class="lg:hidden accordion" id="accordionExample5">
+                <div class="accordion-item bg-white border border-gray-200">
+                  <h2 class="accordion-header mb-0" id="headingOne5">
+                    <button class="
+        accordion-button
+        relative
+        flex
+        items-center
+        w-full
+        py-4
+        px-5
+        text-2xl text-gray-800 text-left
+        bg-white
+        border-0
+        rounded-none
+        transition
+        focus:outline-none
+        
+      " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
+                      aria-controls="collapseOne5">
+                      Navigation
+                    </button>
+                  </h2>
+                  <div id="collapseOne5" class="block accordion-collapse collapse" aria-labelledby="headingOne5">
+                    <Sidebar />
+                  </div>
+                </div>
+              </div>
             </div>}
 
             <div id="main" className="lg:absolute lg:right-0 lg:h-full lg:w-3/4 sm:w-full">
