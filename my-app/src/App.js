@@ -39,11 +39,11 @@ const App = () => {
             <Navbar />
           </div>
           <div id="middle" classNmae="relative w-full mt-10 pt-20">
-            {user && <div id="side" className="absolute w-1/4">
+            {user && <div id="side" className="lg:absolute lg:w-1/4 lg:visible sm:invisible">
               <Sidebar />
             </div>}
 
-            <div id="main" className="absolute right-0 h-full w-3/4">
+            <div id="main" className="lg:absolute lg:right-0 lg:h-full lg:w-3/4 sm:w-full">
               {themeSettings && (<ThemeSettings />)}
               <Routes>
                 {/*Dashboard*/}
