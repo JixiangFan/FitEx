@@ -7,10 +7,12 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useNavigate } from "react-router-dom"
 import avatar from '../data/avatar.jpg';
+import { Link, NavLink } from 'react-router-dom';
 import { Chat, Notification, UserProfile } from '.';
 import { Register, Login } from '../pages'
 import { useStateContext } from '../contexts/ContextProvider';
 import { useAuth } from '../contexts/AuthContext'
+import { IoFitness } from 'react-icons/io5';
 
 const NavButton = ({ title, customFunc, icon, color, dotcolor }) => (
   <TooltipComponent content={title} position="BottomCenter">
@@ -42,11 +44,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (screenSize <= 900)
-    {
+    if (screenSize <= 900) {
       setActiveMenu(false);
-    } else
-    {
+    } else {
       setActiveMenu(true);
     }
   }, [screenSize])
@@ -60,8 +60,7 @@ const Navbar = () => {
   async function handleLogout() {
     setError("")
 
-    try
-    {
+    try {
       await logout()
     } catch {
       setError("Failed to log out")
@@ -79,6 +78,11 @@ const Navbar = () => {
       {currentUser && (
         <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative text-2xl">
           <>
+            <div className="flex justify-between items-center">
+              <Link to="/" className="items-center gap-3 ml-3 mt-4 flex text-4xl font-extrabold tracking-tight dark:text-white text-slate-900">
+                <IoFitness /> <span>FitEx</span>
+              </Link>
+            </div>
             <div className="flex pl-10">
               <TooltipComponent
                 content="Profile"

@@ -30,117 +30,93 @@ const App = () => {
   const user = auth.currentUser;
   const { activeMenu, themeSettings, setThemeSettings, currentColor } = useStateContext();
   return (
-    <div class="flex flex-row">
-      <AuthProvider>
-        <BrowserRouter forceRefresh={true}>
-          <div className="flex relative dark:bg-main-dark-bg">
-            {user &&
-              <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-                <TooltipComponent
-                  content="Settings" position="Top">
-                  {/* <button type="button"
-                    className="text-3xl p-3 
-                          hover:drop-shadow-xl 
-                          hover:bg-light-gray text-white"
-                    onClick={() => setThemeSettings(true)}
-                    style={{ background: currentColor, borderRadius: '50%' }}
-                  >
-                    <FiSettings />
-                  </button> */}
-                </TooltipComponent>
-              </div>
-            }
 
-            {user && <div id="side" className=" sidebar 
-                            dark:bg-secondary-dark-bg 
-                            bg-white mr-5">
+    <AuthProvider>
+      <BrowserRouter forceRefresh={true}>
+        <div className="relative"> {/* root class div */}
+
+          <div id="top" className="relative w-full ">
+            <Navbar />
+          </div>
+          <div id="middle" classNmae="relative w-full mt-10 pt-20">
+            {user && <div id="side" className="absolute w-1/4">
               <Sidebar />
             </div>}
 
+            <div id="main" className="absolute right-0 h-full w-3/4">
+              {themeSettings && (<ThemeSettings />)}
+              <Routes>
+                {/*Dashboard*/}
+
+                {user ? <><Route path="/" element={(<Dashboard />)} />
+                  <Route path="*" element={(<Dashboard />)} /></>
+                  :
+                  <>
+                    <Route path="/" element={(<Welcome />)} />
+                    <Route path="*" element={<Login />} />
+                  </>
+                }
 
 
-            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
-              <div id="top" className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
-                <Navbar />
-              </div>
-
-              <div className="w-full pl-10 h-full">
-                {themeSettings && (<ThemeSettings />)}
-
-                <Routes>
-                  {/*Dashboard*/}
-
-                  {user ? <><Route path="/" element={(<Dashboard />)} />
-                    <Route path="*" element={(<Dashboard />)} /></>
-                    :
-                    <>
-                      <Route path="/" element={(<Welcome />)} />
-                      <Route path="*" element={<Login />} />
-                    </>
-                  }
-
-
-                  <Route exact path='/' element={<PrivateRoute />}>
-                    <Route exact path="/dashboard" element={(<Dashboard />)} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/register2" element={<Register2 />} />
-                    <Route path="/register3" element={<Register3 />} />
-                    <Route path="/createTeam" element={<CreateTeam />} />
-                    <Route path="/reminder" element={<Reminder />} />
-                    {/* pages  */}
-                    <Route path="/physicalActivity" element={<PhysicalActivity />} />
-                    <Route path="/nutrition" element={<Nutrition />} />
-                    <Route path="/fitbitSync" element={<FitbitSync />} />
-                    <Route path="/task" element={<Task />} />
-                    <Route path="/dataVisualization1" element={<DataVisualization1 />} />
-                    <Route path="/dataVisualization2" element={<DataVisualization2 />} />
-                    <Route path="/dataVisualization21" element={<DataVisualization21 />} />
-                    <Route path="/dataVisualization3" element={<DataVisualization3 />} />
-                    <Route path="/dataVisualization31" element={<DataVisualization31 />} />
-                    <Route path="/dataVisualization32" element={<DataVisualization32 />} />
-                    <Route path="/dataVisualization33" element={<DataVisualization33 />} />
-                    <Route path="/dataVisualization4" element={<DataVisualization4 />} />
-                    {/* <Route path="/team" element={(<Team />)} /> */}
-                    <Route path="/allTeams" element={(<AllTeams />)} />
-                    <Route path="/teamMember" element={<TeamMember />} />
-                    <Route path="/updateProfile" element={<UpdateProfileLocal />} />
-                    <Route path="/leaderboard" element={<LeadBoard />} />
-                    <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
-                    <Route path="/dailySelfReport" element={<DailySelfReport />} />
-                    <Route path="/NeutriationDisplay" element={<NeutriationDisplay />} />
-                    <Route path="/knowledgeBase" element={<KnowledgeBase />} />
-                    <Route path="/knowledgeBase2" element={<KnowledgeBase2 />} />
-                    <Route path="/knowledgeBase3" element={<KnowledgeBase3 />} />
-                    {/* <Route path="/employeeTree" element={<EmployeeTree />} /> */}
-                    <Route path="/participants" element={<Participants />} />
-                  </Route>
+                <Route exact path='/' element={<PrivateRoute />}>
+                  <Route exact path="/dashboard" element={(<Dashboard />)} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/register2" element={<Register2 />} />
+                  <Route path="/register3" element={<Register3 />} />
+                  <Route path="/createTeam" element={<CreateTeam />} />
+                  <Route path="/reminder" element={<Reminder />} />
+                  {/* pages  */}
+                  <Route path="/physicalActivity" element={<PhysicalActivity />} />
+                  <Route path="/nutrition" element={<Nutrition />} />
+                  <Route path="/fitbitSync" element={<FitbitSync />} />
+                  <Route path="/task" element={<Task />} />
+                  <Route path="/dataVisualization1" element={<DataVisualization1 />} />
+                  <Route path="/dataVisualization2" element={<DataVisualization2 />} />
+                  <Route path="/dataVisualization21" element={<DataVisualization21 />} />
+                  <Route path="/dataVisualization3" element={<DataVisualization3 />} />
+                  <Route path="/dataVisualization31" element={<DataVisualization31 />} />
+                  <Route path="/dataVisualization32" element={<DataVisualization32 />} />
+                  <Route path="/dataVisualization33" element={<DataVisualization33 />} />
+                  <Route path="/dataVisualization4" element={<DataVisualization4 />} />
+                  {/* <Route path="/team" element={(<Team />)} /> */}
+                  <Route path="/allTeams" element={(<AllTeams />)} />
+                  <Route path="/teamMember" element={<TeamMember />} />
+                  <Route path="/updateProfile" element={<UpdateProfileLocal />} />
+                  <Route path="/leaderboard" element={<LeadBoard />} />
+                  <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
+                  <Route path="/dailySelfReport" element={<DailySelfReport />} />
+                  <Route path="/NeutriationDisplay" element={<NeutriationDisplay />} />
+                  <Route path="/knowledgeBase" element={<KnowledgeBase />} />
+                  <Route path="/knowledgeBase2" element={<KnowledgeBase2 />} />
+                  <Route path="/knowledgeBase3" element={<KnowledgeBase3 />} />
+                  {/* <Route path="/employeeTree" element={<EmployeeTree />} /> */}
+                  <Route path="/participants" element={<Participants />} />
+                </Route>
 
 
-                  <Route path="/register" element={<Register1 />} />
-                  <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register1 />} />
+                <Route path="/login" element={<Login />} />
 
-                  <Route path="/forgetpassword" element={<ChangePassword />} />
-                  {/* 
+                <Route path="/forgetpassword" element={<ChangePassword />} />
+                {/* 
                     <Route path="/competition" element={<Competition />} />
                     <Route path="/award" element={<Award />} />
                     <Route path="/team" element={(<Team />)} />
                     <Route path="/teamMember" element={<TeamMember />} />
                     <Route path="/employeeTree" element={<EmployeeTree />} /> */}
 
-                  {/* pages  */}
+                {/* pages  */}
 
-                  {/* <Route path="/update" element={<RegisterQuestion />} /> */}
-                </Routes>
-              </div>
-
-
-
-
+                {/* <Route path="/update" element={<RegisterQuestion />} /> */}
+              </Routes>
             </div>
           </div>
-        </BrowserRouter>
-      </AuthProvider>
-    </div>
+
+
+
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
