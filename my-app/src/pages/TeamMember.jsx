@@ -102,11 +102,11 @@ class TeamMember extends React.Component {
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
         <Header category="Page" title="My Team Information" />
 
-        <div className="text-2xl">
+        <div className="lg:text-2xl sm:text-xl">
           <h>My Team Members</h>
         </div>
         <GridComponent
-          width="75%"
+          width="1500"
           dataSource={this.state.participants_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging
@@ -141,11 +141,11 @@ class TeamMember extends React.Component {
             ]}
           />
         </GridComponent>
-        <div className="row pt-1 mt-10">
-          <div className="col-4">
+        <div className="row pt-1 mt-10 sm:pl-10 ">
+          <div className="lg:col-4 ">
             <DataVisualization4 />
           </div>
-          <div className="col-4">
+          <div className="lg:col-4 ">
             <DataVisualization1 />
           </div>
         </div>
