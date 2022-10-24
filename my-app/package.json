@@ -34,8 +34,7 @@
     "react-select": "^5.4.0",
     "serve": "^14.0.1",
     "styled-components": "^5.3.5",
-    "svg": "^0.1.0",
-    "tw-elements": "^1.0.0-alpha12"
+    "svg": "^0.1.0"
   },
   "scripts": {
     "dev": "react-scripts start",

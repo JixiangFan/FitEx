@@ -292,7 +292,7 @@ class FitbitSync extends React.Component {
           <h>Device Information</h>
         </div>
         <GridComponent
-          width="1800"
+          width="auto"
           dataSource={this.state.devices_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging
@@ -335,7 +335,7 @@ class FitbitSync extends React.Component {
           <h>Distances Information</h>
         </div>
         <GridComponent
-          width="1800"
+          width="auto"
           dataSource={
             this.state.activities_result.summary?.distances
               ? this.state.activities_result.summary?.distances
@@ -370,7 +370,7 @@ class FitbitSync extends React.Component {
           <h>Exercise Information</h>
         </div>
         <GridComponent
-          width="1800"
+          width="auto"
           dataSource={this.state.summary_array}
           pageSettings={{ pageCount: 5 }}
           allowPaging
@@ -401,7 +401,7 @@ class FitbitSync extends React.Component {
           <h>IntraData</h>
         </div>
         <GridComponent
-          width="1800"
+          width="auto"
           dataSource={this.state.intraday_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging
@@ -432,7 +432,7 @@ class FitbitSync extends React.Component {
           <h>weekly steps</h>
         </div>
         <GridComponent
-          width="1800"
+          width="auto"
           dataSource={this.state.week_step_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging
@@ -463,7 +463,7 @@ class FitbitSync extends React.Component {
           <h>weekly distance</h>
         </div>
         <GridComponent
-          width="1800"
+          width="auto"
           dataSource={this.state.week_distance_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging
@@ -494,7 +494,7 @@ class FitbitSync extends React.Component {
           <h>weekly calories</h>
         </div>
         <GridComponent
-          width="1800"
+          width="auto"
           dataSource={this.state.week_calories_result}
           pageSettings={{ pageCount: 5 }}
           allowPaging

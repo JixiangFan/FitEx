@@ -30,147 +30,117 @@ const App = () => {
   const user = auth.currentUser;
   const { activeMenu, themeSettings, setThemeSettings, currentColor } = useStateContext();
   return (
-
-    <AuthProvider>
-      <BrowserRouter forceRefresh={true}>
-        <div className="relative"> {/* root class div */}
-
-          <div id="top" className="relative w-full ">
-            <Navbar />
-          </div>
-          <div id="middle" className="relative w-full mt-10 pt-20">
-            {user && <div id="side" className="sm:w-full lg:absolute lg:w-1/4">
-              <div class="hidden lg:block accordion" id="accordionExample5">
-                <div class="accordion-item bg-white border border-gray-200">
-                  <h2 class="accordion-header mb-0" id="headingOne5">
-                    <button class="
-                      accordion-button
-                      relative
-                      flex
-                      items-center
-                      w-full
-                      py-4
-                      px-5
-                      text-2xl text-gray-800 text-left
-                      bg-white
-                      border-0
-                      rounded-none
-                      transition
-                      focus:outline-none     
-      " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
-                      aria-controls="collapseOne5">
-                      Navigation
-                    </button>
-                  </h2>
-                  <div id="collapseOne5" class="block accordion-collapse collapse show" aria-labelledby="headingOne5">
-                    <Sidebar />
-                  </div>
-                </div>
+    <div class="flex flex-row">
+      <AuthProvider>
+        <BrowserRouter forceRefresh={true}>
+          <div className="flex relative dark:bg-main-dark-bg">
+            {user &&
+              <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
+                <TooltipComponent
+                  content="Settings" position="Top">
+                  {/* <button type="button"
+                    className="text-3xl p-3 
+                          hover:drop-shadow-xl 
+                          hover:bg-light-gray text-white"
+                    onClick={() => setThemeSettings(true)}
+                    style={{ background: currentColor, borderRadius: '50%' }}
+                  >
+                    <FiSettings />
+                  </button> */}
+                </TooltipComponent>
               </div>
+            }
 
-              <div class="lg:hidden accordion" id="accordionExample5">
-                <div class="accordion-item bg-white border border-gray-200">
-                  <h2 class="accordion-header mb-0" id="headingOne5">
-                    <button class="
-                      accordion-button
-                      relative
-                      flex
-                      items-center
-                      w-full
-                      py-4
-                      px-5
-                      text-2xl text-gray-800 text-left
-                      bg-white
-                      border-0
-                      rounded-none
-                      transition
-                      focus:outline-none
-                      " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true"
-                      aria-controls="collapseOne5">
-                      Navigation
-                    </button>
-                  </h2>
-                  <div id="collapseOne5" class="block accordion-collapse collapse" aria-labelledby="headingOne5">
-                    <Sidebar />
-                  </div>
-                </div>
-              </div>
+            {user && <div id="side" className=" sidebar 
+                            dark:bg-secondary-dark-bg 
+                            bg-white mr-5">
+              <Sidebar />
             </div>}
 
-            <div id="main" className={"w-full lg:absolute lg:h-full lg:w-3/4 lg:inset-y-0" + (user ? " lg:right-0" : "lg:left-0")}>
-              {themeSettings && (<ThemeSettings />)}
-              <Routes>
-                {/*Dashboard*/}
-
-                {user ? <><Route path="/" element={(<Dashboard />)} />
-                  <Route path="*" element={(<Dashboard />)} /></>
-                  :
-                  <>
-                    <Route path="/" element={(<Welcome />)} />
-                    <Route path="*" element={<Login />} />
-                  </>
-                }
 
 
-                <Route exact path='/' element={<PrivateRoute />}>
-                  <Route exact path="/dashboard" element={(<Dashboard />)} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="/register2" element={<Register2 />} />
-                  <Route path="/register3" element={<Register3 />} />
-                  <Route path="/createTeam" element={<CreateTeam />} />
-                  <Route path="/reminder" element={<Reminder />} />
-                  {/* pages  */}
-                  <Route path="/physicalActivity" element={<PhysicalActivity />} />
-                  <Route path="/nutrition" element={<Nutrition />} />
-                  <Route path="/fitbitSync" element={<FitbitSync />} />
-                  <Route path="/task" element={<Task />} />
-                  <Route path="/dataVisualization1" element={<DataVisualization1 />} />
-                  <Route path="/dataVisualization2" element={<DataVisualization2 />} />
-                  <Route path="/dataVisualization21" element={<DataVisualization21 />} />
-                  <Route path="/dataVisualization3" element={<DataVisualization3 />} />
-                  <Route path="/dataVisualization31" element={<DataVisualization31 />} />
-                  <Route path="/dataVisualization32" element={<DataVisualization32 />} />
-                  <Route path="/dataVisualization33" element={<DataVisualization33 />} />
-                  <Route path="/dataVisualization4" element={<DataVisualization4 />} />
-                  {/* <Route path="/team" element={(<Team />)} /> */}
-                  <Route path="/allTeams" element={(<AllTeams />)} />
-                  <Route path="/teamMember" element={<TeamMember />} />
-                  <Route path="/updateProfile" element={<UpdateProfileLocal />} />
-                  <Route path="/leaderboard" element={<LeadBoard />} />
-                  <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
-                  <Route path="/dailySelfReport" element={<DailySelfReport />} />
-                  <Route path="/NeutriationDisplay" element={<NeutriationDisplay />} />
-                  <Route path="/knowledgeBase" element={<KnowledgeBase />} />
-                  <Route path="/knowledgeBase2" element={<KnowledgeBase2 />} />
-                  <Route path="/knowledgeBase3" element={<KnowledgeBase3 />} />
-                  {/* <Route path="/employeeTree" element={<EmployeeTree />} /> */}
-                  <Route path="/participants" element={<Participants />} />
-                </Route>
+            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+              <div id="top" className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
+                <Navbar />
+              </div>
+
+              <div className="w-full pl-10 h-full">
+                {themeSettings && (<ThemeSettings />)}
+
+                <Routes>
+                  {/*Dashboard*/}
+
+                  {user ? <><Route path="/" element={(<Dashboard />)} />
+                    <Route path="*" element={(<Dashboard />)} /></>
+                    :
+                    <>
+                      <Route path="/" element={(<Welcome />)} />
+                      <Route path="*" element={<Login />} />
+                    </>
+                  }
 
 
-                <Route path="/register" element={<Register1 />} />
-                <Route path="/login" element={<Login />} />
+                  <Route exact path='/' element={<PrivateRoute />}>
+                    <Route exact path="/dashboard" element={(<Dashboard />)} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/register2" element={<Register2 />} />
+                    <Route path="/register3" element={<Register3 />} />
+                    <Route path="/createTeam" element={<CreateTeam />} />
+                    <Route path="/reminder" element={<Reminder />} />
+                    {/* pages  */}
+                    <Route path="/physicalActivity" element={<PhysicalActivity />} />
+                    <Route path="/nutrition" element={<Nutrition />} />
+                    <Route path="/fitbitSync" element={<FitbitSync />} />
+                    <Route path="/task" element={<Task />} />
+                    <Route path="/dataVisualization1" element={<DataVisualization1 />} />
+                    <Route path="/dataVisualization2" element={<DataVisualization2 />} />
+                    <Route path="/dataVisualization21" element={<DataVisualization21 />} />
+                    <Route path="/dataVisualization3" element={<DataVisualization3 />} />
+                    <Route path="/dataVisualization31" element={<DataVisualization31 />} />
+                    <Route path="/dataVisualization32" element={<DataVisualization32 />} />
+                    <Route path="/dataVisualization33" element={<DataVisualization33 />} />
+                    <Route path="/dataVisualization4" element={<DataVisualization4 />} />
+                    {/* <Route path="/team" element={(<Team />)} /> */}
+                    <Route path="/allTeams" element={(<AllTeams />)} />
+                    <Route path="/teamMember" element={<TeamMember />} />
+                    <Route path="/updateProfile" element={<UpdateProfileLocal />} />
+                    <Route path="/leaderboard" element={<LeadBoard />} />
+                    <Route path="/dailyBarGraph" element={<DailyBarGraph />} />
+                    <Route path="/dailySelfReport" element={<DailySelfReport />} />
+                    <Route path="/NeutriationDisplay" element={<NeutriationDisplay />} />
+                    <Route path="/knowledgeBase" element={<KnowledgeBase />} />
+                    <Route path="/knowledgeBase2" element={<KnowledgeBase2 />} />
+                    <Route path="/knowledgeBase3" element={<KnowledgeBase3 />} />
+                    {/* <Route path="/employeeTree" element={<EmployeeTree />} /> */}
+                    <Route path="/participants" element={<Participants />} />
+                  </Route>
 
-                <Route path="/forgetpassword" element={<ChangePassword />} />
-                {/* 
+
+                  <Route path="/register" element={<Register1 />} />
+                  <Route path="/login" element={<Login />} />
+
+                  <Route path="/forgetpassword" element={<ChangePassword />} />
+                  {/* 
                     <Route path="/competition" element={<Competition />} />
                     <Route path="/award" element={<Award />} />
                     <Route path="/team" element={(<Team />)} />
                     <Route path="/teamMember" element={<TeamMember />} />
                     <Route path="/employeeTree" element={<EmployeeTree />} /> */}
 
-                {/* pages  */}
+                  {/* pages  */}
 
-                {/* <Route path="/update" element={<RegisterQuestion />} /> */}
-              </Routes>
+                  {/* <Route path="/update" element={<RegisterQuestion />} /> */}
+                </Routes>
+              </div>
+
+
+
+
             </div>
           </div>
-
-
-
-        </div>
-      </BrowserRouter>
-    </AuthProvider>
+        </BrowserRouter>
+      </AuthProvider>
+    </div>
   )
 }
 

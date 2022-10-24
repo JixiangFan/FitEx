@@ -1,15 +1,7 @@
 module.exports = {
-    content: ['./src/**/*.{js,jsx,ts,tsx}','./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
     darkMode: 'class',
     theme: {
-      screens: {
-        sm: { max: '576px' }, // Mobile (matches max: iPhone 11 Pro Max landscape @ 896px).
-        md: { min: '576px', max: '1199px' }, // Tablet (matches max: iPad Pro @ 1112px).
-
-        lg: { min: '1200px' }, // Desktop smallest.
-        xl: { min: '1159px' }, // Desktop wide.
-        xxl: { min: '1359px' } // Desktop widescreen.
-      },
       fontFamily: {
         display: ['Open Sans', 'sans-serif'],
         body: ['Open Sans', 'sans-serif'],
@@ -52,7 +44,5 @@ module.exports = {
         },
       },
     },
-    plugins: [
-      require('tw-elements/dist/plugin')
-    ],
+    plugins: [],
   };
