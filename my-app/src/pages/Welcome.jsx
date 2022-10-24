@@ -8,7 +8,7 @@ const Welcome = () => {
   let mainStyle = {
     'backgroundImage': `url(./background2.jpg)`,
     'backgroundRepeat': 'no-repeat',
-     'backgroundSize': '100%',
+  'backgroundSize': '100%',
   }
 
   let navigate = useNavigate(); 
@@ -21,19 +21,20 @@ const Welcome = () => {
 
   return (
     <div style={mainStyle}>
-      <div className="lg:columns-2 h-screen">
-        <Container className="lg:pt-48 lg:pl-20 sm:pt-64">
-          <div class="ratio ratio-16x9 ">
-            <iframe
-              src="https://www.youtube.com/embed/SmSoZvSmHeU"
-              title="Welcome Video"
-              allowFullScreen
-            />
-          </div>
-        </Container>
-
-        <div className="col lg:pt-48">
-          <div className="col-md-4 text-center lg:ml-52 sm:ml-12 sm:w-3/4">
+      <div className="columns-2 h-screen">
+     
+            <Container className="pt-48 pl-20">
+              <div class="ratio ratio-16x9 ">
+                <iframe
+                  src="https://www.youtube.com/embed/SmSoZvSmHeU"
+                  title="Welcome Video"
+                  allowFullScreen
+                />
+              </div>
+            </Container>
+  
+        <div className="col pt-48">
+          <div className="col-md-4 text-center ml-52">
             <img
               src="./logo.png"
               className="rounded float-center"
@@ -48,7 +49,7 @@ const Welcome = () => {
           </div>
 
           <div className="col mt-8">
-            <div className="col-md-4 text-center ml-52 sm:ml-4">
+            <div className="col-md-4 text-center ml-52">
               <button
                 style={{ backgroundColor: "#8AABBD" }}
                 className=" btn btn-secondary border-2 border-slate-500 btn-lg w-75 text-2xl"
@@ -59,7 +60,7 @@ const Welcome = () => {
             </div>
           </div>
 
-          <div className="col-md-4 text-center mt-8 ml-52 sm:ml-4">
+          <div className="col-md-4 text-center mt-8 ml-52">
             <button
               style={{ backgroundColor: "#8AABBD" }}
               className=" btn btn-secondary border-2 border-slate-500 btn-lg w-75 text-2xl"
