@@ -30,39 +30,8 @@ const Register3 = () => {
 
   return (
     <>
-      <div className="sm:hidden container gap-8 columns-2 text-2xl flex items-stretch h-screen align-middle">
-        <div className="w-1/3 h-full " style={{ backgroundColor: "#8AABBD" }} >
-          <div className="row">
-            <div className="col-5">
-              <img
-                src="./logo.png"
-                className="rounded float-left"
-                alt="logo"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-4 place-content-center h-75">
-            <p className="text-center h2 text-white">
-              <u>Welcome to FitEx</u>
-            </p>
-
-            <p className="text-center p text-white">
-              <br />
-              FitEx is an evidence-based, 8-week, statewide walking and
-              fruit/vegetable consumption program delivered to teams and
-              individuals across the state.
-            </p>
-
-            <p className="text-center p text-white">
-              One last step. Please tell us more about your personal
-              fitness information!
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      <div className="lg:hidden md:hidden h-full w-full  bg-light p-10">
+  
+      <div className="h-full w-full  bg-light p-10 mt-20">
         <div className="row h-100 place-content-center">
           <div className="col">
             <div className="h1 text-center">Register</div>
@@ -89,6 +58,7 @@ const Register3 = () => {
           </div>
         </div>
       </div>
+     
     </>
   );
 }

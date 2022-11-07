@@ -164,12 +164,12 @@ class Profile extends React.Component {
                   <p className="card-text">
                     Report Device: {this.state.profileData.device}
                   </p>
-                  <button
+                  {/* <button
                     style={{ backgroundColor: "#8AABBD" }}
                     className="mt-10 btn  w-100 border-2 border-slate-500 text-2xl"
                   >
                     Update fitbit access token
-                  </button>
+                  </button> */}
                   <button
                     style={{ backgroundColor: "#8AABBD" }}
                     className="mt-10 btn w-100 border-2 border-slate-500 text-2xl"
