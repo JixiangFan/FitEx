@@ -18,9 +18,11 @@
     "cors": "^2.8.5",
     "craco-plugin-scoped-css": "^1.1.1",
     "create-app-react": "^1.0.6",
+    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "firebase": "^9.9.3",
     "moment": "^2.29.4",
+    "mongoose": "^6.7.3",
     "react": "^17.0.2",
     "react-apexcharts": "^1.4.0",
     "react-bootstrap": "^2.5.0",
@@ -38,7 +40,7 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "node server.js ",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -70,6 +72,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "nodemon": "^2.0.20",
     "postcss": "^8.4.6",
     "tailwindcss": "^3.0.19"
   },
