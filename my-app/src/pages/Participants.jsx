@@ -107,7 +107,7 @@ class Participants extends React.Component {
           <h>Participants Information</h>
         </div>
         <GridComponent
-          width="1500"
+          width="75%"
           dataSource={this.state.participants_result}
           pageSettings={{ pageCount: 5 }}
           editSettings={this.editOptions}

@@ -82,9 +82,11 @@ const Register2 = () => {
 
 
     return (
+
        
             <div className="sm:hidden container lg:gap-8 lg:columns-2 text-2xl flex items-stretch align-middle h-screen pt-10 mt-5">
                 <div className="sm:hidden lg:relative lg:w-1/3 lg:h-full " style={{ backgroundColor: "#8AABBD" }}>
+
                     <div className="row">
                         <div className="col-5">
                             <img
@@ -111,7 +113,7 @@ const Register2 = () => {
                         </p>
                     </div>
                 </div>
-                <div className="relative w-2/3 h-full pt-10 mt-10">
+                <div className="w-2/3 h-full w-full  bg-light p-10">
                     <div className="row h-100 place-content-center">
                         <div className="col">
                             <div className="h1 text-center">Register</div>
@@ -344,6 +346,7 @@ const Register2 = () => {
                     </div>
                 </div>
             </div>
+
         //     {/* <div className="relative lg:hidden p-10">
         //         <div className="row h-100 place-content-center">
         //             <div className="col">
@@ -584,6 +587,7 @@ const Register2 = () => {
 
 
      
+
 
     );
 }
