@@ -5,7 +5,7 @@ import { Button } from '../components';
 import { useAuth } from '../contexts/AuthContext'
 import { MdOutlineCancel } from 'react-icons/md'
 
-const Register1 = () => {
+const Register3 = () => {
    
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
@@ -32,21 +32,7 @@ const Register1 = () => {
   
       <div className="h-full w-full  bg-light p-10 mt-20">
         <div className="row h-100 place-content-center">
-          <div className="col">
-            <div className="h1 text-center">Register</div>
-            {error && <Alert variant="danger">{error}</Alert>}
-            <form onSubmit={handleSubmit}>
-              <h1 className="text-center mt-9">
-                You are almost finish!
-              </h1>
-              <p>
-                Please complete the questionnaire, it will take you 5-10
-                minutes. The questionnaire helps us to understand your
-                needs and goals. Thank you for your patient!
-
-              </p>
-            </div>
-          </div>
+         
           <div className="w-2/3 h-full w-full  bg-light p-10">
             <div className="row h-100 place-content-center">
               <div className="col">
