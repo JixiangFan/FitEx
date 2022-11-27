@@ -37,97 +37,97 @@ const userSchema = new Schema({
     Unit_Prefernece: {type:String, enum: ["Step", "Mile", "Exercise Time", "Calorie"]},
 });
 
-const teamSchema = new Schema({
-    //team_id
-    Team_Goal: {
-        Team_Daily_Step_Goal: {type:Number, required: true},
-        Team_Daily_Mile_Goal: {type:Number, required: true},
-        Team_Weekly_Step_Goal: {type:Number, required: true},
-        Team_Weekly_Mile_Goal: {type:Number, required: true},   
-    },
-    Team_Daily_Steps: {type:Number},
-    Team_Daily_Miles: {type:Number},
-    Team_Daily_Carloies: {type:Number},
-    Team_Weekly_Steps_Total: {type:Number},
-    Team_Weekly_Miles_Total: {type:Number},
-    Team_Weekly_Carloies_Total: {type:Number},
-    Team_Weekly_Steps_Record: 
-    {type:[
-    {
-        type:Number,
-        maxlength: 7,
-    }]},
-    Team_Weekly_Mile_Record: 
-    {type:[
-    {
-        type:Number,
-        maxlength: 7,
-    }]},
-    Team_Weekly_Carloies_Record: 
-    {type:[
-    {
-        type:Number,
-        maxlength: 7,
-    }]},
-    Team_Program_Steps:
-    {
-        //define a map whose values are numbers. A map's keys are always strings. You specify the type of values using `of`.
-        //key is the week datetime
-        type: Map,
-        of: Number
-    },
-    Team_Program_Miles:
-    {
-        //define a map whose values are numbers. A map's keys are always strings. You specify the type of values using `of`.
-        //key is the week datetime
-        type: Map,
-        of: Number
-    },
-    Team_Program_Carloies:
-    {
-        //define a map whose values are numbers. A map's keys are always strings. You specify the type of values using `of`.
-        //key is the week datetime
-        type: Map,
-        of: Number
-    },
+// const teamSchema = new Schema({
+//     //team_id
+//     Team_Goal: {
+//         Team_Daily_Step_Goal: {type:Number, required: true},
+//         Team_Daily_Mile_Goal: {type:Number, required: true},
+//         Team_Weekly_Step_Goal: {type:Number, required: true},
+//         Team_Weekly_Mile_Goal: {type:Number, required: true},   
+//     },
+//     Team_Daily_Steps: {type:Number},
+//     Team_Daily_Miles: {type:Number},
+//     Team_Daily_Carloies: {type:Number},
+//     Team_Weekly_Steps_Total: {type:Number},
+//     Team_Weekly_Miles_Total: {type:Number},
+//     Team_Weekly_Carloies_Total: {type:Number},
+//     Team_Weekly_Steps_Record: 
+//     {type:[
+//     {
+//         type:Number,
+//         maxlength: 7,
+//     }]},
+//     Team_Weekly_Mile_Record: 
+//     {type:[
+//     {
+//         type:Number,
+//         maxlength: 7,
+//     }]},
+//     Team_Weekly_Carloies_Record: 
+//     {type:[
+//     {
+//         type:Number,
+//         maxlength: 7,
+//     }]},
+//     Team_Program_Steps:
+//     {
+//         //define a map whose values are numbers. A map's keys are always strings. You specify the type of values using `of`.
+//         //key is the week datetime
+//         type: Map,
+//         of: Number
+//     },
+//     Team_Program_Miles:
+//     {
+//         //define a map whose values are numbers. A map's keys are always strings. You specify the type of values using `of`.
+//         //key is the week datetime
+//         type: Map,
+//         of: Number
+//     },
+//     Team_Program_Carloies:
+//     {
+//         //define a map whose values are numbers. A map's keys are always strings. You specify the type of values using `of`.
+//         //key is the week datetime
+//         type: Map,
+//         of: Number
+//     },
 
-    Team_Member: 
-    {
-        //{0:uuid1, 1:uuid2}
-        type: Map,
-        of: {
-            type: Schema.Types.ObjectId, 
-            ref:'PersonalExercise'
-        }
-    },
+//     Team_Member: 
+//     {
+//         //{0:uuid1, 1:uuid2}
+//         type: Map,
+//         of: {
+//             type: Schema.Types.ObjectId, 
+//             ref:'PersonalExercise'
+//         }
+//     },
 
-    Team_Daily_Step_Lift: {type:Number, required: true},
-    Team_Daily_Mile_Lift: {type:Number, required: true},
-    Team_Weekly_Step_Lift:
-    {type:[
-    {
-        type:Number,
-        maxlength: 7,
-    }]},
-    Team_Weekly_Mile_Lift:
-    {type:[
-    {
-        type:Number,
-        maxlength: 7,
-    }]},
-    Daily_Team_Ranking: {type:Number, required: true},
-    Weekly_Team_Ranking: {type:[
-    {
-        type:Number,
-        maxlength: 7,
-    }],
-    required: true
-    },
+//     Team_Daily_Step_Lift: {type:Number, required: true},
+//     Team_Daily_Mile_Lift: {type:Number, required: true},
+//     Team_Weekly_Step_Lift:
+//     {type:[
+//     {
+//         type:Number,
+//         maxlength: 7,
+//     }]},
+//     Team_Weekly_Mile_Lift:
+//     {type:[
+//     {
+//         type:Number,
+//         maxlength: 7,
+//     }]},
+//     Daily_Team_Ranking: {type:Number, required: true},
+//     Weekly_Team_Ranking: {type:[
+//     {
+//         type:Number,
+//         maxlength: 7,
+//     }],
+//     required: true
+//     },
 
-});
+// });
 
 const Users = mongoose.model('Users', userSchema);
-const Teams = mongoose.model('Teams', teamSchema);
-const mySchemas = {'Users':Users, 'Teams':Teams};
-
+// const Teams = mongoose.model('Teams', teamSchema);
+// const mySchemas = {'Users':Users, 'Teams':Teams};
+const mySchemas = {'Users':Users};
 module.exports = mySchemas;
