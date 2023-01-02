@@ -220,12 +220,12 @@ const PersonalExerciseSchema = new Schema({
     },
 
     Individual_Mile: {
-        Daily_Mile_Goal: {type: mongoose.Schema.Types.ObjectId, ref:'Users', required: true},
+        Daily_Mile_Goal: {type:Number, required: true},
         Daily_Mile_Fitbit: {type:Number},
         Daily_Mile_Self_Report: {type:Number},
         Daily_Mile_Mix: {type:Number},
         Daily_Incomplete_Mile: {type:Number},
-        Weekly_Mile_Goal: {type: mongoose.Schema.Types.ObjectId, ref:'Users', required: true},
+        Weekly_Mile_Goal: {type:Number, required: true},
         Weekly_Mile_Fitbit_Total: {type:Number},
         Weekly_Mile_Self_Report_Total: {type:Number},
         Weekly_Mile_Mix_Total: {type:Number},
@@ -274,12 +274,12 @@ const PersonalExerciseSchema = new Schema({
     },
 
     Individual_Carloies: {
-        Daily_Carloies_Goal: {type: mongoose.Schema.Types.ObjectId, ref:'Users', required: true},
+        Daily_Carloies_Goal: {type:Number, required: true},
         Daily_Carloies_Fitbit: {type:Number},
         Daily_Carloies_Self_Report: {type:Number},
         Daily_Carloies_Mix: {type:Number},
         Daily_Incomplete_Carloies: {type:Number},
-        Weekly_Carloies_Goal: {type: mongoose.Schema.Types.ObjectId, ref:'Users', required: true},
+        Weekly_Carloies_Goal: {type:Number, required: true},
         Weekly_Carloies_Fitbit_Total: {type:Number},
         Weekly_Carloies_Self_Report_Total: {type:Number},
         Weekly_Carloies_Mix_Total: {type:Number},
@@ -328,7 +328,7 @@ const PersonalExerciseSchema = new Schema({
     },
 
     Individual_FV: {
-        FV_Goal: {type: mongoose.Schema.Types.ObjectId, ref:'Users', required: true},
+        FV_Goal: {type:Number, required: true},
         Daily_FV_Report: {type:Number},
         Weekly_FV_Report: {
             type:Map,
@@ -337,8 +337,8 @@ const PersonalExerciseSchema = new Schema({
     },
     
     Individual_Rankings: {
-        Daily_Step_Lift: {type:Number, required: true},
-        Daily_Mile_Lift: {type:Number, required: true},
+        Daily_Step_Lift: {type:Number},
+        Daily_Mile_Lift: {type:Number},
         Weekly_Step_Lift: {type:[
             {
                 type:Number,
@@ -359,13 +359,12 @@ const PersonalExerciseSchema = new Schema({
             type:Map,
             of: Number
         },
-        Daily_Team_Ranking: {type:Number, required: true},
+        Daily_Team_Ranking: {type:Number},
         Weekly_Team_Ranking: {type:[
             {
                 type:Number,
             }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7'],
-            required: true
+            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
             },
         Program_Team_Ranking: {
             type:Map,
