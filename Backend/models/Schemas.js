@@ -23,6 +23,9 @@ const userSchema = new Schema({
     },   
     Device: {type:String, enum: ["Fitbit", "Mix", "Self-report"], required: true},
     Last_Sync_Time: {type:Date, default: Date.now},
+    Today: {type:Date},
+    StartofWeek: {type:Date},
+    EndofWeek:  {type:Date},
     Fitbit_Access_Token: {type:String, unique: true},
     Team_Id: {type:Schema.Types.ObjectId, ref:'Teams'},
     Goal: {
@@ -38,8 +41,9 @@ const userSchema = new Schema({
     Exercise_Profile: {
         type: mongoose.Schema.Types.ObjectId, ref:'PersonalExercise', 
     },
-
-
+    Self_Report_Profile: {
+        type: mongoose.Schema.Types.ObjectId, ref:'SelfReport', 
+    },
 
 });
 
@@ -375,7 +379,11 @@ const PersonalExerciseSchema = new Schema({
 
 
 const SelfReportActivitySchema = new Schema({
-    Activty_Date: {type:Date, default: Date.now},
+    User: {
+        type: mongoose.Schema.Types.ObjectId, ref:'Users', 
+    },
+
+    Activty_Date: {type:Date},
     Activity_Name: {type:String},
     Activity_Description: {type:String},
     Activity_Time_Hours: {type:Number},
@@ -386,8 +394,8 @@ const SelfReportActivitySchema = new Schema({
 });
 
 const SelfReportSchema = new Schema({
-    Self_Report_Activity_Id: {
-        type: mongoose.Schema.Types.ObjectId, ref:'SelfReportActivity', 
+    User: {
+        type: mongoose.Schema.Types.ObjectId, ref:'Users', 
     },
 
     Daily_Activity: {type:[
@@ -400,7 +408,6 @@ const SelfReportSchema = new Schema({
         {
             type: mongoose.Schema.Types.ObjectId, ref:'SelfReportActivity', 
         }],
-        validate: [arrayLimit, '{PATH} exceeds the limit of 7']
     },
 
     Program_Activity: {type:[

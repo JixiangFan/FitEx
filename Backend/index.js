@@ -1,7 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routesHandler = require('./routes/handler.js');
+
 const registerHandler = require('./routes/register.js');
+const dashboardroutesHandler = require('./routes/dashboardroutesHandler.js');
 const mongoose = require('mongoose');
 require('dotenv/config')
 
@@ -12,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/', routesHandler);
 app.use('/register', registerHandler);
+app.use('/Dashboard', dashboardroutesHandler);
 
 const PORT = process.env.PORT || 5000;
 
