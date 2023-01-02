@@ -35,6 +35,12 @@ const userSchema = new Schema({
     },
     User_Type: {type:String, enum: ["Member", "Leader", "Agent", "Admin"], required: true},
     Unit_Prefernece: {type:String, enum: ["Step", "Mile", "Exercise Time", "Calorie"]},
+    Exercise_Profile: {
+        type: mongoose.Schema.Types.ObjectId, ref:'PersonalExercise', 
+    },
+
+
+
 });
 
 const teamSchema = new Schema({
@@ -111,7 +117,7 @@ const teamSchema = new Schema({
         type: Map,
         of: {
             type: mongoose.Schema.Types.ObjectId, 
-            ref:'PersonalExercise'
+            ref:'Users'
         }
     },
 
@@ -155,14 +161,17 @@ const teamSchema = new Schema({
 });
 
 const PersonalExerciseSchema = new Schema({
+    User: {
+        type: mongoose.Schema.Types.ObjectId, ref:'Users', 
+    },
 
     Individual_Step: {
-        Daily_Step_Goal: {type: mongoose.Schema.Types.ObjectId, ref:'Users', required: true},
+        Daily_Step_Goal: {type:Number, required: true},
         Daily_Step_Fitbit: {type:Number},
         Daily_Step_Self_Report: {type:Number},
         Daily_Step_Mix: {type:Number},
         Daily_Incomplete_Step: {type:Number},
-        Weekly_Step_Goal: {type: mongoose.Schema.Types.ObjectId, ref:'Users', required: true},
+        Weekly_Step_Goal: {type:Number, required: true},
         Weekly_Step_Fitbit_Total: {type:Number},
         Weekly_Step_Self_Report_Total: {type:Number},
         Weekly_Step_Mix_Total: {type:Number},
@@ -368,8 +377,65 @@ const PersonalExerciseSchema = new Schema({
 
 const SelfReportActivitySchema = new Schema({
     Activty_Date: {type:Date, default: Date.now},
+    Activity_Name: {type:String},
+    Activity_Description: {type:String},
+    Activity_Time_Hours: {type:Number},
+    Activity_Time_Minutes: {type:Number},
+    Activity_Time_Minutes_Total: {type:Number},
+    Activity_Miles: {type:Number},
+    Activity_Steps: {type:Number},
+});
+
+const SelfReportSchema = new Schema({
+    Self_Report_Activity_Id: {
+        type: mongoose.Schema.Types.ObjectId, ref:'SelfReportActivity', 
+    },
+
+    Daily_Activity: {type:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref:'SelfReportActivity', 
+        }],
+    },
+
+    Weekly_Activity:{type:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref:'SelfReportActivity', 
+        }],
+        validate: [arrayLimit, '{PATH} exceeds the limit of 7']
+    },
+
+    Program_Activity: {type:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref:'SelfReportActivity', 
+        }],
+    },
+});
+
+const RankingSchema  = new Schema({
+    
+    Daily_Top10_Individual:{type:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref:'Users', 
+        }], 
+    },
+    Daily_Top10_Team:{type:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref:'Teams', 
+        }], 
+    },
+    Weekly_Top10_Individual:{type:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref:'Users', 
+        }], 
+    },
+    Weekly_Top10_Team:{type:[
+        {
+            type: mongoose.Schema.Types.ObjectId, ref:'Teams', 
+        }], 
+    },
 
 });
+
 
 function arrayLimit(val) {
   return val.length <= 7;
@@ -379,6 +445,8 @@ const Users = mongoose.model('Users', userSchema,'Users');
 const Teams = mongoose.model('Teams', teamSchema,'Teams');
 const PersonalExercise = mongoose.model('PersonalExercise', PersonalExerciseSchema,'PersonalExercise');
 const SelfReportActivity = mongoose.model('SelfReportActivity', SelfReportActivitySchema,'SelfReportActivity');
+const SelfReport = mongoose.model('SelfReport', SelfReportSchema,'SelfReport');
+const Ranking = mongoose.model('Ranking', RankingSchema,'Ranking');
 
-const mySchemas = {'Users':Users, 'Teams':Teams, 'PersonalExercise':PersonalExercise, 'SelfReportActivity':SelfReportActivity,};
+const mySchemas = {'Users':Users, 'Teams':Teams, 'PersonalExercise':PersonalExercise, 'SelfReportActivity':SelfReportActivity, 'SelfReport':SelfReport , 'Ranking':Ranking};
 module.exports = mySchemas;
