@@ -4,7 +4,9 @@ const { Users, Teams } = require('../models/Schemas.js');
 var router = express.Router();
 const Schemas = require('../models/Schemas.js');
 
-
+router.get('/test', async (req, res) => {
+    res.send("good Test")
+})
 
 
 
