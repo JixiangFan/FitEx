@@ -57,18 +57,21 @@ router.post('/AddUserWithoutTeam', async (req, res) => {
             if (err) { res.end(err); console.log(err) }
             const PersonalExerciseSchema = {
                 User: newUserResult.id,
+                //set every thing to 0 for update
                 Individual_Step: {
+                    Daily_Incomplete_Step: req.body.Daily_Step_Goal,
                     Daily_Step_Goal: req.body.Daily_Step_Goal,
                     Weekly_Step_Goal: req.body.Weekly_Step_Goal,
                 },
                 Individual_Mile: {
+                    Daily_Incomplete_Mile: req.body.Daily_Mile_Goal,
                     Daily_Mile_Goal: req.body.Daily_Mile_Goal,
                     Weekly_Mile_Goal: req.body.Weekly_Mile_Goal,
                 },
 
                 Individual_Carloies: {
                     Daily_Carloies_Goal: req.body.Daily_Carloies_Goal,
-
+                    Daily_Incomplete_Carloies: req.body.Daily_Carloies_Goal,
                     Weekly_Carloies_Goal: req.body.Weekly_Carloies_Goal,
                 },
 
@@ -170,18 +173,21 @@ router.post('/AddUserWithTeam', async (req, res) => {
             }
             const PersonalExerciseSchema = {
                 User: newUserResult.id,
+                
                 Individual_Step: {
+                    Daily_Incomplete_Step: req.body.Daily_Step_Goal,
                     Daily_Step_Goal: req.body.Daily_Step_Goal,
                     Weekly_Step_Goal: req.body.Weekly_Step_Goal,
                 },
                 Individual_Mile: {
+                    Daily_Incomplete_Mile: req.body.Daily_Mile_Goal,
                     Daily_Mile_Goal: req.body.Daily_Mile_Goal,
                     Weekly_Mile_Goal: req.body.Weekly_Mile_Goal,
                 },
 
                 Individual_Carloies: {
                     Daily_Carloies_Goal: req.body.Daily_Carloies_Goal,
-
+                    Daily_Incomplete_Carloies: req.body.Daily_Carloies_Goal,
                     Weekly_Carloies_Goal: req.body.Weekly_Carloies_Goal,
                 },
 
