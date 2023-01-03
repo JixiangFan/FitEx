@@ -117,12 +117,12 @@ const teamSchema = new Schema({
 
     Team_Member: 
     {
-        //{0:uuid1, 1:uuid2}
-        type: Map,
-        of: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref:'Users'
-        }
+        type:[
+            {
+                type: mongoose.Schema.Types.ObjectId, 
+                ref:'Users'
+            }]
+       
     },
 
     Team_Rankings: {

@@ -1,8 +1,12 @@
 var express = require('express');
-const { Users, Teams } = require('../models/Schemas.js');
+const { Users, Teams,SelfReport } = require('../models/Schemas.js');
 
 var router = express.Router();
 const Schemas = require('../models/Schemas.js');
+
+router.get('/test', async (req, res) => {
+    res.send("good Test")
+})
 
 router.get('/Navbar/:UID', async (req, res) => {
     Users.findById(req.params.UID)
@@ -12,17 +16,22 @@ router.get('/Navbar/:UID', async (req, res) => {
         });
 })
 
-router.get('/Daily_Step/:UID', async (req, res) => {
+router.get('/DailyStep/:UID', async (req, res) => {
     Users.findById(req.params.UID)
-        .select('Today Daily_Step_Goal Daily_Step_Fitbit Daily_Step_Self_Report Daily_Step_Mix Daily_Incomplete_Step')
+    .select('Today Goal.Daily_Mile_Goal Self_Report_Profile')
         .exec(function (err, txs) {
-            res.send(txs)
-        });
+            SelfReport.findById(txs.Self_Report_Profile)
+                .select('test')
+                .exec(function (err, txs) {
+                    res.send(txs)
+                })
+    });
+     
 })
 
 router.get('/Daily_Miles/:UID', async (req, res) => {
     Users.findById(req.params.UID)
-        .select('Today Daily_Mile_Goal Daily_Mile_Fitbit Daily_Mile_Self_Report Daily_Mile_Mix Daily_Incomplete_Mile')
+        .select('Today Goal.Daily_Mile_Goal Daily_Mile_Fitbit Daily_Mile_Self_Report Daily_Mile_Mix Daily_Incomplete_Mile')
         .exec(function (err, txs) {
             res.send(txs)
         });
