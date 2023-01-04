@@ -32,33 +32,77 @@ router.post('/newSelfReportActivity', async (req, res) => {
         {
             const filter = { User: req.body.userId };
             const update = { $push: { Daily_Activity: newActivityResult.id } };
-            userUpdate = await SelfReport.updateOne(filter, update,{ upsert : true });
-            console.log(`Updated ${userUpdate.modifiedCount} documents in users collections`);
+            selfReportUpdate = await SelfReport.updateOne(filter, update, { upsert: true });
+            //console.log(`Updated ${selfReportUpdate.modifiedCount} documents in users collections`);
             const filter2 = { User: req.body.userId };
             const update2 = {
                 $inc: {
-                    Daily_Step_Self_Report: req.body.Activity_Steps,
-                    Daily_Step_Mix: req.body.Activity_Steps,
-                    Daily_Incomplete_Step: -(req.body.Activity_Steps),
-                    Daily_Mile_Self_Report: req.body.Activity_Steps,
-                    Daily_Mile_Mix: req.body.Activity_Steps,
-                    Daily_Incomplete_Mile: -(req.body.Activity_Steps),
-                  },
+                    'Individual_Step.Daily_Step_Self_Report': req.body.Activity_Steps,
+                    'Individual_Step.Daily_Step_Mix': req.body.Activity_Steps,
+                    'Individual_Step.Daily_Incomplete_Step': -(req.body.Activity_Steps),
+                    'Individual_Mile.Daily_Mile_Self_Report': req.body.Activity_Miles,
+                    'Individual_Mile.Daily_Mile_Mix': req.body.Activity_Miles,
+                    'Individual_Mile.Daily_Incomplete_Mile': -(req.body.Activity_Miles),
+                },
             };
-            commentUpdate = await PersonalExercise.updateOne(filter2, update2,{ upsert : true },function (err, docs) {
-                if (err)
-                {
-                    console.log(err)
-                    res.end('fail to update leader profile' + err)
-                } else
-                {
-                    console.log(docs)
-                }  
-            }).clone();;
-            console.log(`Updated ${commentUpdate.modifiedCount} documents in comments collections`);
+            personalExerciseUpdate = await PersonalExercise.updateOne(filter2, update2, { upsert: true }).clone();
+            //console.log(`Updated ${personalExerciseUpdate.modifiedCount} documents in comments collections`);
+            const filter3 = { Team_Member: req.body.userId };
+            const update3 = {
+                $inc: {
+                    'Team_Exercise_Data.Team_Daily_Steps': req.body.Activity_Steps,
+                    'Team_Exercise_Data.Team_Weekly_Steps_Total': req.body.Activity_Steps,
+                    'Team_Exercise_Data.Team_Daily_Miles': req.body.Activity_Miles,
+                    'Team_Exercise_Data.Team_Weekly_Miles_Total': req.body.Activity_Miles,
+                },
+
+            }
+
+            teamUpdate = await Teams.updateOne(filter3, update3, { upsert: true }).clone();
+            console.log(`Updated ${teamUpdate.modifiedCount} documents in comments collections`);
+
+
+
             res.end("success")
         }
     })
 })
+
+
+router.get('/dailyUpdate', async (req, res) => {
+    const d = new Date();
+    let day = d.getDay() - 1
+    //update team record
+    Teams.find({}).exec((err, doc) => {
+        if (err) { console.log(err) }
+        doc.forEach((team) => {
+            console.log(team.id)
+            console.log(team.Team_Exercise_Data.Team_Weekly_Steps_Record[day])
+            team.Team_Exercise_Data.Team_Weekly_Steps_Record[day] = team.Team_Exercise_Data.Team_Daily_Steps
+            
+            
+        })
+    })
+
+   
+    // await Teams.updateMany({}, {
+    //     $set: {
+    //         'Team_Exercise_Data.Team_Daily_Steps': req.body.Activity_Steps,
+    //         'Team_Exercise_Data.Team_Weekly_Steps_Total': req.body.Activity_Steps,
+    //         'Team_Exercise_Data.Team_Daily_Miles': req.body.Activity_Miles,
+    //         'Team_Exercise_Data.Team_Weekly_Miles_Total': req.body.Activity_Miles,
+    //     },
+
+    // }, { upsert: true }).clone();
+    // console.log(`Updated ${TeamUpdate.modifiedCount} documents in comments collections`);
+    res.end("success")
+})
+
+
+router.get('/weeklyUpdate', async (req, res) => {
+    res.send("good Test")
+})
+
+
 
 module.exports = router;
