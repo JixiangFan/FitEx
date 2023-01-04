@@ -17,43 +17,6 @@ router.get('/profile/getUser/:UID', async (req, res) => {
         })
 })
 
-
-router.get('/Dashboard/Navbar/:UID', async (req, res) => {
-    Users.findById(req.params.UID)
-        .select('User_Name Avater')
-        .exec(function (err, txs) {
-            res.send(txs)
-        });
-})
-
-
-router.get('/Dashboard/Daily_Step/:UID', async (req, res) => {
-    Users.findById(req.params.UID)
-        .select('Date Daily_Step_Goal Daily_Step_Fitbit Daily_Step_Self_Report Daily_Step_Mix Daily_Incomplete_Step')
-        .exec(function (err, txs) {
-            res.send(txs)
-        });
-})
-
-router.get('/Dashboard/Daily_Miles/:UID', async (req, res) => {
-    Users.findById(req.params.UID)
-        .select('Date Daily_Mile_Goal Daily_Mile_Fitbit Daily_Mile_Self_Report Daily_Mile_Mix Daily_Incomplete_Mile')
-        .exec(function (err, txs) {
-            res.send(txs)
-        });
-})
-
-
-router.get('/Dashboard/FV/:UID', async (req, res) => {
-    Users.findById(req.params.UID)
-        .select('FV_Goal Daily_FV_Report')
-        .exec(function (err, txs) {
-            res.send(txs)
-        });
-})
-
-
-
 router.get('/', function (req, res, next) {
     res.render('hey this worked');
 });
