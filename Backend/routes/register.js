@@ -61,12 +61,62 @@ router.post('/AddUserWithoutTeam', async (req, res) => {
                 Individual_Step: {
                     Daily_Incomplete_Step: req.body.Daily_Step_Goal,
                     Daily_Step_Goal: req.body.Daily_Step_Goal,
+                    Daily_Step_Fitbit: 0,
+                    Daily_Step_Self_Report: 0,
+                    Daily_Step_Mix: 0,
+                    Weekly_Step_Fitbit_Total: 0,
+                    Weekly_Step_Self_Report_Total: 0,
+                    Weekly_Step_Mix_Total: 0,
                     Weekly_Step_Goal: req.body.Weekly_Step_Goal,
+                    Weekly_Step_Fitbit_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Step_Self_Report_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Step_Mix_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                    Weekly_Incomplete_Step: [0, 0, 0, 0, 0, 0, 0],
+
+                    Program_Step_Fitbit: {
+                        0: 0
+                    },
+
+                    Program_Step_Mix: {
+                        0: 0
+                    },
+
+                    Annual_Step: {
+                        0: 0
+                    },
+
+                    Total_Step: 0,
                 },
                 Individual_Mile: {
                     Daily_Incomplete_Mile: req.body.Daily_Mile_Goal,
                     Daily_Mile_Goal: req.body.Daily_Mile_Goal,
                     Weekly_Mile_Goal: req.body.Weekly_Mile_Goal,
+                    Daily_Mile_Fitbit: 0,
+                    Daily_Mile_Self_Report: 0,
+                    Daily_Mile_Mix: 0,
+                    Weekly_Mile_Fitbit_Total: 0,
+                    Weekly_Mile_Self_Report_Total: 0,
+                    Weekly_Mile_Mix_Total: 0,
+                    Weekly_Mile_Fitbit_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Mile_Self_Report_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Mile_Mix_Record: [0, 0, 0, 0, 0, 0, 0],
+            
+                    Weekly_Incomplete_Mile: [0, 0, 0, 0, 0, 0, 0],
+            
+                    Program_Mile_Fitbit: {
+                        0: 0
+                    },
+            
+                    Program_Mile_Mix: {
+                        0: 0
+                    },
+            
+                    Annual_Mile: {
+                        0: 0
+                    },
+            
+                    Total_Mile: 0,
                 },
 
                 Individual_Carloies: {
@@ -76,7 +126,28 @@ router.post('/AddUserWithoutTeam', async (req, res) => {
                 },
 
                 Individual_FV: {
-                    FV_Goal: req.body.FV_Goal
+                    FV_Goal: req.body.FV_Goal,
+                    Daily_FV_Report: 0,
+                    Weekly_FV_Report: {
+                        0: 0
+                    },
+                },
+                Individual_Rankings: {
+                    Daily_Step_Lift: 0,
+                    Daily_Mile_Lift: 0,
+                    Weekly_Step_Lift: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Mile_Lift: [0, 0, 0, 0, 0, 0, 0],
+                    Program_Step_Lift: {
+                        0: 0
+                    },
+                    Program_Mile_Lift: {
+                        0: 0
+                    },
+                    Daily_Team_Ranking: 0,
+                    Weekly_Team_Ranking: [0, 0, 0, 0, 0, 0, 0],
+                    Program_Team_Ranking: {
+                        0: 0
+                    },
                 },
 
             };
@@ -173,16 +244,66 @@ router.post('/AddUserWithTeam', async (req, res) => {
             }
             const PersonalExerciseSchema = {
                 User: newUserResult.id,
-                
+                //set every thing to 0 for update
                 Individual_Step: {
                     Daily_Incomplete_Step: req.body.Daily_Step_Goal,
                     Daily_Step_Goal: req.body.Daily_Step_Goal,
+                    Daily_Step_Fitbit: 0,
+                    Daily_Step_Self_Report: 0,
+                    Daily_Step_Mix: 0,
+                    Weekly_Step_Fitbit_Total: 0,
+                    Weekly_Step_Self_Report_Total: 0,
+                    Weekly_Step_Mix_Total: 0,
                     Weekly_Step_Goal: req.body.Weekly_Step_Goal,
+                    Weekly_Step_Fitbit_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Step_Self_Report_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Step_Mix_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                    Weekly_Incomplete_Step: [0, 0, 0, 0, 0, 0, 0],
+
+                    Program_Step_Fitbit: {
+                        0: 0
+                    },
+
+                    Program_Step_Mix: {
+                        0: 0
+                    },
+
+                    Annual_Step: {
+                        0: 0
+                    },
+
+                    Total_Step: 0,
                 },
                 Individual_Mile: {
                     Daily_Incomplete_Mile: req.body.Daily_Mile_Goal,
                     Daily_Mile_Goal: req.body.Daily_Mile_Goal,
                     Weekly_Mile_Goal: req.body.Weekly_Mile_Goal,
+                    Daily_Mile_Fitbit: 0,
+                    Daily_Mile_Self_Report: 0,
+                    Daily_Mile_Mix: 0,
+                    Weekly_Mile_Fitbit_Total: 0,
+                    Weekly_Mile_Self_Report_Total: 0,
+                    Weekly_Mile_Mix_Total: 0,
+                    Weekly_Mile_Fitbit_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Mile_Self_Report_Record: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Mile_Mix_Record: [0, 0, 0, 0, 0, 0, 0],
+            
+                    Weekly_Incomplete_Mile: [0, 0, 0, 0, 0, 0, 0],
+            
+                    Program_Mile_Fitbit: {
+                        0: 0
+                    },
+            
+                    Program_Mile_Mix: {
+                        0: 0
+                    },
+            
+                    Annual_Mile: {
+                        0: 0
+                    },
+            
+                    Total_Mile: 0,
                 },
 
                 Individual_Carloies: {
@@ -192,7 +313,28 @@ router.post('/AddUserWithTeam', async (req, res) => {
                 },
 
                 Individual_FV: {
-                    FV_Goal: req.body.FV_Goal
+                    FV_Goal: req.body.FV_Goal,
+                    Daily_FV_Report: 0,
+                    Weekly_FV_Report: {
+                        0: 0
+                    },
+                },
+                Individual_Rankings: {
+                    Daily_Step_Lift: 0,
+                    Daily_Mile_Lift: 0,
+                    Weekly_Step_Lift: [0, 0, 0, 0, 0, 0, 0],
+                    Weekly_Mile_Lift: [0, 0, 0, 0, 0, 0, 0],
+                    Program_Step_Lift: {
+                        0: 0
+                    },
+                    Program_Mile_Lift: {
+                        0: 0
+                    },
+                    Daily_Team_Ranking: 0,
+                    Weekly_Team_Ranking: [0, 0, 0, 0, 0, 0, 0],
+                    Program_Team_Ranking: {
+                        0: 0
+                    },
                 },
 
             };
@@ -200,6 +342,7 @@ router.post('/AddUserWithTeam', async (req, res) => {
             try
             {
                 await newPersonalExerciseSchema.save(async (err, Result) => {
+                    if(err){console.log(err)}
                     const SelfReport = {
                         User: newUserResult.id
                     }
