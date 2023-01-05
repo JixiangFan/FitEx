@@ -430,7 +430,7 @@ router.post('/CreateTeam', async (req, res) => {
 
 
         Team_Member:
-            [req.body.userID],
+            [req.body.userID,],
 
         Team_Rankings: {
             Team_Daily_Step_Lift: 0,
