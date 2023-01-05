@@ -8,14 +8,19 @@ router.get('/test', async (req, res) => {
     res.send("good Test")
 })
 
-
-
-router.get('/profile/getUser/:UID', async (req, res) => {
+router.get('/profile/:UID', async (req, res) => {
     Users.findById(req.params.UID)
         .then((result) => {
             res.send(result)
         })
 })
+
+router.get("/teams", async (req, res) => {
+  Teams.find().exec(function (err, txs) {
+    //console.log(txs);
+    res.json(txs);
+  });
+});
 
 router.get('/', function (req, res, next) {
     res.render('hey this worked');
