@@ -165,216 +165,247 @@ const teamSchema = new Schema({
 });
 
 const PersonalExerciseSchema = new Schema({
-    User: {
-        type: mongoose.Schema.Types.ObjectId, ref:'Users', 
+  User: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Users",
+  },
+
+  Individual_Step: {
+    Daily_Step_Goal: { type: Number, required: true },
+    Daily_Step_Fitbit: { type: Number },
+    Daily_Step_Self_Report: { type: Number },
+    Daily_Step_Mix: { type: Number },
+    Daily_Incomplete_Step: { type: Number },
+    Weekly_Step_Goal: { type: Number, required: true },
+    Weekly_Step_Fitbit_Total: { type: Number },
+    Weekly_Step_Self_Report_Total: { type: Number },
+    Weekly_Step_Mix_Total: { type: Number },
+    Weekly_Step_Fitbit_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Weekly_Step_Self_Report_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Weekly_Step_Mix_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
     },
 
-    Individual_Step: {
-        Daily_Step_Goal: {type:Number, required: true},
-        Daily_Step_Fitbit: {type:Number},
-        Daily_Step_Self_Report: {type:Number},
-        Daily_Step_Mix: {type:Number},
-        Daily_Incomplete_Step: {type:Number},
-        Weekly_Step_Goal: {type:Number, required: true},
-        Weekly_Step_Fitbit_Total: {type:Number},
-        Weekly_Step_Self_Report_Total: {type:Number},
-        Weekly_Step_Mix_Total: {type:Number},
-        Weekly_Step_Fitbit_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
+    Weekly_Incomplete_Step: {
+      type: [
+        {
+          type: Number,
         },
-        Weekly_Step_Self_Report_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-        Weekly_Step_Mix_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-
-        Weekly_Incomplete_Step: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-
-        Program_Step_Fitbit: {
-            type:Map,
-            of: Number
-        },
-
-        Program_Step_Mix: {
-            type:Map,
-            of: Number
-        },
-
-        Annual_Step: {
-            type:Map,
-            of: Number
-        },
-
-        Total_Step: {type:Number},
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
     },
 
-    Individual_Mile: {
-        Daily_Mile_Goal: {type:Number, required: true},
-        Daily_Mile_Fitbit: {type:Number},
-        Daily_Mile_Self_Report: {type:Number},
-        Daily_Mile_Mix: {type:Number},
-        Daily_Incomplete_Mile: {type:Number},
-        Weekly_Mile_Goal: {type:Number, required: true},
-        Weekly_Mile_Fitbit_Total: {type:Number},
-        Weekly_Mile_Self_Report_Total: {type:Number},
-        Weekly_Mile_Mix_Total: {type:Number},
-        Weekly_Mile_Fitbit_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-        Weekly_Mile_Self_Report_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-        Weekly_Mile_Mix_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-
-        Weekly_Incomplete_Mile: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-
-        Program_Mile_Fitbit: {
-            type:Map,
-            of: Number
-        },
-
-        Program_Mile_Mix: {
-            type:Map,
-            of: Number
-        },
-
-        Annual_Mile: {
-            type:Map,
-            of: Number
-        },
-
-        Total_Mile: {type:Number},
+    Program_Step_Fitbit: {
+      type: Map,
+      of: Number,
     },
 
-    Individual_Carloies: {
-        Daily_Carloies_Goal: {type:Number, required: true},
-        Daily_Carloies_Fitbit: {type:Number},
-        Daily_Carloies_Self_Report: {type:Number},
-        Daily_Carloies_Mix: {type:Number},
-        Daily_Incomplete_Carloies: {type:Number},
-        Weekly_Carloies_Goal: {type:Number, required: true},
-        Weekly_Carloies_Fitbit_Total: {type:Number},
-        Weekly_Carloies_Self_Report_Total: {type:Number},
-        Weekly_Carloies_Mix_Total: {type:Number},
-        Weekly_Carloies_Fitbit_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-        Weekly_Carloies_Self_Report_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-        Weekly_Carloies_Mix_Record: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-
-        Weekly_Incomplete_Carloies: {
-            type:[{
-            type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-        },
-
-        Program_Carloies_Fitbit: {
-            type:Map,
-            of: Number
-        },
-
-        Program_Carloies_Mix: {
-            type:Map,
-            of: Number
-        },
-
-        Annual_Carloies: {
-            type:Map,
-            of: Number
-        },
-
-        Total_Carloies: {type:Number},
+    Program_Step_Mix: {
+      type: Map,
+      of: Number,
     },
 
-    Individual_FV: {
-        FV_Goal: {type:Number, required: true},
-        Daily_FV_Report: {type:Number},
-        Weekly_FV_Report: {
-            type:Map,
-            of: Number
-        }, 
+    Annual_Step: {
+      type: Map,
+      of: Number,
     },
-    
-    Individual_Rankings: {
-        Daily_Step_Lift: {type:Number},
-        Daily_Mile_Lift: {type:Number},
-        Weekly_Step_Lift: {type:[
-            {
-                type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-            },
-        Weekly_Mile_Lift: {type:[
-            {
-                type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-            },
-        Program_Step_Lift: {
-            type:Map,
-            of: Number
+
+    Total_Step: { type: Number },
+  },
+
+  Individual_Mile: {
+    Daily_Mile_Goal: { type: Number, required: true },
+    Daily_Mile_Fitbit: { type: Number },
+    Daily_Mile_Self_Report: { type: Number },
+    Daily_Mile_Mix: { type: Number },
+    Daily_Incomplete_Mile: { type: Number },
+    Weekly_Mile_Goal: { type: Number, required: true },
+    Weekly_Mile_Fitbit_Total: { type: Number },
+    Weekly_Mile_Self_Report_Total: { type: Number },
+    Weekly_Mile_Mix_Total: { type: Number },
+    Weekly_Mile_Fitbit_Record: {
+      type: [
+        {
+          type: Number,
         },
-        Program_Mile_Lift: {
-            type:Map,
-            of: Number
-        },
-        Daily_Team_Ranking: {type:Number},
-        Weekly_Team_Ranking: {type:[
-            {
-                type:Number,
-            }],
-            validate: [arrayLimit, '{PATH} exceeds the limit of 7']
-            },
-        Program_Team_Ranking: {
-            type:Map,
-            of: Number
-        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
     },
+    Weekly_Mile_Self_Report_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Weekly_Mile_Mix_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+
+    Weekly_Incomplete_Mile: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+
+    Program_Mile_Fitbit: {
+      type: Map,
+      of: Number,
+    },
+
+    Program_Mile_Mix: {
+      type: Map,
+      of: Number,
+    },
+
+    Annual_Mile: {
+      type: Map,
+      of: Number,
+    },
+
+    Total_Mile: { type: Number },
+  },
+
+  Individual_Carloies: {
+    Daily_Carloies_Goal: { type: Number, required: true },
+    Daily_Carloies_Fitbit: { type: Number },
+    Daily_Carloies_Self_Report: { type: Number },
+    Daily_Carloies_Mix: { type: Number },
+    Daily_Incomplete_Carloies: { type: Number },
+    Weekly_Carloies_Goal: { type: Number, required: true },
+    Weekly_Carloies_Fitbit_Total: { type: Number },
+    Weekly_Carloies_Self_Report_Total: { type: Number },
+    Weekly_Carloies_Mix_Total: { type: Number },
+    Weekly_Carloies_Fitbit_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Weekly_Carloies_Self_Report_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Weekly_Carloies_Mix_Record: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+
+    Weekly_Incomplete_Carloies: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+
+    Program_Carloies_Fitbit: {
+      type: Map,
+      of: Number,
+    },
+
+    Program_Carloies_Mix: {
+      type: Map,
+      of: Number,
+    },
+
+    Annual_Carloies: {
+      type: Map,
+      of: Number,
+    },
+
+    Total_Carloies: { type: Number },
+  },
+
+  Individual_FV: {
+    FV_Goal: { type: Number, required: true },
+    Daily_FV_Report: { type: Number },
+    Weekly_FV_Report: {
+      type: Map,
+      of: Number,
+    },
+  },
+
+  Individual_Rankings: {
+    Daily_Step_Lift: { type: Number },
+    Daily_Mile_Lift: { type: Number },
+    Weekly_Step_Lift: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Weekly_Mile_Lift: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Program_Step_Lift: {
+      type: Map,
+      of: Number,
+    },
+    Program_Mile_Lift: {
+      type: Map,
+      of: Number,
+    },
+    Daily_Individual_Ranking: { type: Number },
+    Weekly_Individual_Ranking: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Program_Individual_Ranking: {
+      type: Map,
+      of: Number,
+    },
+  },
 });
 
 
