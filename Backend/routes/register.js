@@ -148,6 +148,11 @@ router.post('/AddUserWithoutTeam', async (req, res) => {
                 Program_Individual_Ranking: {
                   0: 0,
                 },
+                Daily_InTeam_Ranking: 0,
+                Weekly_InTeam_Ranking: [0, 0, 0, 0, 0, 0, 0],
+                Program_InTeam_Ranking: {
+                  0: 0,
+                },
               },
             };
             const newPersonalExerciseSchema = new Schemas.PersonalExercise(PersonalExerciseSchema);
@@ -332,6 +337,11 @@ router.post('/AddUserWithTeam', async (req, res) => {
                 Daily_Individual_Ranking: 0,
                 Weekly_Individual_Ranking: [0, 0, 0, 0, 0, 0, 0],
                 Program_Individual_Ranking: {
+                  0: 0,
+                },
+                Daily_InTeam_Ranking: 0,
+                Weekly_InTeam_Ranking: [0, 0, 0, 0, 0, 0, 0],
+                Program_InTeam_Ranking: {
                   0: 0,
                 },
               },
