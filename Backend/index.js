@@ -5,6 +5,8 @@ const routesHandler = require('./routes/handler.js');
 const registerHandler = require('./routes/register.js');
 const exerciseHandler = require('./routes/exerciseUpdate.js');
 const dashboardroutesHandler = require('./routes/dashboardroutesHandler.js');
+const teamMemberHandler = require("./routes/teamMemberHandler.js");
+const leaderBoardHandler = require("./routes/leaderBoardHandler.js");
 const mongoose = require('mongoose');
 require('dotenv/config')
 
@@ -17,7 +19,8 @@ app.use('/', routesHandler);
 app.use('/register', registerHandler);
 app.use('/exerciseupdate', exerciseHandler);
 app.use('/Dashboard', dashboardroutesHandler);
-
+app.use("/TeamMember", teamMemberHandler);
+app.use("/LeaderBoard", leaderBoardHandler);
 const PORT = process.env.PORT || 5000;
 
 
