@@ -405,6 +405,19 @@ const PersonalExerciseSchema = new Schema({
       type: Map,
       of: Number,
     },
+    Daily_InTeam_Ranking: { type: Number },
+    Weekly_InTeam_Ranking: {
+      type: [
+        {
+          type: Number,
+        },
+      ],
+      validate: [arrayLimit, "{PATH} exceeds the limit of 7"],
+    },
+    Program_InTeam_Ranking: {
+      type: Map,
+      of: Number,
+    },
   },
 });
 
