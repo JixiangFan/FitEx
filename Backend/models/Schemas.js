@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const dateSchema = new Schema({
+    Today: {type:Date},
+    StartofWeek: {type:Date},
+    EndofWeek: { type: Date },
+    DayofWeek: { type: Number },
+    WeekCount: { type: Number },
 
+})
 const userSchema = new Schema({
     //_id: Schema.Types.ObjectId,
     Name: {
@@ -363,20 +370,19 @@ const PersonalExerciseSchema = new Schema({
             type:Map,
             of: Number
         },
-        Daily_Team_Ranking: {type:Number},
-        Weekly_Team_Ranking: {type:[
+        Daily_Individual_Ranking: {type:Number},
+        Weekly_Individual_Ranking: {type:[
             {
                 type:Number,
             }],
             validate: [arrayLimit, '{PATH} exceeds the limit of 7']
             },
-        Program_Team_Ranking: {
+        Program_Daily_Individual_Ranking: {
             type:Map,
             of: Number
         },
     },
 });
-
 
 const SelfReportActivitySchema = new Schema({
     User: {
@@ -447,6 +453,7 @@ function arrayLimit(val) {
   return val.length <= 7;
 }
 
+const ProgramDate = mongoose.model('ProgramDate', dateSchema,'ProgramDate')
 const Users = mongoose.model('Users', userSchema,'Users');
 const Teams = mongoose.model('Teams', teamSchema,'Teams');
 const PersonalExercise = mongoose.model('PersonalExercise', PersonalExerciseSchema,'PersonalExercise');
@@ -454,5 +461,5 @@ const SelfReportActivity = mongoose.model('SelfReportActivity', SelfReportActivi
 const SelfReport = mongoose.model('SelfReport', SelfReportSchema,'SelfReport');
 const Ranking = mongoose.model('Ranking', RankingSchema,'Ranking');
 
-const mySchemas = {'Users':Users, 'Teams':Teams, 'PersonalExercise':PersonalExercise, 'SelfReportActivity':SelfReportActivity, 'SelfReport':SelfReport , 'Ranking':Ranking};
+const mySchemas = {'Users':Users, 'Teams':Teams, 'PersonalExercise':PersonalExercise, 'SelfReportActivity':SelfReportActivity, 'SelfReport':SelfReport , 'Ranking':Ranking,'ProgramDate':ProgramDate};
 module.exports = mySchemas;
