@@ -214,7 +214,10 @@ router.get('/startOfDay', async (req, res) => {
             Today: dt,
             StartofWeek: getMonday(dt),
             EndofWeek: getSunday(dt),
-            DayofWeek: dt.getDay()
+            DayofWeek: dt.getDay(),
+        },
+        $inc: {
+            DayCount: 1
         }
     }).exec((err, doc) => {
         if (err) { console.log(err) }
