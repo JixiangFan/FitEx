@@ -4,6 +4,9 @@ const routesHandler = require('./routes/handler.js');
 
 const registerHandler = require('./routes/register.js');
 const exerciseHandler = require('./routes/exerciseUpdate.js');
+
+const teamrankHandler = require("./routes/teamrankUpdate.js");
+
 const dashboardroutesHandler = require('./routes/dashboardroutesHandler.js');
 const teamMemberHandler = require("./routes/teamMemberHandler.js");
 const leaderBoardHandler = require("./routes/leaderBoardHandler.js");
@@ -21,6 +24,9 @@ app.use('/exerciseupdate', exerciseHandler);
 app.use('/Dashboard', dashboardroutesHandler);
 app.use("/TeamMember", teamMemberHandler);
 app.use("/LeaderBoard", leaderBoardHandler);
+
+app.use("/teamrankupdate", teamrankHandler);
+
 const PORT = process.env.PORT || 5000;
 
 

@@ -133,32 +133,42 @@ router.post('/AddUserWithoutTeam', async (req, res) => {
                 },
               },
               Individual_Rankings: {
-                Daily_Step_Lift: 0,
-                Daily_Mile_Lift: 0,
-                Weekly_Step_Lift: [0, 0, 0, 0, 0, 0, 0],
-                Weekly_Mile_Lift: [0, 0, 0, 0, 0, 0, 0],
-                Program_Step_Lift: {
-                  0: 0,
-                },
-                Program_Mile_Lift: {
-                  0: 0,
-                },
                 Daily_Individual_Ranking: 0,
-                Weekly_Individual_Ranking: [0, 0, 0, 0, 0, 0, 0],
-                Program_Individual_Ranking: {
+                Weekly_Individual_Ranking: 0,
+                Individual_Daily_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                Individual_Weekly_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                Program_Individual_Daily_Ranking: {
                   0: 0,
                 },
+                Program_Individual_Weekly_Ranking: {
+                  0: 0,
+                },
+
                 Daily_InTeam_Ranking: 0,
-                Weekly_InTeam_Ranking: [0, 0, 0, 0, 0, 0, 0],
-                Program_InTeam_Ranking: {
+                Weekly_InTeam_Ranking: 0,
+                InTeam_Daily_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                InTeam_Weekly_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                Program_InTeam_Daily_Ranking: {
+                  0: 0,
+                },
+                Program_InTeam_Weekly_Ranking: {
                   0: 0,
                 },
               },
             };
+            //console.log(newUserResult.id)
             const newPersonalExerciseSchema = new Schemas.PersonalExercise(PersonalExerciseSchema);
             try
             {
                 await newPersonalExerciseSchema.save(async (err, Result) => {
+                  if (err) {
+                    res.end(err);
+                    console.log(err);
+                  }
                     const SelfReport = {
                         User: newUserResult.id
                     }
@@ -324,24 +334,29 @@ router.post('/AddUserWithTeam', async (req, res) => {
                 },
               },
               Individual_Rankings: {
-                Daily_Step_Lift: 0,
-                Daily_Mile_Lift: 0,
-                Weekly_Step_Lift: [0, 0, 0, 0, 0, 0, 0],
-                Weekly_Mile_Lift: [0, 0, 0, 0, 0, 0, 0],
-                Program_Step_Lift: {
-                  0: 0,
-                },
-                Program_Mile_Lift: {
-                  0: 0,
-                },
                 Daily_Individual_Ranking: 0,
-                Weekly_Individual_Ranking: [0, 0, 0, 0, 0, 0, 0],
-                Program_Individual_Ranking: {
+                Weekly_Individual_Ranking: 0,
+                Individual_Daily_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                Individual_Weekly_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                Program_Individual_Daily_Ranking: {
                   0: 0,
                 },
+                Program_Individual_Weekly_Ranking: {
+                  0: 0,
+                },
+
                 Daily_InTeam_Ranking: 0,
-                Weekly_InTeam_Ranking: [0, 0, 0, 0, 0, 0, 0],
-                Program_InTeam_Ranking: {
+                Weekly_InTeam_Ranking: 0,
+                InTeam_Daily_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                InTeam_Weekly_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+                Program_InTeam_Daily_Ranking: {
+                  0: 0,
+                },
+                Program_InTeam_Weekly_Ranking: {
                   0: 0,
                 },
               },
@@ -407,51 +422,52 @@ router.post('/AddUserWithTeam', async (req, res) => {
 router.post('/CreateTeam', async (req, res) => {
 
     const team = {
-        Team_Name: req.body.Team_Name,
+      Team_Name: req.body.Team_Name,
 
-        Team_Goals: {
-            Team_Daily_Step_Goal: req.body.Team_Daily_Step_Goal,
-            Team_Daily_Mile_Goal: req.body.Team_Daily_Mile_Goal,
-            Team_Weekly_Step_Goal: req.body.Team_Weekly_Step_Goal,
-            Team_Weekly_Mile_Goal: req.body.Team_Weekly_Mile_Goal,
+      Team_Goals: {
+        Team_Daily_Step_Goal: req.body.Team_Daily_Step_Goal,
+        Team_Daily_Mile_Goal: req.body.Team_Daily_Mile_Goal,
+        Team_Weekly_Step_Goal: req.body.Team_Weekly_Step_Goal,
+        Team_Weekly_Mile_Goal: req.body.Team_Weekly_Mile_Goal,
+      },
+
+      Team_Exercise_Data: {
+        Team_Daily_Steps: 0,
+        Team_Daily_Miles: 0,
+        Team_Daily_Carloies: 0,
+        Team_Weekly_Steps_Total: 0,
+        Team_Weekly_Miles_Total: 0,
+        Team_Weekly_Carloies_Total: 0,
+        Team_Weekly_Steps_Record: [0, 0, 0, 0, 0, 0, 0],
+
+        Team_Weekly_Mile_Record: [0, 0, 0, 0, 0, 0, 0],
+
+        Team_Weekly_Carloies_Record: [0, 0, 0, 0, 0, 0, 0],
+
+        Team_Program_Steps: { 0: 0 },
+
+        Team_Program_Miles: { 0: 0 },
+
+        Team_Program_Carloies: { 0: 0 },
+      },
+
+      Team_Member: [req.body.userID],
+
+      Team_Rankings: {
+        Daily_Team_Ranking: 0,
+        Weekly_Team_Ranking: 0,
+        Daily_Team_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+        Weekly_Team_Ranking_Record: [0, 0, 0, 0, 0, 0, 0],
+
+        Program_Daily_Team_Ranking: {
+          0: 0,
         },
-
-        Team_Exercise_Data: {
-            Team_Daily_Steps: 0,
-            Team_Daily_Miles: 0,
-            Team_Daily_Carloies: 0,
-            Team_Weekly_Steps_Total: 0,
-            Team_Weekly_Miles_Total: 0,
-            Team_Weekly_Carloies_Total: 0,
-            Team_Weekly_Steps_Record: [0, 0, 0, 0, 0, 0, 0],
-
-            Team_Weekly_Mile_Record: [0, 0, 0, 0, 0, 0, 0],
-
-            Team_Weekly_Carloies_Record: [0, 0, 0, 0, 0, 0, 0],
-
-            Team_Program_Steps: { 0: 0 },
-
-            Team_Program_Miles: { 0: 0 },
-
-            Team_Program_Carloies: { 0: 0 },
+        Program_Weekly_Team_Ranking: {
+          0: 0,
         },
-
-
-        Team_Member:
-            [req.body.userID,],
-
-        Team_Rankings: {
-            Team_Daily_Step_Lift: 0,
-            Team_Daily_Mile_Lift: 0,
-            Team_Weekly_Step_Lift: [0, 0, 0, 0, 0, 0, 0],
-            Team_Weekly_Mile_Lift: [0, 0, 0, 0, 0, 0, 0],
-            Team_Program_Mile_Lift: { 0: 0 },
-            Team_Program_Step_Lift: { 0: 0 },
-            Daily_Team_Ranking: 0,
-            Weekly_Team_Ranking: [0, 0, 0, 0, 0, 0, 0],
-            Program_Team_Ranking: { 0: 0 },
-        },
-    }
+      },
+    };
     const newTeam = new Schemas.Teams(team);
     try
     {
