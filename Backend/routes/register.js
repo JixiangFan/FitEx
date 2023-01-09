@@ -183,7 +183,7 @@ router.post('/AddUserWithoutTeam', async (req, res) => {
                                 }
                                 else
                                 {
-                                    res.end('new User created')
+                                    res.end(newUserResult.id)
                                 }
                             });
                     })
@@ -388,7 +388,7 @@ router.post('/AddUserWithTeam', async (req, res) => {
                                             }
                                             else
                                             {
-                                                res.end('new User created')
+                                                res.end(newUserResult.id)
                                             }
 
                                         })
@@ -482,7 +482,7 @@ router.post('/CreateTeam', async (req, res) => {
                     }
                     else
                     {
-                        res.end('success create new Team')
+                        res.end(newTeamResult.id)
                     }
                 });
         })
