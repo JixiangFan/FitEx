@@ -27,6 +27,38 @@ router.get('/', function (req, res, next) {
     res.render('hey this worked');
 });
 
+function getMonday(d) {
+    d = new Date(d);
+    var day = d.getDay(),
+        diff = d.getDate() - day + (day == 0 ? -6 : 1);
+    return new Date(d.setDate(diff));
+}
+function getSunday(d) {
+    d = new Date(d);
+    var day = d.getDay(),
+        diff = d.getDate() - day
+    return new Date(d.setDate(diff));
+}
+router.get('/startPogram', async (req, res) => {
+    var dt = new Date()
+    date = {
+        Today: dt,
+        StartofWeek: getMonday(dt),
+        EndofWeek: getSunday(dt),
+        DayofWeek: dt.getDay(),
+        WeekCount: 1,
+        DayCount: 1,
+    }
+    const newDate = new Schemas.ProgramDate(date);
+    await newDate
+        .save()
+        .then(
+            res.send("done")
+        )
+
+
+})
+
 router.get('/another/route', function (req, res, next) {
     res.json({ hello: 'world' });
 });
@@ -143,19 +175,6 @@ async function newExercise(userId) {
             teamUpdate = await Teams.updateOne(filter3, update3, { upsert: true }).clone();
             console.log(`Updated ${teamUpdate.modifiedCount} documents in comments collections`);
         }
-    })
-}
-
-function addExercise(userID) {
-    return axios.post("http://localhost:5000/exerciseupdate/newSelfReportActivity", {
-        userId: userID,
-        Activity_Name: "name",
-        Activity_Description: "description",
-        Activity_Time_Hours: 1,
-        Activity_Time_Minutes: 2,
-        Activity_Time_Minutes_Total: 3,
-        Activity_Miles: 10,
-        Activity_Steps: 10,
     })
 }
 
