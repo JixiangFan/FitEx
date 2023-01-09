@@ -1,57 +1,57 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const dateSchema = new Schema({
-    Today: { type: Date },
-    StartofWeek: { type: Date },
-    EndofWeek: { type: Date },
-    DayofWeek: { type: Number },
-    WeekCount: { type: Number },
-    DayCount: { type: Number },
+  Today: { type: Date },
+  StartofWeek: { type: Date },
+  EndofWeek: { type: Date },
+  DayofWeek: { type: Number },
+  WeekCount: { type: Number },
+  DayCount: { type: Number },
 
 })
 const userSchema = new Schema({
-    //_id: Schema.Types.ObjectId,
-    Name: {
-        First_Name: { type: String, required: true },
-        Last_Name: { type: String, required: true },
-        Middle_Name: { type: String },
-    },
-    User_Name: { type: String, required: true, unique: true },
-    Avater: { type: String, required: false },
-    Email: { type: String, required: true, unique: true },
-    Password: { type: String, required: true },
-    Location: { type: String, required: true },
-    Gender: { type: String, enum: ["male", "female", "other"], required: true },
-    Age: { type: Number, min: 10, max: 100, required: true },
-    Weight: { type: Number, min: 4, max: 1400, required: true },
-    Height: {
-        Height_feet: { type: Number, min: 2, max: 10, required: true },
-        Height_Inch: { type: Number, min: 0, max: 12, required: true },
-        Height_Inch_total: { type: Number, min: 20, max: 120, required: true },
-    },
-    Device: { type: String, enum: ["Fitbit", "Mix", "Self-report"], required: true },
-    Last_Sync_Time: { type: Date, default: Date.now },
-    Today: { type: Date },
-    StartofWeek: { type: Date },
-    EndofWeek: { type: Date },
-    Fitbit_Access_Token: { type: String, unique: true },
-    Team_Id: { type: Schema.Types.ObjectId, ref: 'Teams' },
-    Goal: {
-        Daily_Step_Goal: { type: Number, min: 0, max: 100000, required: true },
-        Daily_Mile_Goal: { type: Number, min: 0, max: 100000, required: true },
-        Weekly_Step_Goal: { type: Number, min: 0, max: 1000000, required: true },
-        Weekly_Mile_Goal: { type: Number, min: 0, max: 1000000, required: true },
-        Daily_FV_Goal: { type: Number, min: 0, max: 700, required: true },
-        Weekly_FV_Goal: { type: Number, min: 0, max: 7000, required: true },
-    },
-    User_Type: { type: String, enum: ["Member", "Leader", "Agent", "Admin"], required: true },
-    Unit_Prefernece: { type: String, enum: ["Step", "Mile", "Exercise Time", "Calorie"] },
-    Exercise_Profile: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'PersonalExercise',
-    },
-    Self_Report_Profile: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'SelfReport',
-    },
+  //_id: Schema.Types.ObjectId,
+  Name: {
+    First_Name: { type: String, required: true },
+    Last_Name: { type: String, required: true },
+    Middle_Name: { type: String },
+  },
+  User_Name: { type: String, required: true, unique: true },
+  Avater: { type: String, required: false },
+  Email: { type: String, required: true, unique: true },
+  Password: { type: String, required: true },
+  Location: { type: String, required: true },
+  Gender: { type: String, enum: ["male", "female", "other"], required: true },
+  Age: { type: Number, min: 10, max: 100, required: true },
+  Weight: { type: Number, min: 4, max: 1400, required: true },
+  Height: {
+    Height_feet: { type: Number, min: 2, max: 10, required: true },
+    Height_Inch: { type: Number, min: 0, max: 12, required: true },
+    Height_Inch_total: { type: Number, min: 20, max: 120, required: true },
+  },
+  Device: { type: String, enum: ["Fitbit", "Mix", "Self-report"], required: true },
+  Last_Sync_Time: { type: Date, default: Date.now },
+  Today: { type: Date },
+  StartofWeek: { type: Date },
+  EndofWeek: { type: Date },
+  Fitbit_Access_Token: { type: String, unique: true },
+  Team_Id: { type: Schema.Types.ObjectId, ref: 'Teams' },
+  Goal: {
+    Daily_Step_Goal: { type: Number, min: 0, max: 100000, required: true },
+    Daily_Mile_Goal: { type: Number, min: 0, max: 100000, required: true },
+    Weekly_Step_Goal: { type: Number, min: 0, max: 1000000, required: true },
+    Weekly_Mile_Goal: { type: Number, min: 0, max: 1000000, required: true },
+    Daily_FV_Goal: { type: Number, min: 0, max: 700, required: true },
+    Weekly_FV_Goal: { type: Number, min: 0, max: 7000, required: true },
+  },
+  User_Type: { type: String, enum: ["Member", "Leader", "Agent", "Admin"], required: true },
+  Unit_Prefernece: { type: String, enum: ["Step", "Mile", "Exercise Time", "Calorie"] },
+  Exercise_Profile: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'PersonalExercise',
+  },
+  Self_Report_Profile: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'SelfReport',
+  },
 
 });
 
@@ -426,99 +426,105 @@ const PersonalExerciseSchema = new Schema({
 });
 
 const SelfReportActivitySchema = new Schema({
-    User: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Users',
-    },
+  User: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'Users',
+  },
 
-    Activty_Date: { type: Date },
-    Activity_Name: { type: String },
-    Activity_Description: { type: String },
-    Activity_Time_Hours: { type: Number },
-    Activity_Time_Minutes: { type: Number },
-    Activity_Time_Minutes_Total: { type: Number },
-    Activity_Miles: { type: Number },
-    Activity_Steps: { type: Number },
+  Activty_Date: { type: Date },
+  Activity_Name: { type: String },
+  Activity_Description: { type: String },
+  Activity_Time_Hours: { type: Number },
+  Activity_Time_Minutes: { type: Number },
+  Activity_Time_Minutes_Total: { type: Number },
+  Activity_Miles: { type: Number },
+  Activity_Steps: { type: Number },
 });
 
 const SelfReportSchema = new Schema({
-    User: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Users',
-    },
+  User: {
+    type: mongoose.Schema.Types.ObjectId, ref: 'Users',
+  },
 
-    Daily_Activity: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'SelfReportActivity',
-            }],
-    },
+  Daily_Activity: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'SelfReportActivity',
+      }],
+  },
 
-    Weekly_Activity: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'SelfReportActivity',
-            }],
-    },
+  Weekly_Activity: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'SelfReportActivity',
+      }],
+  },
 
-    Program_Activity: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'SelfReportActivity',
-            }],
-    },
+  Program_Activity: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'SelfReportActivity',
+      }],
+  },
 });
 
 const RankingSchema = new Schema({
-    Date: { type: Date },
-    DayCount: { type: Number },
+  Date: { type: Date },
+  DayCount: { type: Number },
 
-    Daily_Top10_Individual: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'Users',
-            }],
-    },
-    Daily_Top10_Team: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
-            }],
-    },
-    Weekly_Top10_Individual: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'Users',
-            }],
-    },
-    Weekly_Top10_Team: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
-            }],
-    },
-    Daily_Overall_Individual: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'Users',
-            }],
-    },
-    Daily_Overall_Team: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
-            }],
-    },
-    Weekly_Overall_Team: {
-        type: [
-            {
-                type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
-            }],
-    },
+  Daily_Top10_Individual: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Users',
+      }],
+  },
+  Daily_Top10_Team: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
+      }],
+  },
+  Weekly_Top10_Individual: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Users',
+      }],
+  },
+  Weekly_Top10_Team: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
+      }],
+  },
+  Daily_Overall_Individual: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Users',
+      }],
+  },
+  Weekly_Overall_Individual: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Users',
+      }],
+  },
+  Daily_Overall_Team: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
+      }],
+  },
+  Weekly_Overall_Team: {
+    type: [
+      {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Teams',
+      }],
+  },
 
 });
 
 
 function arrayLimit(val) {
-    return val.length <= 7;
+  return val.length <= 7;
 }
 
 const ProgramDate = mongoose.model('ProgramDate', dateSchema, 'ProgramDate')
