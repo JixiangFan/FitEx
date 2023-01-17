@@ -167,6 +167,10 @@ const PersonalExerciseSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
   },
+  Team: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Teams",
+  },
 
   Individual_Step: {
     Daily_Step_Goal: { type: Number, required: true },
