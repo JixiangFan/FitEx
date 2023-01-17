@@ -1,6 +1,6 @@
 var express = require('express');
 const { Users, Teams, SelfReportActivity, SelfReport, Ranking, PersonalExercise, ProgramDate } = require('../models/Schemas.js');
-
+var mongoose = require('mongoose');
 var router = express.Router();
 const Schemas = require('../models/Schemas.js');
 
@@ -380,8 +380,8 @@ router.get('/dailyRankingUpdate', async (req, res) => {
                 }
             }
         ]).exec((err, doc) => {
-   
-           // if (err) console.log(err)
+
+            // if (err) console.log(err)
             doc.forEach((result) => {
                 PersonalExercise.findOneAndUpdate(
                     { User: result.User },
@@ -400,32 +400,34 @@ router.get('/dailyRankingUpdate', async (req, res) => {
                             },
                         }).exec()
                     })
-                
-                    if (result.rank <= 10)
-                    {
-                        rankUpdate = {
-                            $push: {
-                                Daily_Top10_Individual: result.User,
-                                Daily_Overall_Individual: result.User,
-                            }
+
+                if (result.rank <= 10)
+                {
+                    rankUpdate = {
+                        $push: {
+                            Daily_Top10_Individual: result.User,
+                            Daily_Overall_Individual: result.User,
                         }
                     }
-                    else
-                    {
-                        rankUpdate = {
-                            $push: {
-                                Daily_Overall_Individual: result.User,
-                            }
+                }
+                else
+                {
+                    rankUpdate = {
+                        $push: {
+                            Daily_Overall_Individual: result.User,
                         }
                     }
-                    Ranking.updateOne(
-                        { DayCount: DayCount }, rankUpdate
-                    ).exec()
+                }
+                Ranking.updateOne(
+                    { DayCount: DayCount }, rankUpdate
+                ).exec()
             })
 
 
         })
-
+        //Weekly_Individual_Ranking
+        //Program_Individual_Weekly_Ranking
+        //Individual_Weekly_Ranking_Record
         PersonalExercise.aggregate([
             { $match: {} },
             {
@@ -460,7 +462,7 @@ router.get('/dailyRankingUpdate', async (req, res) => {
                 }
             }
         ]).exec((err, doc) => {
-           // console.log(doc)
+            // console.log(doc)
             if (err) console.log(err)
             doc.forEach((result) => {
                 PersonalExercise.findOneAndUpdate(
@@ -483,7 +485,7 @@ router.get('/dailyRankingUpdate', async (req, res) => {
 
                 if (result.rank <= 10)
                 {
-                    console.log(result.rank)
+                    //console.log(result.rank)
                     rankUpdate = {
                         $push: {
                             Weekly_Top10_Individual: result.User,
@@ -504,6 +506,298 @@ router.get('/dailyRankingUpdate', async (req, res) => {
                 ).exec()
 
 
+            })
+
+
+        })
+
+        Teams.find({}).exec((err, doc) => {
+            doc.forEach((team) => {
+                //console.log(team.id)
+                PersonalExercise.aggregate([
+                    { $match: { Team: mongoose.Types.ObjectId(team.id) } },
+                    {
+                        $group: {
+                            _id: "$User",
+                            step: {
+                                $sum: "$Individual_Step.Daily_Step_Mix"
+                            }
+                        }
+                    },
+                    { $sort: { step: -1 } },
+                    {
+                        $group: {
+                            _id: null,
+                            PersonalExercise: { $push: { User: "$_id", Step: "$step" } }
+                        }
+                    },
+                    { "$unwind": { "path": "$PersonalExercise", "includeArrayIndex": "PersonalExercise.rank" } },
+                    {
+                        $replaceRoot: {
+                            newRoot: "$PersonalExercise"
+                        }
+                    },
+                    {
+                        $addFields: {
+                            rank: {
+                                $add: [
+                                    "$rank",
+                                    1
+                                ]
+                            }
+                        }
+                    }
+                ]).exec((err, doc) => {
+                    doc.forEach((result) => {
+                        PersonalExercise.findOneAndUpdate(
+                            { User: result.User },
+                            {
+                                $set: {
+                                    "Individual_Rankings.Daily_InTeam_Ranking": result.rank,
+                                    [`Individual_Rankings.Program_InTeam_Daily_Ranking.${DayCount}`]: result.rank
+                                },
+                            }).exec((err, doc) => {
+                                if (err) console.log(err)
+                                let update = doc.Individual_Rankings.Weekly_InTeam_Ranking
+                                update[DayofWeek] = result.rank
+                                PersonalExercise.findOneAndUpdate({ User: result.User }, {
+                                    $set: {
+                                        "Individual_Rankings.InTeam_Daily_Ranking_Record": update,
+                                    },
+                                }).exec()
+                            })
+                    })
+
+
+                })
+                PersonalExercise.aggregate([
+                    { $match: { Team: mongoose.Types.ObjectId(team.id) } },
+                    {
+                        $group: {
+                            _id: "$User",
+                            step: {
+                                $sum: "$Individual_Step.Weekly_Step_Mix_Total"
+                            }
+                        }
+                    },
+                    { $sort: { step: -1 } },
+                    {
+                        $group: {
+                            _id: null,
+                            PersonalExercise: { $push: { User: "$_id", Step: "$step" } }
+                        }
+                    },
+                    { "$unwind": { "path": "$PersonalExercise", "includeArrayIndex": "PersonalExercise.rank" } },
+                    {
+                        $replaceRoot: {
+                            newRoot: "$PersonalExercise"
+                        }
+                    },
+                    {
+                        $addFields: {
+                            rank: {
+                                $add: [
+                                    "$rank",
+                                    1
+                                ]
+                            }
+                        }
+                    }
+                ]).exec((err, doc) => {
+                    if (err) console.log(err)
+                    doc.forEach((result) => {
+                        PersonalExercise.findOneAndUpdate(
+                            { User: result.User },
+                            {
+                                $set: {
+                                    "Individual_Rankings.Weekly_InTeam_Ranking": result.rank,
+                                    [`Individual_Rankings.Program_InTeam_Weekly_Ranking.${DayCount}`]: result.rank
+                                },
+                            }).exec((err, doc) => {
+                                if (err) console.log(err)
+                                let update = doc.Individual_Rankings.InTeam_Weekly_Ranking_Record
+                                update[DayofWeek] = result.rank
+                                PersonalExercise.findOneAndUpdate({ User: result.User }, {
+                                    $set: {
+                                        "Individual_Rankings.InTeam_Weekly_Ranking_Record": update,
+                                    },
+                                }).exec()
+                            })
+
+                    })
+
+
+                })
+            })
+        })
+
+        //Team Rankings
+        //Daily_Individual_Ranking
+        //Program_Individual_Ranking
+        //Weekly_Individual_Ranking
+        Teams.aggregate([
+            { $match: {} },
+            {
+                $group: {
+                    _id: "$_id",
+                    step: {
+                        $sum: "$Team_Exercise_Data.Team_Daily_Steps"
+                    }
+                }
+            },
+            { $sort: { step: -1 } },
+            {
+                $group: {
+                    _id: null,
+                    TeamExercise: { $push: { User: "$_id", Step: "$step" } }
+                }
+            },
+            { "$unwind": { "path": "$TeamExercise", "includeArrayIndex": "TeamExercise.rank" } },
+            {
+                $replaceRoot: {
+                    newRoot: "$TeamExercise"
+                }
+            },
+            {
+                $addFields: {
+                    rank: {
+                        $add: [
+                            "$rank",
+                            1
+                        ]
+                    }
+                }
+            }
+        ]).exec((err, doc) => {
+            // console.log(doc)
+            // if (err) console.log(err)
+            doc.forEach((result) => {
+                Teams.findByIdAndUpdate(
+                    result.User,
+                    {
+                        $set: {
+                            "Team_Rankings.Daily_Team_Ranking": result.rank,
+                            [`Team_Rankings.Program_Daily_Team_Ranking.${DayCount}`]: result.rank
+                        },
+                    }).exec((err, doc) => {
+                        if (err) console.log(err)
+                        let update = doc.Team_Rankings.Daily_Team_Ranking_Record
+                        update[DayofWeek] = result.rank
+                        Teams.findByIdAndUpdate(
+                            result.User,
+                            {
+                                $set: {
+                                    "Team_Rankings.Daily_Team_Ranking_Record": update,
+                                },
+                            }
+                        ).exec()
+                    })
+
+                if (result.rank <= 10)
+                {
+                    rankUpdate = {
+                        $push: {
+                            Daily_Top10_Team: result.User,
+                            Daily_Overall_Team: result.User,
+                        }
+                    }
+                }
+                else
+                {
+                    rankUpdate = {
+                        $push: {
+                            Daily_Overall_Team: result.User,
+                        }
+                    }
+                }
+                Ranking.updateOne(
+                    { DayCount: DayCount }, rankUpdate
+                ).exec()
+            })
+
+
+        })
+        // //Weekly_Individual_Ranking
+        // //Program_Individual_Weekly_Ranking
+        // //Individual_Weekly_Ranking_Record
+        Teams.aggregate([
+            { $match: {} },
+            {
+                $group: {
+                    _id: "$_id",
+                    step: {
+                        $sum: "$Team_Exercise_Data.Team_Weekly_Steps_Total"
+                    }
+                }
+            },
+            { $sort: { step: -1 } },
+            {
+                $group: {
+                    _id: null,
+                    TeamExercise: { $push: { User: "$_id", Step: "$step" } }
+                }
+            },
+            { "$unwind": { "path": "$TeamExercise", "includeArrayIndex": "TeamExercise.rank" } },
+            {
+                $replaceRoot: {
+                    newRoot: "$TeamExercise"
+                }
+            },
+            {
+                $addFields: {
+                    rank: {
+                        $add: [
+                            "$rank",
+                            1
+                        ]
+                    }
+                }
+            }
+        ]).exec((err, doc) => {
+            // console.log(doc)
+            // if (err) console.log(err)
+            doc.forEach((result) => {
+                Teams.findByIdAndUpdate(
+                    result.User,
+                    {
+                        $set: {
+                            "Team_Rankings.Weekly_Team_Ranking": result.rank,
+                            [`Team_Rankings.Program_Weekly_Team_Ranking.${DayCount}`]: result.rank
+                        },
+                    }).exec((err, doc) => {
+                        if (err) console.log(err)
+                        let update = doc.Team_Rankings.Weekly_Team_Ranking_Record
+                        update[DayofWeek] = result.rank
+                        Teams.findByIdAndUpdate(
+                            result.User,
+                            {
+                                $set: {
+                                    "Team_Rankings.Weekly_Team_Ranking_Record": update,
+                                },
+                            }
+                        ).exec()
+                    })
+
+                if (result.rank <= 10)
+                {
+                    rankUpdate = {
+                        $push: {
+                            Weekly_Top10_Team: result.User,
+                            Weekly_Overall_Team: result.User,
+                        }
+                    }
+                }
+                else
+                {
+                    rankUpdate = {
+                        $push: {
+                            Weekly_Overall_Team: result.User,
+                        }
+                    }
+                }
+                Ranking.updateOne(
+                    { DayCount: DayCount }, rankUpdate
+                ).exec()
             })
 
 
